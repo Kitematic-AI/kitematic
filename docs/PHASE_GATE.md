@@ -3,7 +3,7 @@
 This file is the **sole authority** for phase transitions. No Agent may begin a phase unless this file explicitly marks it as `unlocked` with `approved_by_human: true`.
 
 ```yaml
-current_phase: 1B-Code.0
+current_phase: 1B-Code.1A
 
 phase_0:
   name: Foundation & Constitution
@@ -32,8 +32,28 @@ phase_1:
           approved_by_human: true
         phase_1B_Code_1:
           name: Core Logic Implementation
-          status: locked
-          approved_by_human: false
+          status: active
+          sub_phases:
+            phase_1B_Code_1A:
+              name: Domain Models, Validation & Serialization
+              status: active
+              approved_by_human: true
+            phase_1B_Code_1B:
+              name: Agent Registry (In-Memory Implementation)
+              status: locked
+              approved_by_human: false
+            phase_1B_Code_1C:
+              name: Control Plane Orchestration Logic
+              status: locked
+              approved_by_human: false
+            phase_1B_Code_1D:
+              name: Policy Evaluation Engine
+              status: locked
+              approved_by_human: false
+            phase_1B_Code_1E:
+              name: Integration & E2E Tests
+              status: locked
+              approved_by_human: false
 
 phase_2:
   name: Runtime & Execution Plane

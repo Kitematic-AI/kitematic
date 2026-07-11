@@ -1,6 +1,6 @@
 # Kitematic Current State
 
-**Last Updated:** Phase 1B-Code.0 Complete
+**Last Updated:** Phase 1B-Code.1A Complete
 
 ## Project Status
 
@@ -9,7 +9,7 @@ project:
   name: Kitematic
 
 phase:
-  current: 1B-Code.0
+  current: 1B-Code.1A
 
 status: COMPLETED
 
@@ -18,9 +18,10 @@ completed:
   - Phase 1A: Architecture Refinement
   - Phase 1B-Design: Implementation Design Documents
   - Phase 1B-Code.0: Source Skeleton & Interfaces
+  - Phase 1B-Code.1A: Domain Models, Validation & Serialization
 
 next:
-  - Phase 1B-Code.1: Core Logic Implementation
+  - Phase 1B-Code.1B: Agent Registry (In-Memory Implementation)
 
 blocked:
   - None
@@ -34,7 +35,11 @@ blocked:
 | 1A | Architecture Definition | ✅ COMPLETED |
 | 1B-Design | Implementation Design | ✅ COMPLETED |
 | 1B-Code.0 | Bootstrap Skeleton & Interfaces | ✅ COMPLETED |
-| 1B-Code.1 | Core Logic Implementation | ⏳ PENDING |
+| 1B-Code.1A | Domain Models, Validation & Serialization | ✅ COMPLETED |
+| 1B-Code.1B | Agent Registry (In-Memory) | ⏳ PENDING |
+| 1B-Code.1C | Control Plane Orchestration | ⏳ PENDING |
+| 1B-Code.1D | Policy Evaluation Engine | ⏳ PENDING |
+| 1B-Code.1E | Integration & E2E Tests | ⏳ PENDING |
 | 2 | Runtime & Execution Plane | ⏳ PENDING |
 | 3 | MCP Gateway & Adapters | ⏳ PENDING |
 | 4 | Memory & Checkpoint Services | ⏳ PENDING |
@@ -45,25 +50,16 @@ blocked:
 
 ## Completed Deliverables
 
-### Phase 0 — Constitution & Governance
-- [x] All constitution files, phase gate, hash manifest, ADRs
+### Phase 1B-Code.1A — Domain Models
+- [x] `runtime/domain/agent_manifest.py` — AgentManifest, Identity, RuntimeDefinition, Capabilities, Constraints
+- [x] `runtime/domain/policy.py` — PolicyRule, PolicyEvaluation, PolicyEffect
+- [x] `runtime/domain/execution.py` — Execution, ExecutionStep, BudgetConsumed
+- [x] `runtime/domain/checkpoint.py` — Checkpoint, CheckpointTrigger
+- [x] `runtime/domain/approval_request.py` — ApprovalRequest, RiskLevel
+- [x] `runtime/domain/memory.py` — MemoryItem, MemoryType
+- [x] `runtime/domain/adapter.py` — Adapter, TrustLevel
+- [x] `runtime/domain/exceptions.py` — 7 typed exceptions
+- [x] `tests/runtime/domain/` — 34 unit tests, all passing
 
-### Phase 1A — Architecture Definitions
-- [x] SERVICE_BOUNDARIES.md, CONTROL_PLANE_DESIGN.md
-- [x] API_CONTRACTS.md, EVENT_MODEL.md, SECURITY_BOUNDARIES.md
-
-### Phase 1B-Design — Implementation Design
-- [x] SERVICE_SPECIFICATIONS.md, DATA_FLOW_DIAGRAMS.md
-- [x] IMPLEMENTATION_GUIDE.md, ERROR_HANDLING_STRATEGY.md, TESTING_STRATEGY.md
-
-### Phase 1B-Code.0 — Source Skeleton & Interfaces
-- [x] services/control_plane/interfaces/orchestrator.py
-- [x] services/control_plane/interfaces/lifecycle_manager.py
-- [x] services/agent_registry/interfaces/template_repository.py
-- [x] services/agent_registry/interfaces/instance_repository.py
-- [x] services/policy_interface/interfaces/policy_evaluator.py
-- [x] runtime/contracts/step_request.py
-- [x] runtime/contracts/step_response.py
-- [x] runtime/contracts/agent_state.py
-- [x] tests/services/test_agent_registry.py
-- [x] tests/runtime/test_state_transitions.py
+### Governance
+- [x] `docs/PHASE_1B_CODE_CHECKLIST.md` — 16 rules for code quality

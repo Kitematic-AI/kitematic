@@ -3,7 +3,7 @@
 This file is the **sole authority** for phase transitions. No Agent may begin a phase unless this file explicitly marks it as `unlocked` with `approved_by_human: true`.
 
 ```yaml
-current_phase: 1B-Code.1E
+current_phase: 2
 
 phase_0:
   name: Foundation & Constitution
@@ -52,13 +52,13 @@ phase_1:
               approved_by_human: true
             phase_1B_Code_1E:
               name: Integration & E2E Tests
-              status: unlocked
+              status: completed
               approved_by_human: true
 
 phase_2:
   name: Runtime & Execution Plane
-  status: locked
-  approved_by_human: false
+  status: unlocked
+  approved_by_human: true
 
 phase_3:
   name: MCP Gateway & Adapters

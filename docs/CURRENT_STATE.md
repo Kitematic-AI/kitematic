@@ -1,6 +1,6 @@
 # Kitematic Current State
 
-**Last Updated:** Phase 1B-Code.1D Complete
+**Last Updated:** Phase 1B-Code.1E Complete
 
 ## Project Status
 
@@ -9,7 +9,7 @@ project:
   name: Kitematic
 
 phase:
-  current: 1B-Code.1D
+  current: 2
 
 status: COMPLETED
 
@@ -22,9 +22,10 @@ completed:
   - Phase 1B-Code.1B: Agent Registry (In-Memory Implementation)
   - Phase 1B-Code.1C: Control Plane Orchestration Logic
   - Phase 1B-Code.1D: Policy Evaluation Engine
+  - Phase 1B-Code.1E: Integration & E2E Tests (Quality Gate)
 
 next:
-  - Phase 1B-Code.1E: Integration & E2E Tests
+  - Phase 2: Runtime & Execution Plane
 
 blocked:
   - None
@@ -42,7 +43,7 @@ blocked:
 | 1B-Code.1B | Agent Registry (In-Memory) | ✅ COMPLETED |
 | 1B-Code.1C | Control Plane Orchestration | ✅ COMPLETED |
 | 1B-Code.1D | Policy Evaluation Engine | ✅ COMPLETED |
-| 1B-Code.1E | Integration & E2E Tests | ⏳ PENDING |
+| 1B-Code.1E | Integration & E2E Tests | ✅ COMPLETED |
 | 2 | Runtime & Execution Plane | ⏳ PENDING |
 | 3 | MCP Gateway & Adapters | ⏳ PENDING |
 | 4 | Memory & Checkpoint Services | ⏳ PENDING |
@@ -51,17 +52,21 @@ blocked:
 | 7 | SDK & CLI | ⏳ PENDING |
 | 8 | Marketplace & Ecosystem | ⏳ PENDING |
 
-## Completed Deliverables
+## Test Summary
 
-### Phase 1B-Code.1D — Policy Evaluation Engine
-- [x] `services/control_plane/policy/policy_engine.py` — PolicyEngine implementing PolicyEvaluator ABC
-- [x] `tests/services/control_plane/test_policy_engine.py` — 25 tests (contract, target matching, evaluate, create, list)
+```
+Unit tests:     112 passed (Phase 0–1D)
+Integration:     19 passed (Phase 1E)
+Verifier tests:   9 passed (Phase 1E)
+E2E tests:        3 passed (Phase 1E)
+Architecture:     7/7 PASS
+-------------------------------------------
+Grand total:    140 tests passing + 7/7 architecture checks
+```
 
-### Test Summary
-- Domain models: 34 tests
-- Runtime contracts: 3 tests
-- Agent Registry: 14 contract tests
-- Control Plane: 35 tests (state machine, step coordinator, lifecycle, registry)
-- Policy Engine: 25 tests (contract, target matching, evaluate, create, list)
-- Legacy stubs: 1 test
-- **Total: 112 tests, all passing**
+## Phase 1B-Code.1E Deliverables
+
+- [x] `tests/integration/test_functional_integration.py` — 16 functional integration tests
+- [x] `tests/integration/test_e2e_scenarios.py` — 3 E2E scenarios (Happy/Approval/Deny)
+- [x] `scripts/verify_architecture.py` — AST-based architecture verification (7 checks)
+- [x] `tests/scripts/test_verify_architecture.py` — 9 verifier self-tests (tempfile-based)

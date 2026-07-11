@@ -43,14 +43,15 @@ class LifecycleManager:
 
         execution_id = f"exec-{instance_id}"
 
-        # Create state machine and transition to RUNNING
+        # Create state machine and transition to RUNNING (idempotent: skip if already running)
         sm = self._get_state_machine(execution_id)
-        sm.transition(
-            target=ExecutionStatus.RUNNING,
-            reason="user_started",
-            actor="lifecycle_manager",
-            metadata={"instance_id": instance_id, "goal": goal},
-        )
+        if sm.can_transition(ExecutionStatus.RUNNING):
+            sm.transition(
+                target=ExecutionStatus.RUNNING,
+                reason="user_started",
+                actor="lifecycle_manager",
+                metadata={"instance_id": instance_id, "goal": goal},
+            )
 
         return execution_id
 

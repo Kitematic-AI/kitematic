@@ -3,7 +3,7 @@
 
 class KitematicDomainError(Exception):
     """Base exception for all domain errors."""
-    pass
+    code: str = "DOMAIN_ERROR"
 
 
 class ValidationError(KitematicDomainError):

@@ -57,16 +57,16 @@ blocked:
 ```
 Unit tests:     112 passed (Phase 0–1D)
 Integration:     19 passed (Phase 1E)
-Verifier tests:   9 passed (Phase 1E)
+Verifier tests:  11 passed (Phase 1E + follow-up)
 E2E tests:        3 passed (Phase 1E)
-Architecture:     7/7 PASS
+Architecture:     8/8 PASS (includes Contract Consistency)
 -------------------------------------------
-Grand total:    140 tests passing + 7/7 architecture checks
+Grand total:    142 tests passing + 8/8 architecture checks
 ```
 
 ## Phase 1B-Code.1E Deliverables
 
 - [x] `tests/integration/test_functional_integration.py` — 16 functional integration tests
 - [x] `tests/integration/test_e2e_scenarios.py` — 3 E2E scenarios (Happy/Approval/Deny)
-- [x] `scripts/verify_architecture.py` — AST-based architecture verification (7 checks)
-- [x] `tests/scripts/test_verify_architecture.py` — 9 verifier self-tests (tempfile-based)
+- [x] `scripts/verify_architecture.py` — AST-based architecture verification (8 checks)
+- [x] `tests/scripts/test_verify_architecture.py` — 11 verifier self-tests (tempfile-based)

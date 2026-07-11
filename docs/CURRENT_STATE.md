@@ -1,6 +1,6 @@
 # Kitematic Current State
 
-**Last Updated:** Phase 0 Complete
+**Last Updated:** Phase 1A Complete
 
 ## Project Status
 
@@ -9,17 +9,18 @@ project:
   name: Kitematic
 
 phase:
-  current: 0
+  current: 1A
 
 status: COMPLETED
 
 completed:
   - Architecture Design (PRD, TAD, Data Model, Contracts)
   - Constitution Planning (6-Plane Architecture, Governance)
-  - Phase 0 Execution (Repository Skeleton, Documentation, Constitution)
+  - Phase 0: Foundation & Constitution (Genesis + Phase Gate)
+  - Phase 1A: Architecture Refinement (Service Boundaries, APIs, Events, Security)
 
 next:
-  - Phase 1: Core Services Implementation
+  - Phase 1B: Core Services Implementation
 
 blocked:
   - None
@@ -30,7 +31,8 @@ blocked:
 | Phase | Description | Status |
 |-------|-------------|--------|
 | 0 | Foundation & Constitution | ✅ COMPLETED |
-| 1 | Core Services (Control Plane) | ⏳ PENDING |
+| 1A | Architecture Definition | ✅ COMPLETED |
+| 1B | Core Services Implementation | ⏳ PENDING |
 | 2 | Runtime & Execution Plane | ⏳ PENDING |
 | 3 | MCP Gateway & Adapters | ⏳ PENDING |
 | 4 | Memory & Checkpoint Services | ⏳ PENDING |
@@ -41,27 +43,21 @@ blocked:
 
 ## Completed Deliverables
 
-### Documentation
-- [x] `docs/00_CONSTITUTION/01_SYSTEM_CONSTITUTION.md`
-- [x] `docs/00_CONSTITUTION/02_SOURCE_OF_TRUTH.md`
-- [x] `docs/00_CONSTITUTION/03_FORBIDDEN_ACTIONS.md`
-- [x] `docs/00_CONSTITUTION/04_AGENT_BUILD_RULES.md`
-- [x] `docs/00_CONSTITUTION/05_ARCHITECTURE_GUARDIAN.md`
-- [x] `docs/00_CONSTITUTION/06_EMERGENCY_CONTROL.md`
-- [x] `docs/00_CONSTITUTION/HASH_MANIFEST.json`
-- [x] `docs/01_PRODUCT/PRD.md`
-- [x] `docs/02_ARCHITECTURE/TAD.md`
-- [x] `docs/03_CONTRACTS/RUNTIME_CONTRACT.md`
-- [x] `docs/04_DATA/DATA_MODEL.md`
-- [x] `docs/05_DEPLOYMENT/DEPLOYMENT.md`
-- [x] `docs/06_ECOSYSTEM/ECOSYSTEM.md`
-- [x] `docs/CURRENT_STATE.md`
-- [x] `docs/CHANGE_CONTROL.md`
+### Phase 0 — Constitution & Governance
+- [x] SYSTEM_CONSTITUTION.md, SOURCE_OF_TRUTH.md, FORBIDDEN_ACTIONS.md
+- [x] AGENT_BUILD_RULES.md, ARCHITECTURE_GUARDIAN.md, EMERGENCY_CONTROL.md
+- [x] HASH_MANIFEST.json, PHASE_GATE.md, CHANGE_CONTROL.md
+- [x] ADR-001 (KAS Standard), ADR-002 (Multi-Tier Isolation)
 
-### Governance
-- [x] Constitution & Build Rules established
-- [x] Source of Truth Hierarchy defined
-- [x] Forbidden Actions documented
-- [x] Architecture Guardian rules defined
-- [x] Emergency Control / Kill Switch created
-- [x] Change Control Process established
+### Phase 1A — Architecture Definition
+- [x] `docs/02_ARCHITECTURE/SERVICE_BOUNDARIES.md`
+- [x] `docs/02_ARCHITECTURE/CONTROL_PLANE_DESIGN.md`
+- [x] `docs/02_ARCHITECTURE/API_CONTRACTS.md`
+- [x] `docs/02_ARCHITECTURE/EVENT_MODEL.md`
+- [x] `docs/02_ARCHITECTURE/SECURITY_BOUNDARIES.md`
+
+### Product & Strategy
+- [x] PRD.md, TAD.md, RUNTIME_CONTRACT.md
+- [x] DATA_MODEL.md (22 tables, V3)
+- [x] DEPLOYMENT.md (4-tier isolation)
+- [x] ECOSYSTEM.md (SDKs, CLI, KAS, Marketplace)

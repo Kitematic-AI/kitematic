@@ -3,7 +3,7 @@
 This file is the **sole authority** for phase transitions. No Agent may begin a phase unless this file explicitly marks it as `unlocked` with `approved_by_human: true`.
 
 ```yaml
-current_phase: 0
+current_phase: 1A
 
 phase_0:
   name: Foundation & Constitution
@@ -11,46 +11,49 @@ phase_0:
   approved_by_human: true
 
 phase_1:
-  name: Architecture Deepening (Service Boundaries, API Contracts, Control Plane Design)
-  status: locked
-  approved_by_human: false
+  name: Architecture & Core Services
+  status: active
+  sub_phases:
+    phase_1A:
+      name: Architecture Definition
+      status: active
+      approved_by_human: true
+    phase_1B:
+      name: Core Services Implementation
+      status: locked
+      approved_by_human: false
 
 phase_2:
-  name: Core Services Implementation
-  status: locked
-  approved_by_human: false
-
-phase_3:
   name: Runtime & Execution Plane
   status: locked
   approved_by_human: false
 
-phase_4:
+phase_3:
   name: MCP Gateway & Adapters
   status: locked
   approved_by_human: false
 
-phase_5:
+phase_4:
   name: Memory & Checkpoint Services
   status: locked
   approved_by_human: false
 
-phase_6:
+phase_5:
   name: Policy & Governance Engine
   status: locked
   approved_by_human: false
 
-phase_7:
+phase_6:
   name: Infrastructure & Deployment
   status: locked
   approved_by_human: false
 
-phase_8:
+phase_7:
   name: SDK & CLI
   status: locked
   approved_by_human: false
 
-phase_9:
+phase_8:
   name: Marketplace & Ecosystem
   status: locked
   approved_by_human: false

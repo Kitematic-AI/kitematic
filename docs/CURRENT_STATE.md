@@ -1,6 +1,6 @@
 # Kitematic Current State
 
-**Last Updated:** Phase 1B-Code.1A Complete
+**Last Updated:** Phase 1B-Code.1B Complete
 
 ## Project Status
 
@@ -9,7 +9,7 @@ project:
   name: Kitematic
 
 phase:
-  current: 1B-Code.1A
+  current: 1B-Code.1B
 
 status: COMPLETED
 
@@ -19,9 +19,10 @@ completed:
   - Phase 1B-Design: Implementation Design Documents
   - Phase 1B-Code.0: Source Skeleton & Interfaces
   - Phase 1B-Code.1A: Domain Models, Validation & Serialization
+  - Phase 1B-Code.1B: Agent Registry (In-Memory Implementation)
 
 next:
-  - Phase 1B-Code.1B: Agent Registry (In-Memory Implementation)
+  - Phase 1B-Code.1C: Control Plane Orchestration Logic
 
 blocked:
   - None
@@ -36,7 +37,7 @@ blocked:
 | 1B-Design | Implementation Design | ✅ COMPLETED |
 | 1B-Code.0 | Bootstrap Skeleton & Interfaces | ✅ COMPLETED |
 | 1B-Code.1A | Domain Models, Validation & Serialization | ✅ COMPLETED |
-| 1B-Code.1B | Agent Registry (In-Memory) | ⏳ PENDING |
+| 1B-Code.1B | Agent Registry (In-Memory) | ✅ COMPLETED |
 | 1B-Code.1C | Control Plane Orchestration | ⏳ PENDING |
 | 1B-Code.1D | Policy Evaluation Engine | ⏳ PENDING |
 | 1B-Code.1E | Integration & E2E Tests | ⏳ PENDING |
@@ -50,16 +51,16 @@ blocked:
 
 ## Completed Deliverables
 
-### Phase 1B-Code.1A — Domain Models
-- [x] `runtime/domain/agent_manifest.py` — AgentManifest, Identity, RuntimeDefinition, Capabilities, Constraints
-- [x] `runtime/domain/policy.py` — PolicyRule, PolicyEvaluation, PolicyEffect
-- [x] `runtime/domain/execution.py` — Execution, ExecutionStep, BudgetConsumed
-- [x] `runtime/domain/checkpoint.py` — Checkpoint, CheckpointTrigger
-- [x] `runtime/domain/approval_request.py` — ApprovalRequest, RiskLevel
-- [x] `runtime/domain/memory.py` — MemoryItem, MemoryType
-- [x] `runtime/domain/adapter.py` — Adapter, TrustLevel
-- [x] `runtime/domain/exceptions.py` — 7 typed exceptions
-- [x] `tests/runtime/domain/` — 34 unit tests, all passing
+### Phase 1B-Code.1B — Agent Registry (In-Memory)
+- [x] `services/agent_registry/repositories/memory_template_repository.py`
+- [x] `services/agent_registry/repositories/memory_instance_repository.py`
+- [x] `tests/services/agent_registry/test_template_repository.py` — 7 contract tests
+- [x] `tests/services/agent_registry/test_instance_repository.py` — 7 contract tests
+- [x] `docs/PHASE_1B_CODE_CHECKLIST.md` — updated with 7 new rules
 
-### Governance
-- [x] `docs/PHASE_1B_CODE_CHECKLIST.md` — 16 rules for code quality
+### Test Summary
+- Domain models: 34 tests
+- Runtime contracts: 3 tests
+- Agent Registry: 14 contract tests
+- Legacy stubs: 1 test
+- **Total: 52 tests, all passing**

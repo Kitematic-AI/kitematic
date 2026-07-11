@@ -1,17 +1,16 @@
-"""Skeleton tests for Agent Registry service."""
+"""Agent Registry service tests.
+
+These tests have been superseded by contract tests in:
+  tests/services/agent_registry/test_template_repository.py
+  tests/services/agent_registry/test_instance_repository.py
+"""
+
+import pytest
 
 
 class TestAgentRegistry:
-    """Placeholder for Agent Registry unit tests."""
+    """Legacy placeholder — kept for backward compatibility."""
 
-    async def test_create_template(self) -> None:
-        """TODO: Implement once Agent Registry service is built."""
-        pass
-
-    async def test_create_instance(self) -> None:
-        """TODO: Implement once Agent Registry service is built."""
-        pass
-
-    async def test_get_instance_returns_none_for_missing(self) -> None:
-        """TODO: Implement once Agent Registry service is built."""
-        pass
+    def test_placeholder(self) -> None:
+        """Placeholder test — real tests are in agent_registry/ subdirectory."""
+        assert True

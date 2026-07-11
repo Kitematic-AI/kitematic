@@ -30,6 +30,16 @@ Before any commit that modifies `services/` or `runtime/`, every item below must
 - [ ] No direct database access from Control Plane code
 - [ ] All data access goes through repository interface
 - [ ] Repository interface returns domain models (not raw dicts)
+- [ ] Repository owns persistence only, not business decisions
+- [ ] Repository must not mutate domain rules
+- [ ] Repository returns validated domain objects
+- [ ] Repository contract tests are storage-independent
+
+## Domain API Stability
+
+- [ ] Domain public APIs are versioned
+- [ ] Domain objects expose stable serialization format
+- [ ] Domain validation errors are documented
 
 ## Violation Protocol
 

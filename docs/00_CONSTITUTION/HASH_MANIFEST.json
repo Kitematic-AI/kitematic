@@ -1,0 +1,30 @@
+{
+  "constitution_version": "1.0",
+  "locked": true,
+  "files": [
+    {
+      "file": "01_SYSTEM_CONSTITUTION.md",
+      "sha256": "b0170e2e9b6e322ad3c06b05db4b32c4c4fbac2b0763822e327993ea917e3521"
+    },
+    {
+      "file": "02_SOURCE_OF_TRUTH.md",
+      "sha256": "982ef31eb5e851fbd1ed202cf61e9dffb8efe96d1e1361da0045ed2fb0881f82"
+    },
+    {
+      "file": "03_FORBIDDEN_ACTIONS.md",
+      "sha256": "ff0af34ed9b82e67b5bb182981cda0adee173c5445584b2665f9dbe680aa2f73"
+    },
+    {
+      "file": "04_AGENT_BUILD_RULES.md",
+      "sha256": "38abde2552b50d4d84146b36decca873e9f67cd3793459f5edc72089e555c8f0"
+    },
+    {
+      "file": "05_ARCHITECTURE_GUARDIAN.md",
+      "sha256": "49eaa8e170f708dfa576c684355921c22285bfe69c912445b5478d526460e915"
+    },
+    {
+      "file": "06_EMERGENCY_CONTROL.md",
+      "sha256": "ded06b80279ec0092bbecd3dfedb16eea6a3d206f020c3c6da5e10ef15615869"
+    }
+  ]
+}

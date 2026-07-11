@@ -4,6 +4,7 @@ Uses tempfile.TemporaryDirectory to create isolated mock projects.
 No files are created in the real project tree.
 """
 
+import sys
 import tempfile
 from pathlib import Path
 
@@ -100,3 +101,57 @@ class TestHygieneExclusions:
         })
         result = check_hygiene(tmp_path)
         assert result.passed
+
+
+class TestContractConsistency:
+    def test_current_project_passes(self) -> None:
+        """Verify the real project passes contract consistency."""
+        from scripts.verify_architecture import check_contract_consistency
+        root = Path(__file__).resolve().parent.parent.parent
+        result = check_contract_consistency(root)
+        assert result.passed, f"Contract consistency failed: {result.details}"
+
+    def test_signature_mismatch_detected(self, tmp_path: Path) -> None:
+        """Verify signature mismatch between ABC and implementation is caught."""
+        import importlib
+        import scripts.verify_architecture as va
+
+        pkg = "mock_contract_pkg"
+        (tmp_path / pkg).mkdir(parents=True)
+        (tmp_path / pkg / 'interfaces').mkdir(parents=True)
+        (tmp_path / pkg / 'implementations').mkdir(parents=True)
+        (tmp_path / pkg / '__init__.py').write_text('')
+        (tmp_path / pkg / 'interfaces' / '__init__.py').write_text('')
+        (tmp_path / pkg / 'implementations' / '__init__.py').write_text('')
+
+        (tmp_path / pkg / 'interfaces' / 'base.py').write_text(
+            "from abc import ABC, abstractmethod\n"
+            "class ServiceBase(ABC):\n"
+            "    @abstractmethod\n"
+            "    async def execute(self, request): ...\n"
+        )
+        (tmp_path / pkg / 'implementations' / 'service.py').write_text(
+            "class ServiceImpl:\n"
+            "    async def execute(self, request, extra):\n"
+            "        pass\n"
+        )
+
+        old_contracts = va.KNOWN_CONTRACTS
+        va.KNOWN_CONTRACTS = [
+            (
+                f"{pkg}.interfaces.base",
+                "ServiceBase",
+                f"{pkg}.implementations.service",
+                "ServiceImpl",
+            ),
+        ]
+        if str(tmp_path) not in sys.path:
+            sys.path.insert(0, str(tmp_path))
+        try:
+            result = va.check_contract_consistency(tmp_path)
+            assert not result.passed
+            assert any("signature mismatch" in d for d in result.details)
+        finally:
+            va.KNOWN_CONTRACTS = old_contracts
+            if str(tmp_path) in sys.path:
+                sys.path.remove(str(tmp_path))

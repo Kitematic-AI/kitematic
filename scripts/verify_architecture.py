@@ -9,6 +9,8 @@ Usage:
 """
 
 import ast
+import importlib
+import inspect
 import os
 import sys
 from pathlib import Path
@@ -39,6 +41,29 @@ KNOWN_ABC_IMPLEMENTATIONS: list[tuple[str, str, str | None]] = [
     ("InstanceRepository",  "services/agent_registry/interfaces", "services/agent_registry/repositories"),
     ("PolicyEvaluator",     "services/policy_interface/interfaces", "services/control_plane/policy"),
     ("Orchestrator",        "services/control_plane/interfaces", None),
+]
+
+# Known contract pairs for signature consistency checking
+# (abc_module, abc_class, impl_module, impl_class)
+KNOWN_CONTRACTS: list[tuple[str, str, str, str]] = [
+    (
+        "services.agent_registry.interfaces.template_repository",
+        "TemplateRepository",
+        "services.agent_registry.repositories.memory_template_repository",
+        "MemoryTemplateRepository",
+    ),
+    (
+        "services.agent_registry.interfaces.instance_repository",
+        "InstanceRepository",
+        "services.agent_registry.repositories.memory_instance_repository",
+        "MemoryInstanceRepository",
+    ),
+    (
+        "services.policy_interface.interfaces.policy_evaluator",
+        "PolicyEvaluator",
+        "services.control_plane.policy.policy_engine",
+        "PolicyEngine",
+    ),
 ]
 
 
@@ -303,6 +328,61 @@ def check_interface_compliance(root: Path) -> CheckResult:
     )
 
 
+def check_contract_consistency(root: Path) -> CheckResult:
+    """Check 6: Contract consistency — signatures must match between ABC and implementation."""
+    violations: list[str] = []
+
+    for abc_mod_path, abc_cls, impl_mod_path, impl_cls in KNOWN_CONTRACTS:
+        try:
+            # Ensure project root is on sys.path
+            if str(root) not in sys.path:
+                sys.path.insert(0, str(root))
+            abc_mod = importlib.import_module(abc_mod_path)
+            abc_class = getattr(abc_mod, abc_cls)
+        except (ImportError, AttributeError) as e:
+            violations.append(f"  {abc_mod_path}.{abc_cls}: import failed ({e})")
+            continue
+
+        try:
+            impl_mod = importlib.import_module(impl_mod_path)
+            impl_class = getattr(impl_mod, impl_cls)
+        except (ImportError, AttributeError) as e:
+            violations.append(f"  {impl_mod_path}.{impl_cls}: import failed ({e})")
+            continue
+
+        abstract_methods = getattr(abc_class, '__abstractmethods__', set())
+        for method_name in abstract_methods:
+            abc_method = getattr(abc_class, method_name, None)
+            impl_method = getattr(impl_class, method_name, None)
+
+            if abc_method is None:
+                violations.append(f"  {abc_cls}.{method_name}: ABC method not found")
+                continue
+
+            if impl_method is None:
+                violations.append(f"  {impl_cls}.{method_name}: implementation not found")
+                continue
+
+            try:
+                abc_sig = inspect.signature(abc_method)
+                impl_sig = inspect.signature(impl_method)
+
+                if str(abc_sig) != str(impl_sig):
+                    violations.append(
+                        f"  {impl_cls}.{method_name}: signature mismatch\n"
+                        f"    ABC:   {abc_sig}\n"
+                        f"    Found: {impl_sig}"
+                    )
+            except (ValueError, TypeError) as e:
+                violations.append(f"  {impl_cls}.{method_name}: signature inspection failed ({e})")
+
+    return CheckResult(
+        name="Contract Consistency",
+        passed=len(violations) == 0,
+        details=violations,
+    )
+
+
 def check_package_boundaries(root: Path) -> CheckResult:
     """Check 7: No imports from __pycache__ or _private folders."""
     violations: list[str] = []
@@ -397,6 +477,7 @@ def run_verification(root: Path) -> tuple[list[CheckResult], int]:
         check_forbidden_imports,
         check_import_cycles,
         check_interface_compliance,
+        check_contract_consistency,
         check_package_boundaries,
         check_hygiene,
     ]

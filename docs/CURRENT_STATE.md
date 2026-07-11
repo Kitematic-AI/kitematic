@@ -1,6 +1,6 @@
 # Kitematic Current State
 
-**Last Updated:** Phase 1B-Design Complete
+**Last Updated:** Phase 1B-Code.0 Complete
 
 ## Project Status
 
@@ -9,7 +9,7 @@ project:
   name: Kitematic
 
 phase:
-  current: 1B-Design
+  current: 1B-Code.0
 
 status: COMPLETED
 
@@ -17,9 +17,10 @@ completed:
   - Phase 0: Foundation & Constitution
   - Phase 1A: Architecture Refinement
   - Phase 1B-Design: Implementation Design Documents
+  - Phase 1B-Code.0: Source Skeleton & Interfaces
 
 next:
-  - Phase 1B-Code: Core Services Implementation
+  - Phase 1B-Code.1: Core Logic Implementation
 
 blocked:
   - None
@@ -32,7 +33,8 @@ blocked:
 | 0 | Foundation & Constitution | ✅ COMPLETED |
 | 1A | Architecture Definition | ✅ COMPLETED |
 | 1B-Design | Implementation Design | ✅ COMPLETED |
-| 1B-Code | Core Services Implementation | ⏳ PENDING |
+| 1B-Code.0 | Bootstrap Skeleton & Interfaces | ✅ COMPLETED |
+| 1B-Code.1 | Core Logic Implementation | ⏳ PENDING |
 | 2 | Runtime & Execution Plane | ⏳ PENDING |
 | 3 | MCP Gateway & Adapters | ⏳ PENDING |
 | 4 | Memory & Checkpoint Services | ⏳ PENDING |
@@ -51,8 +53,17 @@ blocked:
 - [x] API_CONTRACTS.md, EVENT_MODEL.md, SECURITY_BOUNDARIES.md
 
 ### Phase 1B-Design — Implementation Design
-- [x] `docs/02_ARCHITECTURE/SERVICE_SPECIFICATIONS.md`
-- [x] `docs/02_ARCHITECTURE/DATA_FLOW_DIAGRAMS.md`
-- [x] `docs/02_ARCHITECTURE/IMPLEMENTATION_GUIDE.md`
-- [x] `docs/02_ARCHITECTURE/ERROR_HANDLING_STRATEGY.md`
-- [x] `docs/02_ARCHITECTURE/TESTING_STRATEGY.md`
+- [x] SERVICE_SPECIFICATIONS.md, DATA_FLOW_DIAGRAMS.md
+- [x] IMPLEMENTATION_GUIDE.md, ERROR_HANDLING_STRATEGY.md, TESTING_STRATEGY.md
+
+### Phase 1B-Code.0 — Source Skeleton & Interfaces
+- [x] services/control_plane/interfaces/orchestrator.py
+- [x] services/control_plane/interfaces/lifecycle_manager.py
+- [x] services/agent_registry/interfaces/template_repository.py
+- [x] services/agent_registry/interfaces/instance_repository.py
+- [x] services/policy_interface/interfaces/policy_evaluator.py
+- [x] runtime/contracts/step_request.py
+- [x] runtime/contracts/step_response.py
+- [x] runtime/contracts/agent_state.py
+- [x] tests/services/test_agent_registry.py
+- [x] tests/runtime/test_state_transitions.py

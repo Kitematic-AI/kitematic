@@ -3,7 +3,7 @@
 This file is the **sole authority** for phase transitions. No Agent may begin a phase unless this file explicitly marks it as `unlocked` with `approved_by_human: true`.
 
 ```yaml
-current_phase: 1B-Design
+current_phase: 1B-Code.0
 
 phase_0:
   name: Foundation & Constitution
@@ -12,7 +12,7 @@ phase_0:
 
 phase_1:
   name: Architecture & Core Services
-  status: active
+  status: partially_completed
   sub_phases:
     phase_1A:
       name: Architecture Definition
@@ -24,8 +24,16 @@ phase_1:
       approved_by_human: true
     phase_1B_Code:
       name: Core Services Implementation
-      status: locked
-      approved_by_human: false
+      status: active
+      sub_phases:
+        phase_1B_Code_0:
+          name: Bootstrap Skeleton & Interfaces
+          status: completed
+          approved_by_human: true
+        phase_1B_Code_1:
+          name: Core Logic Implementation
+          status: locked
+          approved_by_human: false
 
 phase_2:
   name: Runtime & Execution Plane

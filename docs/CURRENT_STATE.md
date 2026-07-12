@@ -1,6 +1,6 @@
 # Kitematic Current State
 
-**Last Updated:** Phase 2D Complete
+**Last Updated:** Phase 2E Complete
 
 ## Project Status
 
@@ -9,7 +9,7 @@ project:
   name: Kitematic
 
 phase:
-  current: 2D
+  current: 2E
 
 status: COMPLETED
 
@@ -27,9 +27,10 @@ completed:
   - Phase 2B: Checkpoint Service (InMemoryCheckpointRepository)
   - Phase 2C: Memory Service (InMemoryMemoryRepository)
   - Phase 2D: Execution Context Expansion (ContextBuilder)
+  - Phase 2E: Runtime ↔ Control Plane Integration (RuntimeExecutorAdapter)
 
 next:
-  - Phase 2E: Runtime ↔ Control Plane Integration
+  - Phase 3: MCP Gateway & Adapters
 
 blocked:
   - None
@@ -52,7 +53,7 @@ blocked:
 | 2B | Checkpoint Service (InMemoryCheckpointRepository) | ✅ COMPLETED |
 | 2C | Memory Service (InMemoryMemoryRepository) | ✅ COMPLETED |
 | 2D | Execution Context Expansion (ContextBuilder) | ✅ COMPLETED |
-| 2E | Runtime ↔ Control Plane Integration | ⏳ PENDING |
+| 2E | Runtime ↔ Control Plane Integration (RuntimeExecutorAdapter) | ✅ COMPLETED |
 | 3 | MCP Gateway & Adapters | ⏳ PENDING |
 | 4 | Infrastructure & Deployment | ⏳ PENDING |
 | 5 | Policy & Governance Engine | ⏳ PENDING |
@@ -62,20 +63,17 @@ blocked:
 ## Test Summary
 
 ```
-Unit tests:     175 passed (Phase 0–1D + 2A + 2B + 2C + 2D)
-Integration:     31 passed (Phase 1E + 2A + 2B + 2C + 2D)
+Unit tests:     189 passed (Phase 0–2E)
+Integration:     34 passed (Phase 1E + 2A–2E)
 Verifier tests:  11 passed (Phase 1E + follow-up)
 E2E tests:        3 passed (Phase 1E)
 Architecture:     8/8 PASS
 -------------------------------------------
-Grand total:    213 tests passing + 8/8 architecture checks
+Grand total:    230 tests passing + 8/8 architecture checks
 ```
 
-## Phase 2D Deliverables
+## Phase 2E Deliverables
 
-- [x] `runtime/execution/execution_context.py` — Extended with `tokens_consumed`, `memory`, `checkpoint`
-- [x] `runtime/execution/context_builder.py` — `ContextBuilder` fluent builder (deep-copy isolation)
-- [x] `runtime/execution/in_memory_runtime.py` — Auto-checkpoint save, token tracking
-- [x] `tests/runtime/execution/test_context_builder.py` — 12 unit tests
-- [x] `tests/runtime/execution/test_context_integration.py` — 5 unit tests
-- [x] `tests/integration/test_context_integration.py` — 3 integration tests
+- [x] `services/control_plane/adapters/runtime_adapter.py` — `RuntimeExecutorAdapter` (plan_and_execute + execute_step)
+- [x] `tests/services/control_plane/test_runtime_adapter.py` — 14 unit tests
+- [x] `tests/integration/test_orchestrator_integration.py` — 3 integration tests

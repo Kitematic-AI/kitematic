@@ -1,6 +1,6 @@
 # Kitematic Current State
 
-**Last Updated:** Phase 2A Complete
+**Last Updated:** Phase 2B Complete
 
 ## Project Status
 
@@ -9,7 +9,7 @@ project:
   name: Kitematic
 
 phase:
-  current: 2A
+  current: 2B
 
 status: COMPLETED
 
@@ -24,9 +24,10 @@ completed:
   - Phase 1B-Code.1D: Policy Evaluation Engine
   - Phase 1B-Code.1E: Integration & E2E Tests (Quality Gate)
   - Phase 2A: Runtime Engine (InMemoryRuntime)
+  - Phase 2B: Checkpoint Service (InMemoryCheckpointRepository)
 
 next:
-  - Phase 2B: Checkpoint Service
+  - Phase 2C: Memory Service
 
 blocked:
   - None
@@ -46,7 +47,7 @@ blocked:
 | 1B-Code.1D | Policy Evaluation Engine | ✅ COMPLETED |
 | 1B-Code.1E | Integration & E2E Tests | ✅ COMPLETED |
 | 2A | Runtime Engine (InMemoryRuntime) | ✅ COMPLETED |
-| 2B | Checkpoint Service | ⏳ PENDING |
+| 2B | Checkpoint Service (InMemoryCheckpointRepository) | ✅ COMPLETED |
 | 2C | Memory Service | ⏳ PENDING |
 | 2D | Execution Context Expansion | ⏳ PENDING |
 | 2E | Runtime ↔ Control Plane Integration | ⏳ PENDING |
@@ -59,21 +60,18 @@ blocked:
 ## Test Summary
 
 ```
-Unit tests:     130 passed (Phase 0–1D + 2A)
-Integration:     22 passed (Phase 1E + 2A)
+Unit tests:     140 passed (Phase 0–1D + 2A + 2B)
+Integration:     25 passed (Phase 1E + 2A + 2B)
 Verifier tests:  11 passed (Phase 1E + follow-up)
 E2E tests:        3 passed (Phase 1E)
 Architecture:     8/8 PASS
 -------------------------------------------
-Grand total:    160 tests passing + 8/8 architecture checks
+Grand total:    173 tests passing + 8/8 architecture checks
 ```
 
-## Phase 2A Deliverables
+## Phase 2B Deliverables
 
-- [x] `runtime/execution/execution_runtime.py` — `ExecutionRuntime` ABC
-- [x] `runtime/execution/execution_context.py` — `ExecutionContext` dataclass
-- [x] `runtime/execution/in_memory_runtime.py` — `InMemoryRuntime` implementation
-- [x] `runtime/execution/exceptions.py` — `RuntimeExecutionError`, `InvalidStepRequestError`, `BudgetExceededError`, `NodeExecutionError`
-- [x] `tests/runtime/execution/test_in_memory_runtime.py` — 13 unit tests
-- [x] `tests/integration/test_runtime_integration.py` — 5 integration tests
-- [x] `docs/PHASE_2_CODE_CHECKLIST.md` — Runtime-specific quality gates
+- [x] `services/checkpoint/interfaces/checkpoint_repository.py` — `CheckpointRepository` ABC
+- [x] `services/checkpoint/repositories/in_memory_checkpoint.py` — `InMemoryCheckpointRepository` (deepcopy, uuid4, max version)
+- [x] `tests/services/checkpoint/test_checkpoint_repository.py` — 10 unit tests
+- [x] `tests/integration/test_checkpoint_integration.py` — 3 integration tests

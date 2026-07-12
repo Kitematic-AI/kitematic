@@ -10,6 +10,9 @@ class ExecutionContext:
 
     This is the runtime's view of execution — not the domain view.
     Contains only what the runtime needs to execute a single step.
+
+    Optional references (memory, checkpoint) are injected by the orchestrator.
+    Runtime uses them via their interface methods (save/get/list/search).
     """
 
     execution_id: str
@@ -23,3 +26,10 @@ class ExecutionContext:
 
     allowed_tools: list[str] = field(default_factory=list)
     metadata: dict[str, Any] = field(default_factory=dict)
+
+    # --- Phase 2D: optional references for checkpoint/memory integration ---
+    # Typed as Any to avoid runtime→services dependency.
+    # Actual type is CheckpointRepository | MemoryRepository (injected by orchestrator).
+    tokens_consumed: int = 0
+    memory: Any = None
+    checkpoint: Any = None

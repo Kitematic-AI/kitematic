@@ -1,6 +1,6 @@
 # Kitematic Current State
 
-**Last Updated:** Phase 2C Complete
+**Last Updated:** Phase 2D Complete
 
 ## Project Status
 
@@ -9,7 +9,7 @@ project:
   name: Kitematic
 
 phase:
-  current: 2C
+  current: 2D
 
 status: COMPLETED
 
@@ -26,9 +26,10 @@ completed:
   - Phase 2A: Runtime Engine (InMemoryRuntime)
   - Phase 2B: Checkpoint Service (InMemoryCheckpointRepository)
   - Phase 2C: Memory Service (InMemoryMemoryRepository)
+  - Phase 2D: Execution Context Expansion (ContextBuilder)
 
 next:
-  - Phase 2D: Execution Context Expansion
+  - Phase 2E: Runtime ↔ Control Plane Integration
 
 blocked:
   - None
@@ -50,7 +51,7 @@ blocked:
 | 2A | Runtime Engine (InMemoryRuntime) | ✅ COMPLETED |
 | 2B | Checkpoint Service (InMemoryCheckpointRepository) | ✅ COMPLETED |
 | 2C | Memory Service (InMemoryMemoryRepository) | ✅ COMPLETED |
-| 2D | Execution Context Expansion | ⏳ PENDING |
+| 2D | Execution Context Expansion (ContextBuilder) | ✅ COMPLETED |
 | 2E | Runtime ↔ Control Plane Integration | ⏳ PENDING |
 | 3 | MCP Gateway & Adapters | ⏳ PENDING |
 | 4 | Infrastructure & Deployment | ⏳ PENDING |
@@ -61,18 +62,20 @@ blocked:
 ## Test Summary
 
 ```
-Unit tests:     157 passed (Phase 0–1D + 2A + 2B + 2C)
-Integration:     28 passed (Phase 1E + 2A + 2B + 2C)
+Unit tests:     175 passed (Phase 0–1D + 2A + 2B + 2C + 2D)
+Integration:     31 passed (Phase 1E + 2A + 2B + 2C + 2D)
 Verifier tests:  11 passed (Phase 1E + follow-up)
 E2E tests:        3 passed (Phase 1E)
 Architecture:     8/8 PASS
 -------------------------------------------
-Grand total:    193 tests passing + 8/8 architecture checks
+Grand total:    213 tests passing + 8/8 architecture checks
 ```
 
-## Phase 2C Deliverables
+## Phase 2D Deliverables
 
-- [x] `services/memory/interfaces/memory_repository.py` — `MemoryRepository` ABC (5 methods)
-- [x] `services/memory/repositories/in_memory_memory.py` — `InMemoryMemoryRepository` (deepcopy, expiration filter, deterministic ordering)
-- [x] `tests/services/memory/test_memory_repository.py` — 17 unit tests
-- [x] `tests/integration/test_memory_integration.py` — 3 integration tests
+- [x] `runtime/execution/execution_context.py` — Extended with `tokens_consumed`, `memory`, `checkpoint`
+- [x] `runtime/execution/context_builder.py` — `ContextBuilder` fluent builder (deep-copy isolation)
+- [x] `runtime/execution/in_memory_runtime.py` — Auto-checkpoint save, token tracking
+- [x] `tests/runtime/execution/test_context_builder.py` — 12 unit tests
+- [x] `tests/runtime/execution/test_context_integration.py` — 5 unit tests
+- [x] `tests/integration/test_context_integration.py` — 3 integration tests

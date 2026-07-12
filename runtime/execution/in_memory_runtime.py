@@ -4,8 +4,12 @@ Simulates step execution by processing agent state transitions.
 No LLM/MCP/network calls. Configurable token consumption.
 """
 
+from datetime import datetime, timezone
+from uuid import uuid4
+
 from runtime.contracts.step_request import StepRequest
 from runtime.contracts.step_response import StepResponse, StepStatus
+from runtime.domain.checkpoint import Checkpoint, CheckpointTrigger
 from runtime.execution.execution_context import ExecutionContext
 from runtime.execution.execution_runtime import ExecutionRuntime
 from runtime.execution.exceptions import (
@@ -22,6 +26,7 @@ class InMemoryRuntime(ExecutionRuntime):
       - Checking budget
       - Copying state and adding runtime metadata
       - Tracking token consumption
+      - Auto-saving checkpoint if context.checkpoint is set
     """
 
     async def execute_step(
@@ -45,13 +50,31 @@ class InMemoryRuntime(ExecutionRuntime):
         }
 
         tokens = context.tokens_per_step
+        context.tokens_consumed += tokens
+        context.budget_remaining -= tokens
 
-        return StepResponse(
+        response = StepResponse(
             status=StepStatus.COMPLETED,
             updated_state=updated_state,
             output=f"Step {context.step_number} executed for goal: {request.goal}",
             tokens_consumed=tokens,
         )
+
+        if context.checkpoint is not None:
+            checkpoint = Checkpoint(
+                checkpoint_id=str(uuid4()),
+                execution_id=context.execution_id,
+                version=context.step_number,
+                trigger_reason=CheckpointTrigger.STEP_COMPLETE,
+                checkpoint_hash="auto",
+                agent_state_ref=None,
+                memory_refs=(),
+                tool_history=(),
+                created_at=datetime.now(timezone.utc),
+            )
+            await context.checkpoint.save(checkpoint)
+
+        return response
 
     def _validate_request(self, request: StepRequest) -> None:
         errors: list[str] = []

@@ -1,6 +1,6 @@
 # Kitematic Current State
 
-**Last Updated:** Phase 2B Complete
+**Last Updated:** Phase 2C Complete
 
 ## Project Status
 
@@ -9,7 +9,7 @@ project:
   name: Kitematic
 
 phase:
-  current: 2B
+  current: 2C
 
 status: COMPLETED
 
@@ -25,9 +25,10 @@ completed:
   - Phase 1B-Code.1E: Integration & E2E Tests (Quality Gate)
   - Phase 2A: Runtime Engine (InMemoryRuntime)
   - Phase 2B: Checkpoint Service (InMemoryCheckpointRepository)
+  - Phase 2C: Memory Service (InMemoryMemoryRepository)
 
 next:
-  - Phase 2C: Memory Service
+  - Phase 2D: Execution Context Expansion
 
 blocked:
   - None
@@ -48,7 +49,7 @@ blocked:
 | 1B-Code.1E | Integration & E2E Tests | ✅ COMPLETED |
 | 2A | Runtime Engine (InMemoryRuntime) | ✅ COMPLETED |
 | 2B | Checkpoint Service (InMemoryCheckpointRepository) | ✅ COMPLETED |
-| 2C | Memory Service | ⏳ PENDING |
+| 2C | Memory Service (InMemoryMemoryRepository) | ✅ COMPLETED |
 | 2D | Execution Context Expansion | ⏳ PENDING |
 | 2E | Runtime ↔ Control Plane Integration | ⏳ PENDING |
 | 3 | MCP Gateway & Adapters | ⏳ PENDING |
@@ -60,18 +61,18 @@ blocked:
 ## Test Summary
 
 ```
-Unit tests:     140 passed (Phase 0–1D + 2A + 2B)
-Integration:     25 passed (Phase 1E + 2A + 2B)
+Unit tests:     157 passed (Phase 0–1D + 2A + 2B + 2C)
+Integration:     28 passed (Phase 1E + 2A + 2B + 2C)
 Verifier tests:  11 passed (Phase 1E + follow-up)
 E2E tests:        3 passed (Phase 1E)
 Architecture:     8/8 PASS
 -------------------------------------------
-Grand total:    173 tests passing + 8/8 architecture checks
+Grand total:    193 tests passing + 8/8 architecture checks
 ```
 
-## Phase 2B Deliverables
+## Phase 2C Deliverables
 
-- [x] `services/checkpoint/interfaces/checkpoint_repository.py` — `CheckpointRepository` ABC
-- [x] `services/checkpoint/repositories/in_memory_checkpoint.py` — `InMemoryCheckpointRepository` (deepcopy, uuid4, max version)
-- [x] `tests/services/checkpoint/test_checkpoint_repository.py` — 10 unit tests
-- [x] `tests/integration/test_checkpoint_integration.py` — 3 integration tests
+- [x] `services/memory/interfaces/memory_repository.py` — `MemoryRepository` ABC (5 methods)
+- [x] `services/memory/repositories/in_memory_memory.py` — `InMemoryMemoryRepository` (deepcopy, expiration filter, deterministic ordering)
+- [x] `tests/services/memory/test_memory_repository.py` — 17 unit tests
+- [x] `tests/integration/test_memory_integration.py` — 3 integration tests

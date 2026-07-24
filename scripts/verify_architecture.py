@@ -385,13 +385,15 @@ def check_contract_consistency(root: Path) -> CheckResult:
 
 def check_package_boundaries(root: Path) -> CheckResult:
     """Check 7: No imports from __pycache__ or _private folders."""
+    # Standard library dunder modules are not private packages
+    _DUNDER_WHITELIST = {"__future__", "__main__", "__init__"}
     violations: list[str] = []
     for filepath in discover_python_files(root, exclude_tests=True):
         imports = extract_imports(filepath)
         for imp in imports:
             parts = imp.split(".")
             for part in parts:
-                if part.startswith("_") and part != "__init__":
+                if part.startswith("_") and part not in _DUNDER_WHITELIST:
                     rel = filepath.relative_to(root)
                     violations.append(f"  {rel}\n    imports '{imp}' (private package)")
                     break

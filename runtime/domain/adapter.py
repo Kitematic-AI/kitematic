@@ -1,8 +1,18 @@
-"""Adapter domain model — Adapter Registry definitions and capabilities."""
+"""Adapter domain model — Adapter Registry definitions and capabilities.
 
+This module contains:
+- The legacy Adapter dataclass (for backward compatibility)
+- The new RuntimeAdapter Protocol (for runtime boundary contracts)
+- AdapterType and TrustLevel enums (for adapter classification)
+"""
+
+from __future__ import annotations
+
+from collections.abc import AsyncIterator
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
+from typing import Any, Protocol
 
 
 class AdapterType(Enum):
@@ -52,3 +62,60 @@ class Adapter:
     @property
     def is_trusted(self) -> bool:
         return self.trust_level.value >= TrustLevel.T2_TESTED.value
+
+
+# ── Protocol Contracts ──────────────────────────────────────────────────────
+
+
+class RuntimeAdapter(Protocol):
+    """Protocol for any executable adapter in the Kitematic runtime.
+
+    This is a structural protocol — any class implementing these methods
+    is a valid RuntimeAdapter. No base class inheritance required.
+    Services implementing this protocol are runtime-compatible.
+    """
+
+    @property
+    def adapter_id(self) -> str:
+        """Unique identifier for this adapter."""
+        ...
+
+    @property
+    def name(self) -> str:
+        """Human-readable name of the adapter."""
+        ...
+
+    @property
+    def version(self) -> str:
+        """Adapter version."""
+        ...
+
+    @property
+    def capabilities(self) -> tuple[str, ...]:
+        """Capabilities this adapter provides (as tuple of capability IDs)."""
+        ...
+
+    async def execute(self, request: dict[str, Any]) -> dict[str, Any]:
+        """Execute a single request synchronously."""
+        ...
+
+    async def execute_stream(self, request: dict[str, Any]) -> AsyncIterator[dict]:
+        """Execute a request with streaming response."""
+        ...
+
+    async def health_check(self) -> dict[str, Any]:
+        """Check adapter health status. Returns {'healthy': bool, ...}."""
+        ...
+
+    def supports(self, required_capabilities: frozenset[str]) -> bool:
+        """Check if this adapter supports all required capabilities."""
+        ...
+
+    async def shutdown(self) -> None:
+        """Graceful shutdown of the adapter."""
+        ...
+
+
+# Type aliases for capability IDs (protocol-native, no Enum dependency)
+type CapabilityId = str
+type CapabilitySet = frozenset[str]

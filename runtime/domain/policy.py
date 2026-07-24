@@ -32,6 +32,7 @@ class PolicyRule:
     status: PolicyStatus = PolicyStatus.ACTIVE
     created_at: datetime | None = None
     updated_at: datetime | None = None
+    required_capabilities: tuple[str, ...] = ()  # Capability IDs required for this rule
 
     def validate(self) -> list[str]:
         errors: list[str] = []

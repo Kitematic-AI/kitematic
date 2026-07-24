@@ -1,9 +1,7 @@
 """OpenAI GPT model adapter."""
 
 import uuid
-from datetime import datetime
 from typing import Any
-from collections.abc import AsyncIterator
 
 from services.ai_gateway.interfaces.adapter import StreamChunk
 
@@ -30,8 +28,9 @@ async def _call_openai(prompt: str, model: str, api_key: str, base_url: str) -> 
 
 
 async def _stream_openai(prompt: str, model: str, api_key: str, base_url: str):
-    import httpx
     import json
+
+    import httpx
     async with httpx.AsyncClient() as client:
         async with client.stream(
             "POST",
@@ -61,7 +60,7 @@ async def _stream_openai(prompt: str, model: str, api_key: str, base_url: str):
 
 class OpenAIAdapter:
     """OpenAI GPT model adapter."""
-    
+
     def __init__(
         self,
         model_name: str = "gpt-4o",
@@ -84,7 +83,6 @@ class OpenAIAdapter:
         return self._metadata
 
     async def execute(self, request: dict) -> dict:
-        from uuid import uuid4
         prompt = request.get("payload", {}).get("prompt", "")
         request_id = uuid.uuid4().hex[:12]
         try:
@@ -115,7 +113,6 @@ class OpenAIAdapter:
             return {"success": False, "error": str(e)}
 
     async def execute_stream(self, request: dict):
-        from services.ai_gateway.interfaces.adapter import StreamChunk
         prompt = request.get("payload", {}).get("prompt", "")
         async for chunk in self._stream_openai(prompt, model=self._model_name, api_key=self._api_key, base_url=self._base_url):
             yield chunk
@@ -129,7 +126,6 @@ class OpenAIAdapter:
 
     async def health_check(self):
         try:
-            import httpx
             async with __import__("httpx").AsyncClient() as client:
                 response = await client.get(
                     f"{self._base_url}/models",

@@ -1,7 +1,6 @@
 """Tests for StepCoordinator — planning and coordination only."""
 
-import pytest
-from services.control_plane.orchestrator.step_coordinator import StepCoordinator, StepAction
+from services.control_plane.orchestrator.step_coordinator import StepAction, StepCoordinator
 
 
 class TestStepCoordinatorPlanning:

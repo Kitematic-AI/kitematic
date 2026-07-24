@@ -5,7 +5,6 @@ UUID-based IDs, version-based latest lookup.
 """
 
 import copy
-from uuid import uuid4
 
 from runtime.domain.checkpoint import Checkpoint
 from services.checkpoint.interfaces.checkpoint_repository import CheckpointRepository

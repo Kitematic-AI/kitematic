@@ -1,6 +1,5 @@
 """Unit tests for InMemoryCheckpointRepository."""
 
-import copy
 from datetime import datetime
 from uuid import uuid4
 

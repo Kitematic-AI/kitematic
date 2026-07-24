@@ -1,6 +1,6 @@
 """Unit tests for InMemoryMemoryRepository."""
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 
@@ -25,13 +25,13 @@ def _make_memory(
         content=content,
         confidence=confidence,
         source="test",
-        created_at=created_at or datetime(2026, 1, 1, tzinfo=timezone.utc),
+        created_at=created_at or datetime(2026, 1, 1, tzinfo=UTC),
         expires_at=expires_at,
     )
 
 
 def _past_item(item_id: str = "mem-exp", **overrides) -> MemoryItem:
-    past = datetime(2025, 1, 1, tzinfo=timezone.utc)
+    past = datetime(2025, 1, 1, tzinfo=UTC)
     return _make_memory(
         item_id=item_id,
         created_at=past,
@@ -219,9 +219,9 @@ class TestMemoryRepositoryImmutability:
     @pytest.mark.asyncio
     async def test_list_ordered_by_created_at(self) -> None:
         repo = InMemoryMemoryRepository()
-        t1 = datetime(2026, 1, 1, tzinfo=timezone.utc)
-        t2 = datetime(2026, 6, 1, tzinfo=timezone.utc)
-        t3 = datetime(2026, 3, 1, tzinfo=timezone.utc)
+        t1 = datetime(2026, 1, 1, tzinfo=UTC)
+        t2 = datetime(2026, 6, 1, tzinfo=UTC)
+        t3 = datetime(2026, 3, 1, tzinfo=UTC)
 
         m1 = _make_memory(item_id="m1", created_at=t1)
         m2 = _make_memory(item_id="m2", created_at=t2)

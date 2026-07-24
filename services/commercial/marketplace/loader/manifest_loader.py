@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Any
+from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
@@ -22,7 +21,7 @@ class ManifestLoader:
         """Load a manifest from a file path."""
         try:
             import yaml
-            with open(manifest_path, "r") as f:
+            with open(manifest_path) as f:
                 manifest = yaml.safe_load(f)
             return True, manifest, ()
         except Exception as e:

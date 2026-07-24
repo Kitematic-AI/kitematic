@@ -1,6 +1,6 @@
 """Tests for ApprovalRequest domain model."""
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from runtime.domain.approval_request import ApprovalRequest, ApprovalStatus, RiskLevel
 
@@ -53,7 +53,7 @@ class TestApprovalRequest:
         assert req.is_decided is True
 
     def test_expired_check(self) -> None:
-        past = datetime(2025, 1, 1, tzinfo=timezone.utc)
+        past = datetime(2025, 1, 1, tzinfo=UTC)
         req = ApprovalRequest(
             approval_id="apr-1",
             execution_id="exec-1",

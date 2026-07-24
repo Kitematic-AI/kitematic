@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from .private_marketplace import PrivateMarketplace
 from .policy_enforcer import PolicyEnforcer
+from .private_marketplace import PrivateMarketplace
 
 __all__ = [
     "PrivateMarketplace",

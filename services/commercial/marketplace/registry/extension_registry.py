@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any
 
 from services.commercial.marketplace.domain.extension_manifest import ExtensionManifest
 
@@ -12,7 +11,7 @@ class ExtensionRegistry(ABC):
     """Abstract interface for extension registry."""
 
     @abstractmethod
-    async def register(self, manifest: "ExtensionManifest") -> str:
+    async def register(self, manifest: ExtensionManifest) -> str:
         """Register an extension manifest. Returns the listing ID."""
         ...
 
@@ -22,7 +21,7 @@ class ExtensionRegistry(ABC):
         ...
 
     @abstractmethod
-    async def get(self, listing_id: str) -> "ExtensionListing | None":
+    async def get(self, listing_id: str) -> ExtensionListing | None:
         """Get an extension listing by ID."""
         ...
 
@@ -34,7 +33,7 @@ class ExtensionRegistry(ABC):
         status: str | None = None,
         limit: int = 50,
         offset: int = 0,
-    ) -> list["ExtensionListing"]:
+    ) -> list[ExtensionListing]:
         """List extensions with optional filters."""
         ...
 

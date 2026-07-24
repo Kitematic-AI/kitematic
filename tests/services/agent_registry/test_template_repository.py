@@ -5,6 +5,7 @@ must satisfy. PostgreSQL adapter must pass the same tests.
 """
 
 import pytest
+
 from services.agent_registry.interfaces.template_repository import TemplateRepository
 
 

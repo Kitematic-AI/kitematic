@@ -1,7 +1,7 @@
 """ApprovalRequest domain model — Human-in-the-Loop approval workflow."""
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from enum import Enum
 
 
@@ -58,5 +58,5 @@ class ApprovalRequest:
     @property
     def is_expired(self) -> bool:
         if self.expires_at and self.created_at:
-            return datetime.now(timezone.utc) > self.expires_at
+            return datetime.now(UTC) > self.expires_at
         return False

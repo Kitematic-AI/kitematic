@@ -1,15 +1,16 @@
 """Unit tests for InMemoryRuntime — step execution engine."""
 
 import pytest
+
 from runtime.contracts.step_request import StepRequest
 from runtime.contracts.step_response import StepStatus
+from runtime.execution.exceptions import (
+    BudgetExceededError,
+    InvalidStepRequestError,
+)
 from runtime.execution.execution_context import ExecutionContext
 from runtime.execution.execution_runtime import ExecutionRuntime
 from runtime.execution.in_memory_runtime import InMemoryRuntime
-from runtime.execution.exceptions import (
-    InvalidStepRequestError,
-    BudgetExceededError,
-)
 
 
 def _make_request(**overrides) -> StepRequest:

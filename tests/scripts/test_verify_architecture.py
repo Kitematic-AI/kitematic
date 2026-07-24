@@ -5,11 +5,9 @@ No files are created in the real project tree.
 """
 
 import sys
-import tempfile
 from pathlib import Path
 
-import pytest
-from scripts.verify_architecture import run_verification, check_hygiene
+from scripts.verify_architecture import check_hygiene, run_verification
 
 
 def _create_mock_project(root: Path, files: dict[str, str]) -> None:
@@ -113,7 +111,6 @@ class TestContractConsistency:
 
     def test_signature_mismatch_detected(self, tmp_path: Path) -> None:
         """Verify signature mismatch between ABC and implementation is caught."""
-        import importlib
         import scripts.verify_architecture as va
 
         pkg = "mock_contract_pkg"

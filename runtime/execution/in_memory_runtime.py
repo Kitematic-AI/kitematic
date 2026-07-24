@@ -4,18 +4,18 @@ Simulates step execution by processing agent state transitions.
 No LLM/MCP/network calls. Configurable token consumption.
 """
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from uuid import uuid4
 
 from runtime.contracts.step_request import StepRequest
 from runtime.contracts.step_response import StepResponse, StepStatus
 from runtime.domain.checkpoint import Checkpoint, CheckpointTrigger
-from runtime.execution.execution_context import ExecutionContext
-from runtime.execution.execution_runtime import ExecutionRuntime
 from runtime.execution.exceptions import (
     BudgetExceededError,
     InvalidStepRequestError,
 )
+from runtime.execution.execution_context import ExecutionContext
+from runtime.execution.execution_runtime import ExecutionRuntime
 
 
 class InMemoryRuntime(ExecutionRuntime):
@@ -70,7 +70,7 @@ class InMemoryRuntime(ExecutionRuntime):
                 agent_state_ref=None,
                 memory_refs=(),
                 tool_history=(),
-                created_at=datetime.now(timezone.utc),
+                created_at=datetime.now(UTC),
             )
             await context.checkpoint.save(checkpoint)
 

@@ -1,9 +1,10 @@
 """End-to-end scenarios — isolated high-level tests for complete flows."""
 
 import pytest
+
 from services.control_plane.agent_registry.agent_registry import AgentRegistry
 from services.control_plane.lifecycle.lifecycle_manager import LifecycleManager
-from services.control_plane.orchestrator.step_coordinator import StepCoordinator, StepAction
+from services.control_plane.orchestrator.step_coordinator import StepAction, StepCoordinator
 from services.control_plane.policy.policy_engine import PolicyEngine
 
 

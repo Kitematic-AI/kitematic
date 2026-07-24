@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import StrEnum
-from typing import Any
 
 
 class AuditAction(StrEnum):
@@ -30,7 +29,7 @@ class AuditEntry:
 
     entry_id: str
     listing_id: str
-    action: "AuditAction"
+    action: AuditAction
     actor_id: str
     actor_role: str
     timestamp: str = field(default_factory=lambda: datetime.utcnow().isoformat())

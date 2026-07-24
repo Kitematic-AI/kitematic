@@ -5,6 +5,7 @@ must satisfy.
 """
 
 import pytest
+
 from services.control_plane.agent_registry.agent_registry import AgentRegistry
 
 

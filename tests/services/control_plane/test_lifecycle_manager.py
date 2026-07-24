@@ -1,9 +1,10 @@
 """Contract tests for LifecycleManager."""
 
 import pytest
+
 from services.control_plane.agent_registry.agent_registry import AgentRegistry
-from services.control_plane.lifecycle.lifecycle_manager import LifecycleManager
 from services.control_plane.errors.orchestration_errors import AgentInstanceNotFoundError
+from services.control_plane.lifecycle.lifecycle_manager import LifecycleManager
 
 
 class InMemoryRegistry(AgentRegistry):

@@ -9,30 +9,14 @@ Priority ordering: lower priority number = higher precedence.
 Default decision when no rule matches: ALLOW.
 """
 
-import uuid
 import hashlib
+import uuid
 from typing import Any
 
-from services.policy_interface.interfaces.policy_evaluator import PolicyEvaluator
 from runtime.domain.policy import PolicyEffect, PolicyRule, PolicyStatus
-
-from services.core.domain.capability_registry import CapabilityRegistry
-from services.control_plane.policy.capability_resolver import CapabilityResolver
 from services.control_plane.policy.policy_cache import InMemoryPolicyCache
-
-
-def _generate_policy_id() -> str:
-    return f"pol-{uuid.uuid4().hex[:12]}"
-
-
-def _target_matches(target: str, resource: str) -> bool:
-    """Check if a policy target matches the given resource."""
-    if target == "*":
-        return True
-    if target.endswith(".*"):
-        prefix = target[:-2]
-        return resource == prefix or resource.startswith(prefix + ".")
-    return target == resource
+from services.core.domain.capability_registry import CapabilityRegistry
+from services.policy_interface.interfaces.policy_evaluator import PolicyEvaluator
 
 
 class PolicyEngine(PolicyEvaluator):
@@ -53,15 +37,14 @@ class PolicyEngine(PolicyEvaluator):
         resource: str,
         required_capabilities: frozenset[str] | None,
     ) -> str:
-        import hashlib
         key_parts = [agent_id, action, resource]
         if required_capabilities:
             sorted_caps = sorted(required_capabilities)
             caps_hash = hashlib.sha256(",".join(sorted_caps).encode()).hexdigest()[:16]
-            key_parts = [str(len(sorted_caps)), caps_hash]
+            key_parts.append(caps_hash)
         else:
-            key_parts = ["0", ""]
-        return "|".join([str(len(key_parts))] + key_parts)
+            key_parts.append("")
+        return "|".join(key_parts)
 
     async def evaluate(
         self,
@@ -102,7 +85,7 @@ class PolicyEngine(PolicyEvaluator):
                 "reason": f"Matched rule: {best.name}",
             }
 
-        self._cache.set(self._make_cache_key("", "", resource, None), result)
+        self._cache.set(cache_key, result)
         return result
 
     async def evaluate_with_capabilities(
@@ -175,7 +158,7 @@ class PolicyEngine(PolicyEvaluator):
             }
 
         # Cache the result
-        self._cache.set(self._make_cache_key("", "", resource, frozenset()), result)
+        self._cache.set(cache_key, result)
         return result
 
     async def create_policy(

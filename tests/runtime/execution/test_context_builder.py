@@ -3,7 +3,6 @@
 import pytest
 
 from runtime.execution.context_builder import ContextBuilder
-from runtime.execution.execution_context import ExecutionContext
 
 
 class TestContextBuilderDefaults:

@@ -3,9 +3,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any
-
-from runtime.domain.runtime_event import StreamChunk
+from collections.abc import AsyncIterator
 
 
 class Gateway(ABC):

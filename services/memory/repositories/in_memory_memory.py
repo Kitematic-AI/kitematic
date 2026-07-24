@@ -5,8 +5,7 @@ UUID-based IDs, deterministic ordering, automatic expiration filtering.
 """
 
 import copy
-from datetime import datetime, timezone
-from uuid import uuid4
+from datetime import datetime
 
 from runtime.domain.memory import MemoryItem, MemoryType
 from services.memory.interfaces.memory_repository import MemoryRepository

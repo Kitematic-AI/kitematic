@@ -1,7 +1,7 @@
 """Memory domain model — facts, preferences, and knowledge stored by Agents."""
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from enum import Enum
 
 
@@ -44,5 +44,5 @@ class MemoryItem:
     @property
     def is_expired(self) -> bool:
         if self.expires_at:
-            return datetime.now(timezone.utc) > self.expires_at
+            return datetime.now(UTC) > self.expires_at
         return False

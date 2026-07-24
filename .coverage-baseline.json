@@ -1,0 +1,8 @@
+{
+  "kitematic_runtime": 0.9258,
+  "kitematic_runtime.adapters": 0.8788,
+  "kitematic_runtime.api": 0.971,
+  "kitematic_runtime.config": 1.0,
+  "kitematic_runtime.events": 0.8392,
+  "kitematic_runtime.observability": 0.9237
+}

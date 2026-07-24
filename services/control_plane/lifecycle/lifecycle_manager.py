@@ -12,13 +12,12 @@ Does NOT:
 """
 
 from typing import Any
+
 from services.control_plane.agent_registry.agent_registry import AgentRegistry
-from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
 from services.control_plane.errors.orchestration_errors import (
     AgentInstanceNotFoundError,
-    ExecutionNotFoundError,
-    ManifestValidationError,
 )
+from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
 
 
 class LifecycleManager:

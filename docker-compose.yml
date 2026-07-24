@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  kitematic-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - KITEMATIC_EVENT_BACKEND=redis
+      - KITEMATIC_REDIS_URL=redis://redis:6379/0
+      - KITEMATIC_LOG_LEVEL=INFO
+      - KITEMATIC_QUOTA_MAX_CONCURRENT=10
+      - KITEMATIC_QUOTA_MAX_PER_MINUTE=120
+      - OTEL_SERVICE_NAME=kitematic
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    ports:
+      - "4317:4317"
+      - "8888:8888"
+    volumes:
+      - ./deploy/otel-collector.yml:/etc/otel/config.yaml:ro
+    command: ["--config=/etc/otel/config.yaml"]
+    restart: unless-stopped
+    profiles:
+      - otel
+
+volumes:
+  redis-data:

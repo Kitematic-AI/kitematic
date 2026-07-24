@@ -1,0 +1,97 @@
+# Slow Pipeline — runs nightly and on-demand.
+# Includes integration tests, container scan, chaos, and DR verification.
+
+name: Nightly
+
+on:
+  schedule:
+    - cron: "0 4 * * *"  # 04:00 UTC daily
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: "3.13"
+
+jobs:
+  integration:
+    name: Integration & Security
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          pip install -e ".[dev,redis,otel]"
+          pip install pip-audit bandit
+
+      - name: Full project tests
+        run: pytest tests/ --tb=line -q
+
+      - name: Full coverage
+        run: |
+          pytest tests/ \
+            --cov=runtime \
+            --cov-report=term \
+            --cov-fail-under=90
+
+      - name: Dependency audit
+        run: pip-audit --strict
+
+      - name: AST security scan
+        run: bandit -r runtime/ -ll -q
+
+  container:
+    name: Container Security
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t kitematic-api:nightly .
+      - uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: kitematic-api:nightly
+          format: table
+          exit-code: 1
+          severity: CRITICAL,HIGH
+
+  chaos:
+    name: Chaos Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      KITEMATIC_CHAOS_ENABLED: "1"
+      KITEMATIC_CHAOS_LEVEL: "nightly"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install dependencies
+        run: pip install -e ".[dev,redis,otel]"
+      - name: Run chaos experiments (nightly level)
+        run: |
+          mkdir -p chaos-results
+          pytest tests/chaos/ \
+            -v --tb=short \
+            --junitxml=chaos-results/junit.xml \
+            2>&1 | tee chaos-results/chaos.log
+      - name: Upload chaos artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chaos-nightly-results
+          path: chaos-results/
+          retention-days: 14
+      - name: Upload chaos log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chaos-nightly-log
+          path: chaos-results/chaos.log
+          retention-days: 14

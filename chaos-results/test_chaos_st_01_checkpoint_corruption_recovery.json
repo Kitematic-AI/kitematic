@@ -1,0 +1,15 @@
+{
+  "experiment_id": "test_chaos_st_01_checkpoint_corruption_recovery",
+  "scenario": "",
+  "level": "nightly",
+  "start_time": "2026-07-24T17:26:56.702202+00:00",
+  "duration_seconds": 0.037657,
+  "expected_outcome": "Corruption detected, backup checkpoint is recoverable",
+  "actual_outcome": "",
+  "metrics_snapshot": {},
+  "passed": true,
+  "errors": [],
+  "logs": "",
+  "recovery_rto_achieved": 0.0,
+  "recovery_rpo_achieved": 0
+}

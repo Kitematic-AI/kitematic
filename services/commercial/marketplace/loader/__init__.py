@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from .manifest_loader import ManifestLoader, DefaultManifestLoader
-from .extension_loader import ExtensionLoader, DefaultExtensionLoader
+from .extension_loader import DefaultExtensionLoader, ExtensionLoader
+from .manifest_loader import DefaultManifestLoader, ManifestLoader
 
 __all__ = [
     "ManifestLoader",

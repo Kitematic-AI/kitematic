@@ -1,0 +1,70 @@
+# Weekly Chaos — runs every Sunday at 04:00 UTC and on-demand.
+# Includes medium-weight chaos experiments that may take longer
+# or require more resources than nightly runs.
+#
+# Scenarios: RT-03/06, RD-02, NW-02, ST-03, OT-02, AP-01/03, K8-01
+
+name: Chaos Weekly
+
+on:
+  schedule:
+    - cron: "0 4 * * 0"  # Sunday 04:00 UTC
+  workflow_dispatch:
+    inputs:
+      level:
+        description: "Chaos level"
+        required: true
+        default: "weekly"
+        type: choice
+        options:
+          - nightly
+          - weekly
+          - pre-release
+          - manual
+
+env:
+  PYTHON_VERSION: "3.13"
+  KITEMATIC_CHAOS_ENABLED: "1"
+  KITEMATIC_CHAOS_LEVEL: ${{ github.event.inputs.level || 'weekly' }}
+
+jobs:
+  chaos-weekly:
+    name: Weekly Chaos
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          pip install -e ".[dev,redis,otel]"
+          pip install pip-audit bandit
+
+      - name: Chaos experiments (weekly level)
+        run: |
+          mkdir -p chaos-results
+          pytest tests/chaos/ \
+            -v --tb=short \
+            --junitxml=chaos-results/junit.xml \
+            2>&1 | tee chaos-results/chaos.log
+
+      - name: Upload chaos artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chaos-weekly-results
+          path: chaos-results/
+          retention-days: 30
+
+      - name: Upload chaos log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chaos-weekly-log
+          path: chaos-results/chaos.log
+          retention-days: 30

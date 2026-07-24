@@ -1,0 +1,126 @@
+# Release Pipeline — builds, scans, and publishes Docker image on tag.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+env:
+  PYTHON_VERSION: "3.13"
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  quality-gate:
+    name: Quality & Security Gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Run quality gates
+        run: |
+          pip install -e ".[dev,redis,otel]"
+          pip install pip-audit bandit
+          ruff check runtime/ tests/ --output-format=github
+          mypy runtime/ --strict
+          pip-audit --strict
+          bandit -r runtime/ -ll -q
+          pytest tests/runtime/test_kitematic_runtime/ --tb=line -q --cov=runtime --cov-fail-under=90
+
+  chaos-gate:
+    name: Chaos Gate (critical experiments)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [quality-gate]
+    env:
+      KITEMATIC_CHAOS_ENABLED: "1"
+      KITEMATIC_CHAOS_LEVEL: "pre-release"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install dependencies
+        run: pip install -e ".[dev,redis,otel]"
+      - name: Run critical chaos experiments
+        run: |
+          mkdir -p chaos-results
+          pytest tests/chaos/ \
+            -v --tb=short \
+            --junitxml=chaos-results/junit.xml \
+            2>&1 | tee chaos-results/chaos.log
+      - name: Upload chaos artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chaos-prerelease-results
+          path: chaos-results/
+          retention-days: 90
+
+  release:
+    name: Build & Publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: [chaos-gate]
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: chaos-prerelease-results
+
+      - name: Generate SBOM
+        run: |
+          pip install cyclonedx-bom
+          cyclonedx-py > sbom.json
+
+      - name: Log in to registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Trivy container scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+          format: table
+          exit-code: 1
+          severity: CRITICAL,HIGH
+
+      - name: SBOM attestation
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.json

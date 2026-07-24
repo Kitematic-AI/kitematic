@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from . import domain, manifests, registry, loader, governance, enterprise
+from . import domain, enterprise, governance, loader, manifests, registry
 
 __all__ = [
     "domain",

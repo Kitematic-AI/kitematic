@@ -1,6 +1,5 @@
 """Runtime exceptions — typed errors for execution failures."""
 
-from typing import Any
 
 
 class RuntimeExecutionError(Exception):

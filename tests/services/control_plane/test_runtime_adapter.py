@@ -2,16 +2,19 @@
 
 import copy
 from typing import Any
-from unittest.mock import AsyncMock
 
 import pytest
 
-from runtime.contracts.step_response import StepResponse, StepStatus
+from runtime.contracts.step_response import StepStatus
 from runtime.execution.execution_runtime import ExecutionRuntime
 from runtime.execution.in_memory_runtime import InMemoryRuntime
 from services.control_plane.adapters.runtime_adapter import RuntimeExecutorAdapter
-from services.control_plane.orchestrator.step_coordinator import StepCoordinator, StepAction, StepPlan
 from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
+from services.control_plane.orchestrator.step_coordinator import (
+    StepAction,
+    StepCoordinator,
+    StepPlan,
+)
 
 
 def _make_context(**overrides) -> dict[str, Any]:
@@ -209,7 +212,6 @@ class TestInputStateMutation:
     async def test_coordinator_dependency_injection_works(self) -> None:
         class CustomCoordinator:
             def plan_step(self, execution_id, step_number, goal, budget, tools):
-                from services.control_plane.orchestrator.step_coordinator import StepPlan
                 return StepPlan(
                     action=StepAction.EXECUTE,
                     execution_id=execution_id,

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from .policy_engine import PolicyEngine
 from .types import (
-    CapabilityValidationResult,
     CapabilityResolver,
+    CapabilityValidationResult,
     PolicyCache,
     PolicyConfig,
 )

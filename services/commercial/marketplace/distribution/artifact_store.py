@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Any
-
 from services.commercial.marketplace.domain.extension_manifest import ExtensionManifest
 
 
@@ -14,7 +12,7 @@ class InMemoryArtifactStore:
         self._artifacts: dict[str, bytes] = {}
         self._metadata: dict[str, dict] = {}
 
-    async def store(self, manifest: "ExtensionManifest", artifact_data: bytes) -> str:
+    async def store(self, manifest: ExtensionManifest, artifact_data: bytes) -> str:
         """Store an artifact and return its ID."""
         import hashlib
         artifact_id = hashlib.sha256(artifact_data).hexdigest()[:16]

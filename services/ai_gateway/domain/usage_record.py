@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from datetime import datetime
-from typing import Any
+from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
 class UsageRecord:
     """Record of resource usage for a gateway request."""
-    
+
     capability: str
     adapter_id: str
     timestamp: str
@@ -22,7 +20,7 @@ class UsageRecord:
     trace_id: str = ""
     request_id: str = ""
     metadata: dict = None
-    
+
     def __post_init__(self):
         if self.metadata is None:
             object.__setattr__(self, "metadata", {})

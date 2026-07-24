@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from ..domain.extension_manifest import ExtensionManifest, ExtensionManifestValidator
 from services.core.domain.capability_catalog import CapabilityCatalog
+
+from ..domain.extension_manifest import ExtensionManifest, ExtensionManifestValidator
 
 __all__ = [
     "ExtensionManifest",

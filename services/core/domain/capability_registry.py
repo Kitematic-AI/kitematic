@@ -139,28 +139,5 @@ class CapabilityRegistry:
         compat = []
         for cap in self._capabilities.values():
             if cap.id == capability_id:
-                compatible.append(cap)
-        return tuple(compatible)
-
-    def query(
-        self,
-        category: CapabilityCategory | None = None,
-        risk_level: str | None = None,
-    ) -> tuple:
-        """Query capabilities with optional filters.
-
-        Args:
-            category: Filter by capability category
-            risk_level: Filter by risk level
-
-        Returns:
-            Tuple of matching capabilities
-        """
-        results = []
-        for cap in self._capabilities.values():
-            if category is not None and cap.category != category:
-                continue
-            if risk_level is not None and cap.risk_level != risk_level:
-                continue
-            results.append(cap)
-        return tuple(results)
+                compat.append(cap)
+        return tuple(compat)

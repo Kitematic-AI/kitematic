@@ -5,8 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Protocol
 
-from runtime.domain.policy import PolicyEffect
-
 
 @dataclass(frozen=True)
 class CapabilityValidationResult:
@@ -18,7 +16,7 @@ class CapabilityValidationResult:
 class CapabilityResolver(Protocol):
     """Protocol for capability resolution and validation."""
 
-    def validate_required(self, required: frozenset[str]) -> "CapabilityValidationResult":
+    def validate_required(self, required: frozenset[str]) -> CapabilityValidationResult:
         """Validate that all required capabilities are registered."""
         ...
 

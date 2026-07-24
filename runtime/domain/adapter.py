@@ -99,7 +99,7 @@ class RuntimeAdapter(Protocol):
         """Execute a single request synchronously."""
         ...
 
-    async def execute_stream(self, request: dict[str, Any]) -> AsyncIterator[dict]:
+    async def execute_stream(self, request: dict[str, Any]) -> AsyncIterator[dict[str, Any]]:
         """Execute a request with streaming response."""
         ...
 

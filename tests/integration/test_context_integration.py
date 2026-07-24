@@ -1,12 +1,9 @@
 """Integration tests — ExecutionContext expansion with services."""
 
-from datetime import datetime, timezone
 
 import pytest
 
 from runtime.contracts.step_request import StepRequest
-from runtime.domain.checkpoint import Checkpoint, CheckpointTrigger
-from runtime.domain.memory import MemoryItem, MemoryType
 from runtime.execution.context_builder import ContextBuilder
 from runtime.execution.execution_context import ExecutionContext
 from runtime.execution.in_memory_runtime import InMemoryRuntime

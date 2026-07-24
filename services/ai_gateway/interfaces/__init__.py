@@ -2,7 +2,14 @@
 
 from __future__ import annotations
 
-from .adapter import RuntimeAdapter, CapabilityId, CapabilitySet, GatewayRequest, GatewayResponse, AdapterHealth
+from .adapter import (
+    AdapterHealth,
+    CapabilityId,
+    CapabilitySet,
+    GatewayRequest,
+    GatewayResponse,
+    RuntimeAdapter,
+)
 from .gateway import Gateway
 
 __all__ = [

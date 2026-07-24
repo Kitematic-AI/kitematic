@@ -1,6 +1,6 @@
 """Tests for MemoryItem domain model."""
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from runtime.domain.memory import MemoryItem, MemoryType
 
@@ -43,7 +43,7 @@ class TestMemoryItem:
         assert any("confidence" in e for e in errors)
 
     def test_expired_check(self) -> None:
-        past = datetime(2025, 1, 1, tzinfo=timezone.utc)
+        past = datetime(2025, 1, 1, tzinfo=UTC)
         item = MemoryItem(
             item_id="mem-4",
             tenant_id="t-1",

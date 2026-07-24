@@ -6,9 +6,7 @@ from services.core.domain.capability import (
     Capability,
     CapabilityCategory,
 )
-
 from services.core.domain.capability_catalog import CapabilityCatalog
-
 from services.core.domain.capability_registry import CapabilityRegistry
 
 __all__ = [

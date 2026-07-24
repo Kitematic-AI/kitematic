@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Any
+from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
@@ -22,7 +21,7 @@ class ExtensionLoader:
         """Load an extension from a path."""
         try:
             import yaml
-            with open(extension_path, "r") as f:
+            with open(extension_path) as f:
                 manifest = yaml.safe_load(f)
             return True, manifest, ()
         except Exception as e:

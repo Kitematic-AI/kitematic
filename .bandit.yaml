@@ -1,0 +1,11 @@
+---
+skips: ['B101']
+exclude_dirs:
+  - tests/
+  - .venv/
+  - venv/
+  - .git/
+  - __pycache__/
+  - node_modules/
+  - .opencode/
+  - .github/

@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from .review_service import ReviewService, ReviewDecisionRecord
-from .trust_scorer import TrustScorer, TrustScore
+from .review_service import ReviewDecisionRecord, ReviewService
 from .security_checker import SecurityChecker, SecurityFinding, SecurityScanResult
+from .trust_scorer import TrustScore, TrustScorer
 
 __all__ = [
     "ReviewService",

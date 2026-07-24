@@ -1,0 +1,15 @@
+{
+  "experiment_id": "test_chaos_ot_02_span_buffer_overflow",
+  "scenario": "",
+  "level": "nightly",
+  "start_time": "2026-07-24T17:26:56.471632+00:00",
+  "duration_seconds": 0.006973,
+  "expected_outcome": "Tracer handles high span volume without crash",
+  "actual_outcome": "",
+  "metrics_snapshot": {},
+  "passed": true,
+  "errors": [],
+  "logs": "",
+  "recovery_rto_achieved": null,
+  "recovery_rpo_achieved": null
+}

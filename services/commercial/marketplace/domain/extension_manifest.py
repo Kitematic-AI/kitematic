@@ -49,7 +49,6 @@ class ExtensionManifest:
             errors.append(f"Invalid version format: {self.version}")
 
         # Validate capabilities
-        from services.commercial.marketplace.model.invariants import MARKETPLACE_INVARIANTS
         cap_errors = MARKETPLACE_INVARIANTS.validate_capabilities(self.capabilities)
         errors.extend(cap_errors)
 
@@ -97,5 +96,4 @@ class ExtensionManifestValidator:
 
     def validate_capabilities(self, capabilities: tuple[str, ...]) -> list[str]:
         """Validate capability list against invariants."""
-        from services.commercial.marketplace.model.invariants import MARKETPLACE_INVARIANTS
         return self.invariants.validate_capabilities(capabilities)

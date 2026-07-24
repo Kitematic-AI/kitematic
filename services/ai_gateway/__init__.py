@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from . import domain, interfaces, registry, adapters
+from . import adapters, domain, interfaces, registry
 
 __all__ = [
     "domain",

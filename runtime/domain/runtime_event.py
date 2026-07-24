@@ -12,4 +12,4 @@ class StreamChunk:
 
     content: str | None = None
     finish_reason: str | None = None
-    metadata: dict[str, Any] = None
+    metadata: dict[str, Any] | None = None

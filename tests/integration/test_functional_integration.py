@@ -1,12 +1,13 @@
 """Integration tests — functional tests verifying component interactions."""
 
 import pytest
+
 from services.control_plane.agent_registry.agent_registry import AgentRegistry
-from services.control_plane.lifecycle.lifecycle_manager import LifecycleManager
-from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
-from services.control_plane.orchestrator.step_coordinator import StepCoordinator, StepAction
-from services.control_plane.policy.policy_engine import PolicyEngine
 from services.control_plane.errors.orchestration_errors import AgentInstanceNotFoundError
+from services.control_plane.lifecycle.lifecycle_manager import LifecycleManager
+from services.control_plane.orchestrator.state_machine import ExecutionStatus
+from services.control_plane.orchestrator.step_coordinator import StepAction, StepCoordinator
+from services.control_plane.policy.policy_engine import PolicyEngine
 
 
 class InMemoryRegistry(AgentRegistry):
@@ -181,7 +182,6 @@ class TestInvalidStateTransitions:
         eid = await lifecycle.start_execution("inst-1", "goal")
         # Complete the execution first
         sm = lifecycle._get_state_machine(eid)
-        from services.control_plane.orchestrator.state_machine import ExecutionStatus
         sm.transition(ExecutionStatus.COMPLETED, "done", "test")
         # Now try to start again — should be terminal (no-op)
         assert await lifecycle.get_execution_status(eid) == "COMPLETED"

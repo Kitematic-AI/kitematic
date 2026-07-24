@@ -25,8 +25,12 @@ from runtime.contracts.step_request import StepRequest
 from runtime.contracts.step_response import StepResponse, StepStatus
 from runtime.execution.context_builder import ContextBuilder
 from runtime.execution.execution_runtime import ExecutionRuntime
-from services.control_plane.orchestrator.step_coordinator import StepCoordinator, StepAction, StepPlan
 from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
+from services.control_plane.orchestrator.step_coordinator import (
+    StepAction,
+    StepCoordinator,
+    StepPlan,
+)
 
 
 class RuntimeExecutorAdapter:

@@ -1,8 +1,8 @@
 """Step response contract — result returned from Agent Worker to Orchestrator."""
 
 from dataclasses import dataclass, field
-from typing import Any
 from enum import Enum
+from typing import Any
 
 
 class StepStatus(Enum):

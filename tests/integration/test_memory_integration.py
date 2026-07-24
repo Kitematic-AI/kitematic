@@ -1,6 +1,6 @@
 """Integration tests — Memory with Runtime execution."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 
@@ -20,7 +20,7 @@ class TestMemoryRuntimeIntegration:
             content="Integration test memory",
             confidence=0.85,
             source="integration",
-            created_at=datetime(2026, 7, 12, tzinfo=timezone.utc),
+            created_at=datetime(2026, 7, 12, tzinfo=UTC),
         )
         await repo.save(mem)
 
@@ -39,7 +39,7 @@ class TestMemoryRuntimeIntegration:
             content="Uses PostgreSQL for storage",
             confidence=0.9,
             source="s",
-            created_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+            created_at=datetime(2026, 1, 1, tzinfo=UTC),
         )
         m2 = MemoryItem(
             item_id="m-s2",
@@ -49,7 +49,7 @@ class TestMemoryRuntimeIntegration:
             content="Prefers PostgreSQL over MySQL",
             confidence=0.7,
             source="s",
-            created_at=datetime(2026, 1, 2, tzinfo=timezone.utc),
+            created_at=datetime(2026, 1, 2, tzinfo=UTC),
         )
         await repo.save(m1)
         await repo.save(m2)
@@ -72,7 +72,7 @@ class TestMemoryRuntimeIntegration:
             content="to be deleted",
             confidence=1.0,
             source="s",
-            created_at=datetime(2026, 7, 12, tzinfo=timezone.utc),
+            created_at=datetime(2026, 7, 12, tzinfo=UTC),
         )
         await repo.save(mem)
 

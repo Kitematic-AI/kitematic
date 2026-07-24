@@ -1,8 +1,9 @@
 """Tests for PolicyEngine — contract compliance + rule evaluation logic."""
 
 import pytest
-from services.policy_interface.interfaces.policy_evaluator import PolicyEvaluator
+
 from services.control_plane.policy.policy_engine import PolicyEngine, _target_matches
+from services.policy_interface.interfaces.policy_evaluator import PolicyEvaluator
 
 
 class TestPolicyEngineImplementsPolicyEvaluator:
@@ -89,7 +90,6 @@ class TestEvaluate:
 
     @pytest.mark.asyncio
     async def test_priority_ordering(self) -> None:
-        from datetime import datetime
         from runtime.domain.policy import PolicyEffect, PolicyRule, PolicyStatus
 
         engine = PolicyEngine()

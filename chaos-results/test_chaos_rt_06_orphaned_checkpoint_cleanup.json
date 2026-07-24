@@ -1,0 +1,15 @@
+{
+  "experiment_id": "test_chaos_rt_06_orphaned_checkpoint_cleanup",
+  "scenario": "",
+  "level": "nightly",
+  "start_time": "2026-07-24T17:26:56.684303+00:00",
+  "duration_seconds": 0.013342,
+  "expected_outcome": "Checkpoints remain consistent after partial saves",
+  "actual_outcome": "",
+  "metrics_snapshot": {},
+  "passed": true,
+  "errors": [],
+  "logs": "",
+  "recovery_rto_achieved": null,
+  "recovery_rpo_achieved": null
+}

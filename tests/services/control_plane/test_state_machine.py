@@ -1,9 +1,10 @@
 """Tests for ExecutionStateMachine — the single source of truth for state transitions."""
 
 import pytest
+
 from services.control_plane.orchestrator.state_machine import (
-    ExecutionStatus,
     ExecutionStateMachine,
+    ExecutionStatus,
     InvalidTransitionError,
 )
 

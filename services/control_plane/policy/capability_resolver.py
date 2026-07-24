@@ -3,10 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Protocol
-
-from services.core.domain.capability_registry import CapabilityRegistry
-from services.core.domain.capability import Capability
 
 
 @dataclass(frozen=True)
@@ -29,7 +25,7 @@ class CapabilityResolver:
     def __init__(self, registry) -> None:
         self._registry = registry
 
-    def validate_required(self, required: frozenset[str]) -> "CapabilityValidationResult":
+    def validate_required(self, required: frozenset[str]) -> CapabilityValidationResult:
         """Validate that all required capabilities are registered.
 
         Args:
@@ -55,10 +51,3 @@ class CapabilityResolver:
     def is_registered(self, cap_id: str) -> bool:
         """Check if a capability ID is registered."""
         return self._registry.contains(cap_id)
-
-
-@dataclass(frozen=True)
-class CapabilityValidationResult:
-    """Result of capability validation check."""
-    valid: bool
-    missing: tuple[str, ...] = ()

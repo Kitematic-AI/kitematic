@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from . import model, mcp
+from . import mcp, model
 
 __all__ = [
     "model",

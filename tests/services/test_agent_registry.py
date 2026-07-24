@@ -5,7 +5,6 @@ These tests have been superseded by contract tests in:
   tests/services/agent_registry/test_instance_repository.py
 """
 
-import pytest
 
 
 class TestAgentRegistry:

@@ -3,10 +3,9 @@
 These tests verify the runtime contracts work correctly.
 """
 
-import pytest
-from runtime.contracts.step_request import StepRequest
-from runtime.contracts.step_response import StepResponse, StepStatus
 from runtime.contracts.agent_state import AgentState
+from runtime.contracts.step_request import StepRequest
+from runtime.contracts.step_response import StepStatus
 
 
 class TestStateTransitions:

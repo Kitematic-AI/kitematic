@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from .adapter_status import AdapterStatus
 from .adapter_metadata import AdapterMetadata
+from .adapter_status import AdapterStatus
 from .gateway_request import GatewayRequest
 from .gateway_response import GatewayResponse, UsageRecord
 

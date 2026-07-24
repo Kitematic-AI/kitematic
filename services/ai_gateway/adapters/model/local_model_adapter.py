@@ -2,13 +2,8 @@
 
 import uuid
 from datetime import datetime
-from typing import Any
-from collections.abc import AsyncIterator
 
-from services.ai_gateway.interfaces.adapter import StreamChunk, AdapterHealth
-from services.ai_gateway.domain.gateway_request import GatewayRequest
-from services.ai_gateway.domain.gateway_response import GatewayResponse
-from services.ai_gateway.domain.usage_record import UsageRecord
+from services.ai_gateway.interfaces.adapter import StreamChunk
 
 
 class LocalModelAdapter:
@@ -55,7 +50,6 @@ class LocalModelAdapter:
         }
 
     async def execute_stream(self, request: dict):
-        from services.ai_gateway.interfaces.adapter import StreamChunk
         prompt = request.get("payload", {}).get("prompt", "")
         # Simple streaming mock
         text = f"Local response to: {prompt[:50]}..."

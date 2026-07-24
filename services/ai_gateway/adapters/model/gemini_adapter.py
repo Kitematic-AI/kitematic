@@ -3,9 +3,7 @@
 from __future__ import annotations
 
 import uuid
-from collections.abc import AsyncIterator
 from datetime import datetime
-from typing import Any
 
 from services.ai_gateway.interfaces.adapter import StreamChunk
 
@@ -36,9 +34,9 @@ async def _call_gemini(prompt: str, model: str, api_key: str, base_url: str) -> 
 
 
 async def _stream_gemini(prompt: str, model: str, api_key: str, base_url: str):
-    import httpx
     import json
-    from services.ai_gateway.interfaces.adapter import StreamChunk
+
+    import httpx
     url = f"{base_url}/models/{model}:streamGenerateContent"
     async with httpx.AsyncClient() as client:
         async with client.stream(
@@ -93,7 +91,6 @@ class GeminiAdapter:
         return self._metadata
 
     async def execute(self, request: dict) -> dict:
-        import uuid
         prompt = request.get("payload", {}).get("prompt", "")
         request_id = uuid.uuid4().hex[:12]
         try:
@@ -124,7 +121,6 @@ class GeminiAdapter:
             return {"success": False, "error": str(e)}
 
     async def execute_stream(self, request: dict):
-        from services.ai_gateway.interfaces.adapter import StreamChunk
         prompt = request.get("payload", {}).get("prompt", "")
         async for chunk in self._stream_gemini(prompt, model=self._model_name, api_key=self._api_key, base_url=self._base_url):
             yield chunk

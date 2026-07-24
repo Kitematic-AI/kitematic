@@ -2,17 +2,9 @@
 
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
 from collections.abc import AsyncIterator
 from dataclasses import dataclass, field
 from typing import Any, Protocol
-
-from runtime.domain.runtime_event import StreamChunk
-
-
-# Type aliases for capability IDs (string IDs only, no Enum)
-CapabilityId = str
-CapabilitySet = tuple[str, ...]
 
 
 @dataclass(frozen=True)
@@ -23,11 +15,6 @@ class AdapterHealth:
     provider: str
     model: str = ""
     details: dict[str, Any] = field(default_factory=dict)
-
-
-# Type aliases for capability IDs (string IDs only, no Enum)
-CapabilityId = str
-CapabilitySet = tuple[str, ...]
 
 
 class RuntimeAdapter(Protocol):
@@ -77,21 +64,6 @@ class RuntimeAdapter(Protocol):
     async def shutdown(self) -> None:
         """Graceful shutdown of the adapter."""
         ...
-
-
-# Type aliases for capability IDs (string IDs only, no Enum)
-CapabilityId = str
-CapabilitySet = tuple[str, ...]
-
-
-@dataclass(frozen=True)
-class AdapterHealth:
-    """Health status of an adapter."""
-
-    healthy: bool
-    provider: str
-    model: str = ""
-    details: dict[str, Any] = field(default_factory=dict)
 
 
 # Type aliases for gateway

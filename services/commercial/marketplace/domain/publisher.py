@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import StrEnum
-from typing import Any
 
 
 class PublisherStatus(StrEnum):
@@ -30,7 +29,7 @@ class Publisher:
     updated_at: datetime = field(default_factory=datetime.utcnow)
     metadata: dict = field(default_factory=dict)
 
-    def verify(self) -> "Publisher":
+    def verify(self) -> Publisher:
         """Return a new verified publisher."""
         from datetime import datetime
         return Publisher(
@@ -44,7 +43,7 @@ class Publisher:
             metadata=self.metadata,
         )
 
-    def suspend(self) -> "Publisher":
+    def suspend(self) -> Publisher:
         """Return a new suspended publisher."""
         from datetime import datetime
         return Publisher(

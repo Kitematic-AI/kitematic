@@ -1,19 +1,13 @@
 """MCP (Model Context Protocol) tool adapter - simplified baseline."""
 
 import time
+from collections.abc import AsyncIterator
 from datetime import datetime
-from typing import Any, AsyncIterator
 
 from runtime.domain.runtime_event import StreamChunk
-
-from services.ai_gateway.adapters.mcp.domain.mcp_server_metadata import MCPServerMetadata
-from services.ai_gateway.adapters.mcp.domain.mcp_tool import MCPToolDefinition
 from services.ai_gateway.adapters.mcp.interfaces.mcp_client import MCPClient
 from services.ai_gateway.domain.adapter_metadata import AdapterMetadata
 from services.ai_gateway.domain.gateway_request import GatewayRequest
-from services.ai_gateway.domain.gateway_response import GatewayResponse
-from services.ai_gateway.domain.usage_record import UsageRecord
-from services.ai_gateway.interfaces.adapter import AdapterHealth, StreamChunk
 
 
 class MCPAdapter:
@@ -43,7 +37,7 @@ class MCPAdapter:
         start = time.perf_counter()
         try:
             result = await self._client.call_tool(request.capability, request.payload)
-        except Exception as exc:
+        except Exception:
             raise
 
         elapsed = (time.perf_counter() - start) * 1000
@@ -67,7 +61,6 @@ class MCPAdapter:
     async def execute_stream(
         self, request: GatewayRequest
     ) -> AsyncIterator:
-        from runtime.domain.runtime_event import StreamChunk
         prompt = request.payload.get("prompt", "")
         result = await self._client.call_tool(request.capability, request.payload)
         text = result.get("text", prompt)

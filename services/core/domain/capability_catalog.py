@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
+from packaging.version import InvalidVersion, Version
+
 from services.core.domain.capability import Capability, CapabilityCategory
-from packaging.version import Version, InvalidVersion
 
 
 class CapabilityCatalog:
@@ -164,7 +165,7 @@ class CapabilityCatalog:
         )
 
     @classmethod
-    def by_id(cls, cap_id: str) -> "Capability | None":
+    def by_id(cls, cap_id: str) -> Capability | None:
         """Look up capability by its string ID."""
         for cap in cls.all():
             if cap.id == cap_id:
@@ -172,7 +173,7 @@ class CapabilityCatalog:
         return None
 
     @classmethod
-    def resolve_version(cls, cap_id: str, version_constraint: str | None = None) -> "Capability | None":
+    def resolve_version(cls, cap_id: str, version_constraint: str | None = None) -> Capability | None:
         """Resolve a capability by ID with optional version constraint.
 
         Args:

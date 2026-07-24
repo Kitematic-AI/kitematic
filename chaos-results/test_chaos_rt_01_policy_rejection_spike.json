@@ -1,0 +1,15 @@
+{
+  "experiment_id": "test_chaos_rt_01_policy_rejection_spike",
+  "scenario": "",
+  "level": "nightly",
+  "start_time": "2026-07-24T17:26:56.613148+00:00",
+  "duration_seconds": 0.010549,
+  "expected_outcome": "Runtime returns errors gracefully, no crash",
+  "actual_outcome": "",
+  "metrics_snapshot": {},
+  "passed": true,
+  "errors": [],
+  "logs": "",
+  "recovery_rto_achieved": 0.0,
+  "recovery_rpo_achieved": 0
+}

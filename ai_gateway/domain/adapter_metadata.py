@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from services.ai_gateway.domain.adapter_status import AdapterStatus
+from ai_gateway.domain.adapter_status import AdapterStatus
 
 
 @dataclass(frozen=True)

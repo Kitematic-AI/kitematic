@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
-from services.ai_gateway.interfaces.adapter import RuntimeAdapter
+from core.contracts.adapter import RuntimeAdapter
 
 
 class AdapterRegistry(ABC):

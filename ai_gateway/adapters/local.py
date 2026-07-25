@@ -3,7 +3,7 @@
 import uuid
 from datetime import datetime
 
-from services.ai_gateway.interfaces.adapter import StreamChunk
+from core.contracts.adapter import StreamChunk
 
 
 class LocalModelAdapter:

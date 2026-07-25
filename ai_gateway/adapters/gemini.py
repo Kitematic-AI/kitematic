@@ -5,7 +5,7 @@ from __future__ import annotations
 import uuid
 from datetime import datetime
 
-from services.ai_gateway.interfaces.adapter import StreamChunk
+from core.contracts.adapter import StreamChunk
 
 
 async def _call_gemini(prompt: str, model: str, api_key: str, base_url: str) -> dict:

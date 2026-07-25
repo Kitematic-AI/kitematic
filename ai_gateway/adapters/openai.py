@@ -3,7 +3,7 @@
 import uuid
 from typing import Any
 
-from services.ai_gateway.interfaces.adapter import StreamChunk
+from core.contracts.adapter import StreamChunk
 
 
 async def _call_openai(prompt: str, model: str, api_key: str, base_url: str) -> dict[str, Any]:

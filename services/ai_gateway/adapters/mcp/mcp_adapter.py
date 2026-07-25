@@ -5,9 +5,9 @@ from collections.abc import AsyncIterator
 from datetime import datetime
 
 from core.domain.runtime_event import StreamChunk
-from services.ai_gateway.adapters.mcp.interfaces.mcp_client import MCPClient
-from services.ai_gateway.domain.adapter_metadata import AdapterMetadata
-from services.ai_gateway.domain.gateway_request import GatewayRequest
+from agents.tools.mcp.interfaces.mcp_client import MCPClient
+from ai_gateway.domain.adapter_metadata import AdapterMetadata
+from ai_gateway.domain.gateway_request import GatewayRequest
 
 
 class MCPAdapter:

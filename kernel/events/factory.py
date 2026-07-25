@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from runtime.kitematic_runtime.config.settings import RuntimeSettings
+from config.settings import RuntimeSettings
 from kernel.events.memory import InMemoryEventPublisher
 from kernel.events.protocol import EventPublisher
 

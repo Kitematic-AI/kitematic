@@ -13,7 +13,7 @@ from datetime import datetime
 
 import pytest
 
-from runtime.kitematic_runtime.config.settings import RuntimeSettings
+from config.settings import RuntimeSettings
 from kernel.events import (
     EventPublisher,
     ExecutionEvent,

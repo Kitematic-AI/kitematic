@@ -16,7 +16,7 @@ from datetime import UTC, datetime
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from runtime.kitematic_runtime.config.settings import RuntimeSettings
+    from config.settings import RuntimeSettings
 from kernel.exceptions import (
     CheckpointPersistenceError,
     InvalidStateTransitionError,
@@ -182,7 +182,7 @@ class KitematicRuntime:
         self._agents: dict[str, dict[str, Any]] = {}
         self._state: RuntimeState = RuntimeState.RUNNING
         if settings is None:
-            from runtime.kitematic_runtime.config.settings import RuntimeSettings as _RS
+            from config.settings import RuntimeSettings as _RS
 
             settings = _RS()
         self._settings: RuntimeSettings = settings

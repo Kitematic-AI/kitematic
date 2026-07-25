@@ -14,8 +14,8 @@ import json
 import pytest
 from fastapi.testclient import TestClient
 
-from runtime.kitematic_runtime.api.app import create_app
-from runtime.kitematic_runtime.api.events import EventPublisher
+from api.rest.app import create_app
+from api.events.publisher import EventPublisher
 from kernel.resources.budget import ExecutionBudget
 from kernel.lifecycle import LoopController
 from kernel.observability.logging import RuntimeLogger

@@ -2,7 +2,7 @@
 
 import pytest
 
-from runtime.kitematic_runtime.api.auth import (
+from api.auth.provider import (
     APIKeyAuthProvider,
     AuthContext,
 )

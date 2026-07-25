@@ -7,9 +7,9 @@ from starlette.websockets import WebSocketDisconnect
 from control_plane.adapters.to_kernel.checkpoint import CheckpointPersistenceAdapter
 from control_plane.adapters.to_kernel.policy import PolicyEngineAdapter
 from control_plane.adapters.to_kernel.router import SimpleIntentRouter
-from runtime.kitematic_runtime.api.app import create_app
-from runtime.kitematic_runtime.api.auth import APIKeyAuthProvider, AuthContext
-from runtime.kitematic_runtime.api.events import EventPublisher
+from api.rest.app import create_app
+from api.auth.provider import APIKeyAuthProvider, AuthContext
+from api.events.publisher import EventPublisher
 from kernel.gateway import MCPToolGateway
 from kernel.observability.metrics import MetricsRegistry
 from kernel.runtime import KitematicRuntime

@@ -4,7 +4,7 @@ import asyncio
 
 import pytest
 
-from runtime.kitematic_runtime.api.events import EventPublisher
+from api.events.publisher import EventPublisher
 
 
 class TestEventPublisher:

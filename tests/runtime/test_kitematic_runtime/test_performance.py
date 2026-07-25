@@ -14,7 +14,7 @@ import pytest
 from control_plane.adapters.to_kernel.checkpoint import CheckpointPersistenceAdapter
 from control_plane.adapters.to_kernel.policy import PolicyEngineAdapter
 from control_plane.adapters.to_kernel.router import SimpleIntentRouter
-from runtime.kitematic_runtime.api.events import EventPublisher
+from api.events.publisher import EventPublisher
 from kernel.gateway import MCPToolGateway
 from kernel.runtime import Intent, KitematicRuntime
 from kernel.resources.tool_registry import ToolDefinition, ToolRegistry

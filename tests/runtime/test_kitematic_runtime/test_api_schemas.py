@@ -3,7 +3,7 @@
 import pytest
 from pydantic import ValidationError
 
-from runtime.kitematic_runtime.api.schemas import (
+from api.schemas.models import (
     ErrorResponse,
     ExecutionResponse,
     HealthResponse,

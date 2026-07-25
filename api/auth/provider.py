@@ -12,38 +12,9 @@ from __future__ import annotations
 
 import hashlib
 import hmac
-from abc import ABC, abstractmethod
 from typing import Any
 
-from pydantic import BaseModel
-
-
-class AuthContext(BaseModel):
-    """Resolved authentication context after successful authentication.
-
-    Carries identity information for the request lifecycle.
-    Does NOT carry authorization decisions — those belong to Policy Engine.
-    """
-
-    tenant_id: str = ""
-    agent_id: str = ""
-    permissions: list[str] = []
-
-
-class AuthProvider(ABC):
-    """Protocol for authentication providers.
-
-    Every provider MUST return None for unauthenticated requests.
-    AuthProvider extracts identity only — it does NOT authorize.
-    """
-
-    @abstractmethod
-    async def authenticate(self, api_key: str) -> AuthContext | None:
-        """Validate api_key and return AuthContext.
-
-        Returns None if the key is invalid or unknown.
-        """
-        ...
+from core.identity.auth_context import AuthContext, AuthProvider
 
 
 def _fingerprint(raw_key: str) -> str:

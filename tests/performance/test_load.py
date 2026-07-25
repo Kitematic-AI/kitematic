@@ -13,7 +13,7 @@ import time
 
 import pytest
 
-from runtime.kitematic_runtime.api.quotas import QuotaManager, TenantQuotaConfig
+from api.rest.quotas import QuotaManager, TenantQuotaConfig
 from kernel.observability.metrics import MetricsRegistry
 from kernel.runtime import Intent, KitematicRuntime
 from kernel.tenant import TenantContext

@@ -15,8 +15,8 @@ from typing import Any
 from fastapi import Depends, FastAPI, HTTPException, Query, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import JSONResponse
 
-from runtime.kitematic_runtime.api.auth import APIKeyAuthProvider, AuthContext, AuthProvider
-from runtime.kitematic_runtime.api.schemas import (
+from api.auth.provider import APIKeyAuthProvider, AuthContext, AuthProvider
+from api.schemas.models import (
     ErrorResponse,
     ExecutionResponse,
     ExecutionStatusResponse,
@@ -24,7 +24,7 @@ from runtime.kitematic_runtime.api.schemas import (
     IntentRequest,
     MetricsResponse,
 )
-from runtime.kitematic_runtime.config.settings import RuntimeSettings
+from config.settings import RuntimeSettings
 from kernel.events import EventPublisher, ExecutionEvent, create_event_publisher
 from kernel.observability.metrics import MetricsRegistry
 from kernel.runtime import Intent, KitematicRuntime

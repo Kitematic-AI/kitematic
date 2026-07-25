@@ -22,14 +22,14 @@ from starlette.websockets import WebSocketDisconnect
 from control_plane.adapters.to_kernel.checkpoint import CheckpointPersistenceAdapter
 from control_plane.adapters.to_kernel.policy import PolicyEngineAdapter
 from control_plane.adapters.to_kernel.router import SimpleIntentRouter
-from runtime.kitematic_runtime.api.app import create_app
-from runtime.kitematic_runtime.api.audit import AuditEvent, AuditEventType, AuditRecorder
-from runtime.kitematic_runtime.api.auth import (
+from api.rest.app import create_app
+from api.audit.recorder import AuditEvent, AuditEventType, AuditRecorder
+from api.auth.provider import (
     APIKeyAuthProvider,
     AuthContext,
     _fingerprint,
 )
-from runtime.kitematic_runtime.config.secrets import SecretsModel, create_secrets_provider
+from config.secrets import SecretsModel, create_secrets_provider
 from kernel.events import (
     ExecutionEvent,
     InMemoryEventPublisher,

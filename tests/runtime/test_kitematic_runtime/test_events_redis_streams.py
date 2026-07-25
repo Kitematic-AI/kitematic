@@ -14,7 +14,7 @@ from unittest.mock import AsyncMock, patch
 
 import pytest
 
-from runtime.kitematic_runtime.config.settings import RuntimeSettings
+from config.settings import RuntimeSettings
 from kernel.events.factory import create_event_publisher
 from kernel.events.models import ExecutionEvent
 from kernel.events.protocol import EventPublisher

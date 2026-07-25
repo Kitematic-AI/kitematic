@@ -12,14 +12,14 @@ Covers:
 
 import pytest
 
-from runtime.kitematic_runtime.api.quotas import (
+from api.rest.quotas import (
     QuotaExceededError,
     QuotaManager,
     RateLimitError,
     TenantQuotaConfig,
     TokenBucketRateLimiter,
 )
-from runtime.kitematic_runtime.config.settings import RuntimeSettings
+from config.settings import RuntimeSettings
 
 # ── TokenBucketRateLimiter ───────────────────────────────────────
 

@@ -20,13 +20,19 @@ from typing import NamedTuple
 # Layer rules: which layers can import which
 # Key: source layer, Value: set of allowed target layers
 LAYER_ALLOWED_IMPORTS: dict[str, set[str]] = {
-    "runtime":   {"runtime"},
-    "services":  {"services", "runtime"},
+    "core":           {"core"},
+    "kernel":         {"core", "kernel"},
+    "control_plane":  {"core", "kernel", "control_plane"},
+    "agents":         {"core", "kernel", "agents", "ai_gateway"},
+    "ai_gateway":     {"core", "ai_gateway"},
+    "infrastructure": {"core", "infrastructure"},
+    "api":            {"core", "kernel", "control_plane", "api"},
+    "config":         {"core", "config"},
 }
 
 # Forbidden imports in specific directories (module prefix → layer)
 FORBIDDEN_IMPORTS: dict[str, set[str]] = {
-    "services/control_plane": {
+    "control_plane": {
         "sqlite3", "psycopg", "psycopg2", "sqlalchemy",
         "pymongo", "redis",
         "requests", "httpx", "aiohttp", "urllib", "http.client", "websockets",
@@ -35,31 +41,31 @@ FORBIDDEN_IMPORTS: dict[str, set[str]] = {
 
 # Known ABC → implementation pairs (class name → (abc_module_path, impl_module_path))
 KNOWN_ABC_IMPLEMENTATIONS: list[tuple[str, str, str | None]] = [
-    ("TemplateRepository",  "services/agent_registry/interfaces", "services/agent_registry/repositories"),
-    ("InstanceRepository",  "services/agent_registry/interfaces", "services/agent_registry/repositories"),
-    ("PolicyEvaluator",     "services/policy_interface/interfaces", "services/control_plane/policy"),
-    ("Orchestrator",        "services/control_plane/interfaces", None),
+    ("TemplateRepository",  "control_plane/registry", "control_plane/registry"),
+    ("InstanceRepository",  "control_plane/registry", "control_plane/registry"),
+    ("PolicyEvaluator",     "core/policies", "control_plane/policy"),
+    ("Orchestrator",        "control_plane/orchestrator", None),
 ]
 
 # Known contract pairs for signature consistency checking
 # (abc_module, abc_class, impl_module, impl_class)
 KNOWN_CONTRACTS: list[tuple[str, str, str, str]] = [
     (
-        "services.agent_registry.interfaces.template_repository",
+        "control_plane.registry.template_repository",
         "TemplateRepository",
-        "services.agent_registry.repositories.memory_template_repository",
+        "control_plane.registry.memory_template_repository",
         "MemoryTemplateRepository",
     ),
     (
-        "services.agent_registry.interfaces.instance_repository",
+        "control_plane.registry.instance_repository",
         "InstanceRepository",
-        "services.agent_registry.repositories.memory_instance_repository",
+        "control_plane.registry.memory_instance_repository",
         "MemoryInstanceRepository",
     ),
     (
-        "services.policy_interface.interfaces.policy_evaluator",
+        "core.policies.evaluator",
         "PolicyEvaluator",
-        "services.control_plane.policy.policy_engine",
+        "control_plane.policy.engine",
         "PolicyEngine",
     ),
 ]
@@ -93,10 +99,9 @@ def get_layer(filepath: Path, root: Path) -> str | None:
     """Determine the layer for a file based on its path."""
     rel = filepath.relative_to(root)
     parts = rel.parts
-    if parts[0] == "runtime":
-        return "runtime"
-    if parts[0] == "services":
-        return "services"
+    if parts[0] in ("core", "kernel", "control_plane", "agents",
+                     "ai_gateway", "infrastructure", "api", "config"):
+        return parts[0]
     return None
 
 

@@ -13,7 +13,7 @@ from unittest.mock import AsyncMock, patch
 
 import pytest
 
-from runtime.kitematic_runtime.api.quotas import QuotaManager, TenantQuotaConfig
+from api.rest.quotas import QuotaManager, TenantQuotaConfig
 from kernel.events.redis_streams import RedisStreamPublisher
 from kernel.observability.metrics import MetricsRegistry
 from kernel.runtime import Intent, KitematicRuntime

@@ -17,7 +17,7 @@ import asyncio
 
 import pytest
 
-from runtime.kitematic_runtime.api.auth import APIKeyAuthProvider, AuthContext
+from api.auth.provider import APIKeyAuthProvider, AuthContext
 from kernel.runtime import (
     ExecutionPath,
     Intent,

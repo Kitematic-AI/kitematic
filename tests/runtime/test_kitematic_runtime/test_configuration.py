@@ -12,7 +12,7 @@ Verifies:
 import pytest
 from pydantic import ValidationError
 
-from runtime.kitematic_runtime.config.settings import RuntimeSettings
+from config.settings import RuntimeSettings
 from kernel.runtime import (
     ExecutionPath,
     Intent,

@@ -6,9 +6,9 @@ Orchestrates the full chain:
 Runtime executes lifecycle only. Never decides. Never bypasses Gateway.
 """
 
-from runtime.kitematic_runtime.budget import ExecutionBudget
-from runtime.kitematic_runtime.events import EventLog, EventType, ExecutionEvent
-from runtime.kitematic_runtime.exceptions import (
+from kernel.resources.budget import ExecutionBudget
+from kernel.events import EventLog, EventType, ExecutionEvent
+from kernel.exceptions import (
     CapabilityDeniedError,
     CapabilityNotFoundError,
     CheckpointPersistenceError,
@@ -18,12 +18,12 @@ from runtime.kitematic_runtime.exceptions import (
     PolicyRejectionError,
     RuntimeContractError,
 )
-from runtime.kitematic_runtime.gateway import (
+from kernel.gateway import (
     GatewayAuditEntry,
     MCPClientNotFoundError,
     MCPToolGateway,
 )
-from runtime.kitematic_runtime.isolation import (
+from kernel.isolation import (
     AgentNotInTenantError,
     CrossAgentAccessError,
     CrossTenantAccessError,
@@ -33,11 +33,11 @@ from runtime.kitematic_runtime.isolation import (
     ResourceLimitExceededError,
     TenantNotFoundError,
 )
-from runtime.kitematic_runtime.loop import LoopController, LoopResult, LoopTermination
-from runtime.kitematic_runtime.runtime import KitematicRuntime
-from runtime.kitematic_runtime.states import VALID_TRANSITIONS, ExecutionState
-from runtime.kitematic_runtime.tenant import ResourceLimits, TenantContext, TenantModel
-from runtime.kitematic_runtime.tool_registry import (
+from kernel.lifecycle import LoopController, LoopResult, LoopTermination
+from kernel.runtime import KitematicRuntime
+from kernel.state import VALID_TRANSITIONS, ExecutionState
+from kernel.tenant import ResourceLimits, TenantContext, TenantModel
+from kernel.resources.tool_registry import (
     ToolAlreadyRegisteredError,
     ToolCapabilityMismatchError,
     ToolDefinition,

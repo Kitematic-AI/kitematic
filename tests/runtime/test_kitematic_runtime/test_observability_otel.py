@@ -11,10 +11,10 @@ from opentelemetry.sdk.metrics import MeterProvider
 from opentelemetry.sdk.metrics.export import InMemoryMetricReader
 from opentelemetry.sdk.resources import Resource
 
-from runtime.kitematic_runtime.observability.logging import RuntimeLogger
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.observability.opentelemetry import get_tracer_provider, is_enabled
-from runtime.kitematic_runtime.observability.tracing import ExecutionTracer, TracePhase
+from kernel.observability.logging import RuntimeLogger
+from kernel.observability.metrics import MetricsRegistry
+from kernel.observability.opentelemetry import get_tracer_provider, is_enabled
+from kernel.observability.tracing import ExecutionTracer, TracePhase
 
 
 class TestOTelProvider:
@@ -135,17 +135,17 @@ class TestOTelGetters:
         assert p1 is p2
 
     def test_shutdown_noop_when_not_initialized(self):
-        from runtime.kitematic_runtime.observability.opentelemetry import shutdown
+        from kernel.observability.opentelemetry import shutdown
         shutdown()
 
     def test_get_meter_provider_returns_singleton(self):
-        from runtime.kitematic_runtime.observability.opentelemetry import get_meter_provider
+        from kernel.observability.opentelemetry import get_meter_provider
         m1 = get_meter_provider()
         m2 = get_meter_provider()
         assert m1 is m2
 
     def test_get_logger_provider_returns_singleton(self):
-        from runtime.kitematic_runtime.observability.opentelemetry import get_logger_provider
+        from kernel.observability.opentelemetry import get_logger_provider
         l1 = get_logger_provider()
         l2 = get_logger_provider()
         assert l1 is l2

@@ -3,7 +3,7 @@
 import io
 import json
 
-from runtime.kitematic_runtime.observability.logging import JSONLogFormatter, RuntimeLogger
+from kernel.observability.logging import JSONLogFormatter, RuntimeLogger
 
 
 class TestRuntimeLogger:

@@ -11,7 +11,7 @@ Verifies:
 
 import pytest
 
-from runtime.kitematic_runtime.tool_registry import (
+from kernel.resources.tool_registry import (
     ToolAlreadyRegisteredError,
     ToolCapabilityMismatchError,
     ToolDefinition,

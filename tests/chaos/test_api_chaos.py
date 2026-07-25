@@ -11,8 +11,8 @@ import asyncio
 import pytest
 
 from runtime.kitematic_runtime.api.auth import APIKeyAuthProvider, AuthContext
-from runtime.kitematic_runtime.runtime import Intent
-from runtime.kitematic_runtime.tenant import TenantContext
+from kernel.runtime import Intent
+from kernel.tenant import TenantContext
 from tests.chaos.conftest import make_runtime
 
 pytestmark = [

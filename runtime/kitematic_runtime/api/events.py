@@ -7,7 +7,7 @@ continue to work without changes.
 Deprecated: import from runtime.events instead of runtime.api.events.
 """
 
-from runtime.kitematic_runtime.events.memory import InMemoryEventPublisher
+from kernel.events.memory import InMemoryEventPublisher
 
 # Backward-compatible alias
 # Deprecated: import from runtime.events.memory instead

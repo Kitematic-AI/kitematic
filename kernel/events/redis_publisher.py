@@ -4,8 +4,8 @@ import asyncio
 import json
 from typing import Any
 
-from runtime.kitematic_runtime.events.models import ExecutionEvent
-from runtime.kitematic_runtime.events.protocol import EventPublisher
+from kernel.events.models import ExecutionEvent
+from kernel.events.protocol import EventPublisher
 
 try:
     import redis.asyncio as aioredis

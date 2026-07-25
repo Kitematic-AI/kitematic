@@ -18,7 +18,7 @@ import asyncio
 import pytest
 
 from runtime.kitematic_runtime.api.auth import APIKeyAuthProvider, AuthContext
-from runtime.kitematic_runtime.runtime import (
+from kernel.runtime import (
     ExecutionPath,
     Intent,
     IntentRouter,
@@ -28,7 +28,7 @@ from runtime.kitematic_runtime.runtime import (
     ToolGateway,
     ToolResult,
 )
-from runtime.kitematic_runtime.tenant import TenantContext
+from kernel.tenant import TenantContext
 
 # ═══════════════════════════════════════════════════════════════════════
 # Shared mock implementations
@@ -502,7 +502,7 @@ class TestIncidentOTelFailure:
 
     @pytest.mark.asyncio
     async def test_runtime_executes_without_otel_tracer(self):
-        from runtime.kitematic_runtime.observability.opentelemetry import get_tracer_provider
+        from kernel.observability.opentelemetry import get_tracer_provider
 
         original = get_tracer_provider()
         assert original is not None, "Should have a default tracer"
@@ -516,7 +516,7 @@ class TestIncidentOTelFailure:
 
     @pytest.mark.asyncio
     async def test_execution_tracer_works_without_otel(self):
-        from runtime.kitematic_runtime.observability.tracing import ExecutionTracer, TracePhase
+        from kernel.observability.tracing import ExecutionTracer, TracePhase
 
         tracer = ExecutionTracer(execution_id="ir07-t1", agent_id="a1")
         tracer.start_phase(TracePhase.POLICY_EVALUATION, {"test": "value"})
@@ -529,7 +529,7 @@ class TestIncidentOTelFailure:
 
     @pytest.mark.asyncio
     async def test_metrics_registry_works_without_otel_meter(self):
-        from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
+        from kernel.observability.metrics import MetricsRegistry
 
         registry = MetricsRegistry(otel_meter=None)
         registry.increment("test.counter")

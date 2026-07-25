@@ -11,18 +11,18 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 from typing import Any
 
-from runtime.kitematic_runtime.events import EventLog, EventType
-from runtime.kitematic_runtime.exceptions import GatewayAccessError
-from runtime.kitematic_runtime.observability.logging import RuntimeLogger
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.runtime import (
+from kernel.events import EventLog, EventType
+from kernel.exceptions import GatewayAccessError
+from kernel.observability.logging import RuntimeLogger
+from kernel.observability.metrics import MetricsRegistry
+from kernel.runtime import (
     ExecutionPath,
     Intent,
     ToolGateway,
     ToolResult,
 )
-from runtime.kitematic_runtime.states import ExecutionState
-from runtime.kitematic_runtime.tool_registry import (
+from kernel.state import ExecutionState
+from kernel.resources.tool_registry import (
     ToolRegistry,
 )
 

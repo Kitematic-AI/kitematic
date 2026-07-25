@@ -1,7 +1,7 @@
 """Tests for runtime metrics collection."""
 
 
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
+from kernel.observability.metrics import MetricsRegistry
 
 
 class TestMetricsRegistryCounters:

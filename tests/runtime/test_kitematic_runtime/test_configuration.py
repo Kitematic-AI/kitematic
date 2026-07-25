@@ -13,7 +13,7 @@ import pytest
 from pydantic import ValidationError
 
 from runtime.kitematic_runtime.config.settings import RuntimeSettings
-from runtime.kitematic_runtime.runtime import (
+from kernel.runtime import (
     ExecutionPath,
     Intent,
     IntentRouter,

@@ -11,8 +11,8 @@ Simulates runtime-level failures:
 
 import pytest
 
-from runtime.kitematic_runtime.runtime import Intent, RuntimeState
-from runtime.kitematic_runtime.tenant import TenantContext
+from kernel.runtime import Intent, RuntimeState
+from kernel.tenant import TenantContext
 from tests.chaos.conftest import (
     MockPolicyEvaluator,
     MockToolGateway,

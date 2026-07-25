@@ -14,11 +14,11 @@ from unittest.mock import AsyncMock, patch
 import pytest
 
 from runtime.kitematic_runtime.api.quotas import QuotaManager, TenantQuotaConfig
-from runtime.kitematic_runtime.events.redis_streams import RedisStreamPublisher
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.runtime import Intent, KitematicRuntime
-from runtime.kitematic_runtime.states import RuntimeState
-from runtime.kitematic_runtime.tenant import TenantContext
+from kernel.events.redis_streams import RedisStreamPublisher
+from kernel.observability.metrics import MetricsRegistry
+from kernel.runtime import Intent, KitematicRuntime
+from kernel.state import RuntimeState
+from kernel.tenant import TenantContext
 
 
 class MockPolicy:
@@ -30,13 +30,13 @@ class MockPolicy:
 
 class MockRouter:
     async def route_intent(self, intent):
-        from runtime.kitematic_runtime.runtime import ExecutionPath
+        from kernel.runtime import ExecutionPath
         return ExecutionPath(tool="mock_tool")
 
 
 class MockGateway:
     async def access_tool(self, path, intent):
-        from runtime.kitematic_runtime.runtime import ToolResult
+        from kernel.runtime import ToolResult
         return ToolResult(success=True, data={"result": "ok"})
 
 
@@ -86,7 +86,7 @@ async def test_drain_allows_in_flight_completion(base_runtime):
 
 @pytest.mark.asyncio
 async def test_redis_stream_publisher_handles_disconnect(base_runtime):
-    from runtime.kitematic_runtime.events.models import ExecutionEvent
+    from kernel.events.models import ExecutionEvent
     pub = RedisStreamPublisher("redis://broken:6379")
     event = ExecutionEvent(execution_id="exec-1", event_type="test")
     with patch.object(pub, "_ensure_connected", side_effect=ConnectionError("Broken pipe")):

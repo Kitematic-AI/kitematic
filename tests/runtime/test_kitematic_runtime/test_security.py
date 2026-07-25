@@ -30,15 +30,15 @@ from runtime.kitematic_runtime.api.auth import (
     _fingerprint,
 )
 from runtime.kitematic_runtime.config.secrets import SecretsModel, create_secrets_provider
-from runtime.kitematic_runtime.events import (
+from kernel.events import (
     ExecutionEvent,
     InMemoryEventPublisher,
 )
-from runtime.kitematic_runtime.gateway import MCPToolGateway
-from runtime.kitematic_runtime.observability.logging import RuntimeLogger
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.runtime import KitematicRuntime
-from runtime.kitematic_runtime.tool_registry import ToolDefinition, ToolRegistry
+from kernel.gateway import MCPToolGateway
+from kernel.observability.logging import RuntimeLogger
+from kernel.observability.metrics import MetricsRegistry
+from kernel.runtime import KitematicRuntime
+from kernel.resources.tool_registry import ToolDefinition, ToolRegistry
 from services.checkpoint.repositories.in_memory_checkpoint import InMemoryCheckpointRepository
 from services.control_plane.policy.policy_engine import PolicyEngine
 

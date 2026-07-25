@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 
 from core.contracts.step_request import StepRequest
 from core.contracts.step_response import StepResponse
-from runtime.execution.execution_context import ExecutionContext
+from kernel.execution.context import ExecutionContext
 
 
 class ExecutionRuntime(ABC):

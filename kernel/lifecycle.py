@@ -16,17 +16,17 @@ from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from enum import Enum
 
-from runtime.kitematic_runtime.budget import ExecutionBudget
-from runtime.kitematic_runtime.events import EventLog, EventType
-from runtime.kitematic_runtime.observability.logging import RuntimeLogger
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.runtime import (
+from kernel.resources.budget import ExecutionBudget
+from kernel.events import EventLog, EventType
+from kernel.observability.logging import RuntimeLogger
+from kernel.observability.metrics import MetricsRegistry
+from kernel.runtime import (
     ExecutionResult,
     Intent,
     KitematicRuntime,
 )
-from runtime.kitematic_runtime.states import ExecutionState, RuntimeState
-from runtime.kitematic_runtime.tenant import TenantContext
+from kernel.state import ExecutionState, RuntimeState
+from kernel.tenant import TenantContext
 
 # ── Loop Termination Reasons ───────────────────────────────────────────────
 

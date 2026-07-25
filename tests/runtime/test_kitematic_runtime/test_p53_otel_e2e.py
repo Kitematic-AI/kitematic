@@ -23,16 +23,16 @@ from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider as SDKTracerProvider
 from opentelemetry.sdk.trace.export import SimpleSpanProcessor
 
-from runtime.kitematic_runtime.observability.logging import RuntimeLogger
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.observability.opentelemetry import (
+from kernel.observability.logging import RuntimeLogger
+from kernel.observability.metrics import MetricsRegistry
+from kernel.observability.opentelemetry import (
     get_logger_provider,
     get_meter_provider,
     get_tracer_provider,
     shutdown as otel_shutdown,
 )
-from runtime.kitematic_runtime.observability.tracing import ExecutionTracer, TracePhase
-from runtime.kitematic_runtime.runtime import (
+from kernel.observability.tracing import ExecutionTracer, TracePhase
+from kernel.runtime import (
     ExecutionPath,
     Intent,
     IntentRouter,
@@ -42,7 +42,7 @@ from runtime.kitematic_runtime.runtime import (
     ToolGateway,
     ToolResult,
 )
-from runtime.kitematic_runtime.tenant import TenantContext
+from kernel.tenant import TenantContext
 
 
 class InMemorySpanExporter:

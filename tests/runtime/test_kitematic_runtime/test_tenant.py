@@ -10,7 +10,7 @@ Verifies:
 
 import pytest
 
-from runtime.kitematic_runtime.tenant import (
+from kernel.tenant import (
     ResourceLimits,
     TenantContext,
     TenantModel,

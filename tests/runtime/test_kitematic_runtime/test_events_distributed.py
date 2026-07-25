@@ -14,14 +14,14 @@ from datetime import datetime
 import pytest
 
 from runtime.kitematic_runtime.config.settings import RuntimeSettings
-from runtime.kitematic_runtime.events import (
+from kernel.events import (
     EventPublisher,
     ExecutionEvent,
     InMemoryEventPublisher,
     create_event_publisher,
 )
-from runtime.kitematic_runtime.events.models import EventLog, EventType
-from runtime.kitematic_runtime.events.redis_publisher import HAS_REDIS, RedisEventPublisher
+from kernel.events.models import EventLog, EventType
+from kernel.events.redis_publisher import HAS_REDIS, RedisEventPublisher
 
 # ── ExecutionEvent model ──────────────────────────────────────────
 

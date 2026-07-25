@@ -9,10 +9,10 @@ No runtime code changes — validation only.
 
 import pytest
 
-from runtime.kitematic_runtime.budget import ExecutionBudget
-from runtime.kitematic_runtime.isolation import IsolationBoundary
-from runtime.kitematic_runtime.loop import LoopController
-from runtime.kitematic_runtime.runtime import (
+from kernel.resources.budget import ExecutionBudget
+from kernel.isolation import IsolationBoundary
+from kernel.lifecycle import LoopController
+from kernel.runtime import (
     ExecutionPath,
     Intent,
     IntentRouter,
@@ -22,8 +22,8 @@ from runtime.kitematic_runtime.runtime import (
     ToolGateway,
     ToolResult,
 )
-from runtime.kitematic_runtime.states import ExecutionState
-from runtime.kitematic_runtime.tenant import TenantContext, TenantModel
+from kernel.state import ExecutionState
+from kernel.tenant import TenantContext, TenantModel
 
 # ── Mock Implementations ───────────────────────────────────────────────
 
@@ -352,7 +352,7 @@ class TestTenantIntegratedExecution:
             isolation=boundary,
         )
         # Agent a2 is in tenant t2, cannot access t1's state
-        from runtime.kitematic_runtime.isolation import AgentNotInTenantError
+        from kernel.isolation import AgentNotInTenantError
         with pytest.raises(AgentNotInTenantError):
             boundary.validate_agent_scope("a2", "t1")
 

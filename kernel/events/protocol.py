@@ -3,7 +3,7 @@ from __future__ import annotations
 import asyncio
 from typing import Any, Protocol, runtime_checkable
 
-from runtime.kitematic_runtime.events.models import ExecutionEvent
+from kernel.events.models import ExecutionEvent
 
 
 @runtime_checkable

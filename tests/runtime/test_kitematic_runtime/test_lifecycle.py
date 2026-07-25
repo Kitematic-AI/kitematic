@@ -16,11 +16,11 @@ from fastapi.testclient import TestClient
 
 from runtime.kitematic_runtime.api.app import create_app
 from runtime.kitematic_runtime.api.events import EventPublisher
-from runtime.kitematic_runtime.budget import ExecutionBudget
-from runtime.kitematic_runtime.loop import LoopController
-from runtime.kitematic_runtime.observability.logging import RuntimeLogger
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.runtime import (
+from kernel.resources.budget import ExecutionBudget
+from kernel.lifecycle import LoopController
+from kernel.observability.logging import RuntimeLogger
+from kernel.observability.metrics import MetricsRegistry
+from kernel.runtime import (
     ExecutionPath,
     Intent,
     IntentRouter,
@@ -30,7 +30,7 @@ from runtime.kitematic_runtime.runtime import (
     ToolGateway,
     ToolResult,
 )
-from runtime.kitematic_runtime.states import ExecutionState, RuntimeState
+from kernel.state import ExecutionState, RuntimeState
 
 # ── Mock Implementations ─────────────────────────────────────────────
 

@@ -25,9 +25,9 @@ from runtime.kitematic_runtime.api.schemas import (
     MetricsResponse,
 )
 from runtime.kitematic_runtime.config.settings import RuntimeSettings
-from runtime.kitematic_runtime.events import EventPublisher, ExecutionEvent, create_event_publisher
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.runtime import Intent, KitematicRuntime
+from kernel.events import EventPublisher, ExecutionEvent, create_event_publisher
+from kernel.observability.metrics import MetricsRegistry
+from kernel.runtime import Intent, KitematicRuntime
 
 _log = logging.getLogger(__name__)
 

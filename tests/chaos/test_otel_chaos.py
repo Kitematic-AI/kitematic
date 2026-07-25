@@ -8,9 +8,9 @@ Simulates OTel pipeline failures:
 
 import pytest
 
-from runtime.kitematic_runtime.observability.tracing import ExecutionTracer, TracePhase
-from runtime.kitematic_runtime.runtime import Intent
-from runtime.kitematic_runtime.tenant import TenantContext
+from kernel.observability.tracing import ExecutionTracer, TracePhase
+from kernel.runtime import Intent
+from kernel.tenant import TenantContext
 from tests.chaos.conftest import make_runtime
 
 pytestmark = [

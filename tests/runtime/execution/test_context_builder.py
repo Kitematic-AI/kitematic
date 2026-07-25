@@ -2,7 +2,7 @@
 
 import pytest
 
-from runtime.execution.context_builder import ContextBuilder
+from kernel.execution.context_builder import ContextBuilder
 
 
 class TestContextBuilderDefaults:

@@ -5,7 +5,7 @@ import pytest
 
 from core.domain.checkpoint import Checkpoint, CheckpointTrigger
 from runtime.kitematic_runtime.adapters.checkpoint_adapter import CheckpointPersistenceAdapter
-from runtime.kitematic_runtime.exceptions import CheckpointPersistenceError
+from kernel.exceptions import CheckpointPersistenceError
 
 
 class MockCheckpointRepository:

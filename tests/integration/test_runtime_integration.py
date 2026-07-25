@@ -4,8 +4,8 @@ import pytest
 
 from core.contracts.step_request import StepRequest
 from core.contracts.step_response import StepStatus
-from runtime.execution.execution_context import ExecutionContext
-from runtime.execution.in_memory_runtime import InMemoryRuntime
+from kernel.execution.context import ExecutionContext
+from kernel.execution.in_memory import InMemoryRuntime
 from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
 from services.control_plane.orchestrator.step_coordinator import StepAction, StepCoordinator
 from services.control_plane.policy.policy_engine import PolicyEngine

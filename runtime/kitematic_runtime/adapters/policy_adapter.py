@@ -5,7 +5,7 @@ Decomposes Intent → PolicyEngine params, parses dict result → tuple.
 
 from __future__ import annotations
 
-from runtime.kitematic_runtime.runtime import Intent, PolicyEvaluator
+from kernel.runtime import Intent, PolicyEvaluator
 from services.control_plane.policy.policy_engine import PolicyEngine
 
 

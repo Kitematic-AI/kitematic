@@ -9,12 +9,12 @@ from runtime.kitematic_runtime.adapters.simple_router import SimpleIntentRouter
 from runtime.kitematic_runtime.api.app import create_app
 from runtime.kitematic_runtime.api.auth import APIKeyAuthProvider, AuthContext
 from runtime.kitematic_runtime.api.events import EventPublisher
-from runtime.kitematic_runtime.gateway import MCPToolGateway
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.runtime import (
+from kernel.gateway import MCPToolGateway
+from kernel.observability.metrics import MetricsRegistry
+from kernel.runtime import (
     KitematicRuntime,
 )
-from runtime.kitematic_runtime.tool_registry import ToolDefinition, ToolRegistry
+from kernel.resources.tool_registry import ToolDefinition, ToolRegistry
 from services.checkpoint.repositories.in_memory_checkpoint import InMemoryCheckpointRepository
 from services.control_plane.policy.policy_engine import PolicyEngine
 

@@ -3,7 +3,7 @@
 import pytest
 
 from runtime.kitematic_runtime.adapters.policy_adapter import PolicyEngineAdapter
-from runtime.kitematic_runtime.runtime import Intent
+from kernel.runtime import Intent
 
 
 class MockPolicyEngine:

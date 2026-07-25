@@ -16,8 +16,8 @@ from typing import Any
 
 import pytest
 
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.runtime import (
+from kernel.observability.metrics import MetricsRegistry
+from kernel.runtime import (
     ExecutionPath,
     Intent,
     IntentRouter,

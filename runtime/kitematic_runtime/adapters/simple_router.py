@@ -6,9 +6,9 @@ Deterministic: raises OrchestrationError on ambiguity or no match.
 
 from __future__ import annotations
 
-from runtime.kitematic_runtime.exceptions import OrchestrationError
-from runtime.kitematic_runtime.runtime import ExecutionPath, Intent, IntentRouter
-from runtime.kitematic_runtime.tool_registry import ToolRegistry
+from kernel.exceptions import OrchestrationError
+from kernel.runtime import ExecutionPath, Intent, IntentRouter
+from kernel.resources.tool_registry import ToolRegistry
 
 
 class SimpleIntentRouter(IntentRouter):

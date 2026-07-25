@@ -14,9 +14,9 @@ import time
 import pytest
 
 from runtime.kitematic_runtime.api.quotas import QuotaManager, TenantQuotaConfig
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.runtime import Intent, KitematicRuntime
-from runtime.kitematic_runtime.tenant import TenantContext
+from kernel.observability.metrics import MetricsRegistry
+from kernel.runtime import Intent, KitematicRuntime
+from kernel.tenant import TenantContext
 
 
 class MockPolicy:
@@ -28,13 +28,13 @@ class MockPolicy:
 
 class MockRouter:
     async def route_intent(self, intent):
-        from runtime.kitematic_runtime.runtime import ExecutionPath
+        from kernel.runtime import ExecutionPath
         return ExecutionPath(tool="mock_tool")
 
 
 class MockGateway:
     async def access_tool(self, path, intent):
-        from runtime.kitematic_runtime.runtime import ToolResult
+        from kernel.runtime import ToolResult
         return ToolResult(success=True, data={"result": "ok"})
 
 

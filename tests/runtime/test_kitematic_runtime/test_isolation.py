@@ -14,7 +14,7 @@ Verifies:
 
 import pytest
 
-from runtime.kitematic_runtime.isolation import (
+from kernel.isolation import (
     AgentNotInTenantError,
     CrossAgentAccessError,
     CrossTenantAccessError,
@@ -23,7 +23,7 @@ from runtime.kitematic_runtime.isolation import (
     ResourceLimitExceededError,
     TenantNotFoundError,
 )
-from runtime.kitematic_runtime.tenant import ResourceLimits, TenantContext, TenantModel
+from kernel.tenant import ResourceLimits, TenantContext, TenantModel
 
 # ── Fixtures ────────────────────────────────────────────────────────────
 

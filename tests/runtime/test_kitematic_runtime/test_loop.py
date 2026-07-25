@@ -15,12 +15,12 @@ Verifies:
 
 import pytest
 
-from runtime.kitematic_runtime.budget import ExecutionBudget
-from runtime.kitematic_runtime.loop import (
+from kernel.resources.budget import ExecutionBudget
+from kernel.lifecycle import (
     LoopController,
     LoopTermination,
 )
-from runtime.kitematic_runtime.runtime import (
+from kernel.runtime import (
     ExecutionPath,
     Intent,
     IntentRouter,
@@ -30,7 +30,7 @@ from runtime.kitematic_runtime.runtime import (
     ToolGateway,
     ToolResult,
 )
-from runtime.kitematic_runtime.states import ExecutionState
+from kernel.state import ExecutionState
 
 # ── Mock Implementations ───────────────────────────────────────────────────
 

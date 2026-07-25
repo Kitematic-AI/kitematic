@@ -10,12 +10,12 @@ from uuid import uuid4
 from core.contracts.step_request import StepRequest
 from core.contracts.step_response import StepResponse, StepStatus
 from core.domain.checkpoint import Checkpoint, CheckpointTrigger
-from runtime.execution.exceptions import (
+from kernel.execution.exceptions import (
     BudgetExceededError,
     InvalidStepRequestError,
 )
-from runtime.execution.execution_context import ExecutionContext
-from runtime.execution.execution_runtime import ExecutionRuntime
+from kernel.execution.context import ExecutionContext
+from kernel.execution.runtime import ExecutionRuntime
 
 
 class InMemoryRuntime(ExecutionRuntime):

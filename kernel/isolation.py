@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from typing import Any
 
-from runtime.kitematic_runtime.tenant import TenantContext, TenantModel
+from kernel.tenant import TenantContext, TenantModel
 
 
 class IsolationError(Exception):

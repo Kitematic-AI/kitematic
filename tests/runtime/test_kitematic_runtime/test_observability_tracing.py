@@ -4,7 +4,7 @@ import time
 
 import pytest
 
-from runtime.kitematic_runtime.observability.tracing import (
+from kernel.observability.tracing import (
     ExecutionTracer,
     TraceEntry,
     TracePhase,

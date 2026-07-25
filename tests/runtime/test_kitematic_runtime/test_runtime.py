@@ -13,10 +13,10 @@ Verifies:
 
 import pytest
 
-from runtime.kitematic_runtime.exceptions import (
+from kernel.exceptions import (
     InvalidStateTransitionError,
 )
-from runtime.kitematic_runtime.runtime import (
+from kernel.runtime import (
     ExecutionPath,
     Intent,
     IntentRouter,
@@ -26,7 +26,7 @@ from runtime.kitematic_runtime.runtime import (
     ToolGateway,
     ToolResult,
 )
-from runtime.kitematic_runtime.states import VALID_TRANSITIONS, ExecutionState, is_valid_transition
+from kernel.state import VALID_TRANSITIONS, ExecutionState, is_valid_transition
 
 # ── Mock Implementations ───────────────────────────────────────────────────
 

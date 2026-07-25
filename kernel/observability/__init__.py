@@ -4,10 +4,10 @@ Provides infrastructure for monitoring and debugging runtime executions.
 Each module is independent and can be used separately or together.
 """
 
-from runtime.kitematic_runtime.observability.context import ObservabilityContext
-from runtime.kitematic_runtime.observability.logging import RuntimeLogger
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.observability.tracing import ExecutionTracer, TracePhase
+from kernel.observability.context import ObservabilityContext
+from kernel.observability.logging import RuntimeLogger
+from kernel.observability.metrics import MetricsRegistry
+from kernel.observability.tracing import ExecutionTracer, TracePhase
 
 __all__ = [
     "ObservabilityContext",

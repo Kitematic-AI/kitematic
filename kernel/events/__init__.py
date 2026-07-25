@@ -8,7 +8,7 @@ in-memory queues, Redis Pub/Sub, or Redis Streams — they depend only
 on the protocol.
 
 Usage:
-    from runtime.kitematic_runtime.events import (
+    from kernel.events import (
         EventPublisher,
         InMemoryEventPublisher,
         ExecutionEvent,
@@ -16,13 +16,13 @@ Usage:
     )
 """
 
-from runtime.kitematic_runtime.events.factory import create_event_publisher
-from runtime.kitematic_runtime.events.memory import InMemoryEventPublisher
-from runtime.kitematic_runtime.events.models import EventLog, EventType, ExecutionEvent
-from runtime.kitematic_runtime.events.protocol import EventPublisher
+from kernel.events.factory import create_event_publisher
+from kernel.events.memory import InMemoryEventPublisher
+from kernel.events.models import EventLog, EventType, ExecutionEvent
+from kernel.events.protocol import EventPublisher
 
 try:
-    from runtime.kitematic_runtime.events.redis_streams import RedisStreamPublisher
+    from kernel.events.redis_streams import RedisStreamPublisher
     HAS_STREAMS = True
 except ImportError:
     RedisStreamPublisher = None  # type: ignore[assignment,misc]

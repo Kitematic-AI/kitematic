@@ -5,7 +5,7 @@ and auto-configuration when standard OTel environment variables
 (OTEL_SERVICE_NAME, OTEL_EXPORTER_OTLP_ENDPOINT, etc.) are present.
 
 Usage:
-    from runtime.kitematic_runtime.observability.opentelemetry import get_tracer_provider
+    from kernel.observability.opentelemetry import get_tracer_provider
 
     tracer = get_tracer_provider().get_tracer("kitematic.runtime")
     with tracer.start_as_current_span("execution") as span:

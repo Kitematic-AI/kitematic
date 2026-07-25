@@ -6,8 +6,8 @@ from typing import Any
 import pytest
 
 from core.contracts.step_response import StepStatus
-from runtime.execution.execution_runtime import ExecutionRuntime
-from runtime.execution.in_memory_runtime import InMemoryRuntime
+from kernel.execution.runtime import ExecutionRuntime
+from kernel.execution.in_memory import InMemoryRuntime
 from services.control_plane.adapters.runtime_adapter import RuntimeExecutorAdapter
 from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
 from services.control_plane.orchestrator.step_coordinator import (

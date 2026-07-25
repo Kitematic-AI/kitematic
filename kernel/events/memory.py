@@ -3,8 +3,8 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
-from runtime.kitematic_runtime.events.models import ExecutionEvent
-from runtime.kitematic_runtime.events.protocol import EventPublisher
+from kernel.events.models import ExecutionEvent
+from kernel.events.protocol import EventPublisher
 
 _SubscriberInfo = tuple[asyncio.Queue[Any], str]
 

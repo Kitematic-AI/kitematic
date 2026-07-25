@@ -4,9 +4,9 @@ import pytest
 
 from core.contracts.step_request import StepRequest
 from core.contracts.step_response import StepStatus
-from runtime.execution.context_builder import ContextBuilder
-from runtime.execution.execution_context import ExecutionContext
-from runtime.execution.in_memory_runtime import InMemoryRuntime
+from kernel.execution.context_builder import ContextBuilder
+from kernel.execution.context import ExecutionContext
+from kernel.execution.in_memory import InMemoryRuntime
 from services.checkpoint.repositories.in_memory_checkpoint import (
     InMemoryCheckpointRepository,
 )

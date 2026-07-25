@@ -9,7 +9,7 @@ Verifies:
 
 import pytest
 
-from runtime.kitematic_runtime.runtime import (
+from kernel.runtime import (
     ExecutionPath,
     Intent,
     IntentRouter,
@@ -19,7 +19,7 @@ from runtime.kitematic_runtime.runtime import (
     ToolGateway,
     ToolResult,
 )
-from runtime.kitematic_runtime.tenant import TenantContext
+from kernel.tenant import TenantContext
 
 
 class MockPolicyEvaluator(PolicyEvaluator):
@@ -83,7 +83,7 @@ class TestRuntimeRestartRecovery:
 
     @pytest.mark.asyncio
     async def test_tenant_context_used_in_execution(self):
-        from runtime.kitematic_runtime.isolation import IsolationBoundary
+        from kernel.isolation import IsolationBoundary
         isolation = IsolationBoundary()
         rt = KitematicRuntime(
             policy=MockPolicyEvaluator(),

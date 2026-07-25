@@ -14,11 +14,11 @@ Verifies:
 
 import pytest
 
-from runtime.kitematic_runtime.events import EventLog, EventType
-from runtime.kitematic_runtime.exceptions import GatewayAccessError
-from runtime.kitematic_runtime.gateway import MCPToolGateway
-from runtime.kitematic_runtime.runtime import ExecutionPath, Intent, ToolResult
-from runtime.kitematic_runtime.tool_registry import ToolDefinition, ToolRegistry
+from kernel.events import EventLog, EventType
+from kernel.exceptions import GatewayAccessError
+from kernel.gateway import MCPToolGateway
+from kernel.runtime import ExecutionPath, Intent, ToolResult
+from kernel.resources.tool_registry import ToolDefinition, ToolRegistry
 
 # ── Mock MCP Client ─────────────────────────────────────────────────────
 

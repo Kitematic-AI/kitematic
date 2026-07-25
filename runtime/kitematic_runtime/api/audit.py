@@ -16,7 +16,7 @@ from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from enum import Enum
 
-from runtime.kitematic_runtime.observability.logging import RuntimeLogger
+from kernel.observability.logging import RuntimeLogger
 
 
 class AuditEventType(Enum):

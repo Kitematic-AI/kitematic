@@ -4,7 +4,7 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
-from runtime.kitematic_runtime.budget import BudgetExhaustedError, ExecutionBudget
+from kernel.resources.budget import BudgetExhaustedError, ExecutionBudget
 
 
 class TestBudgetCreation:

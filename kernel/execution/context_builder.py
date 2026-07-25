@@ -7,7 +7,7 @@ All state is deep-copied to guarantee immutability after build.
 import copy
 from typing import Any
 
-from runtime.execution.execution_context import ExecutionContext
+from kernel.execution.context import ExecutionContext
 
 
 class ContextBuilder:

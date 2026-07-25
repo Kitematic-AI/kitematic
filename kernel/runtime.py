@@ -16,23 +16,21 @@ from datetime import UTC, datetime
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    pass
-
-from runtime.kitematic_runtime.config.settings import RuntimeSettings
-from runtime.kitematic_runtime.exceptions import (
+    from runtime.kitematic_runtime.config.settings import RuntimeSettings
+from kernel.exceptions import (
     CheckpointPersistenceError,
     InvalidStateTransitionError,
 )
-from runtime.kitematic_runtime.isolation import (
+from kernel.isolation import (
     IsolationBoundary,
     MissingTenantContextError,
 )
-from runtime.kitematic_runtime.observability.context import ObservabilityContext
-from runtime.kitematic_runtime.observability.logging import RuntimeLogger
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.observability.tracing import ExecutionTracer, TracePhase
-from runtime.kitematic_runtime.states import ExecutionState, RuntimeState, is_valid_transition
-from runtime.kitematic_runtime.tenant import TenantContext
+from kernel.observability.context import ObservabilityContext
+from kernel.observability.logging import RuntimeLogger
+from kernel.observability.metrics import MetricsRegistry
+from kernel.observability.tracing import ExecutionTracer, TracePhase
+from kernel.state import ExecutionState, RuntimeState, is_valid_transition
+from kernel.tenant import TenantContext
 
 # ── ABI Contracts ──────────────────────────────────────────────────────────
 
@@ -183,7 +181,11 @@ class KitematicRuntime:
         self._tracer_cls = tracer
         self._agents: dict[str, dict[str, Any]] = {}
         self._state: RuntimeState = RuntimeState.RUNNING
-        self._settings: RuntimeSettings = settings or RuntimeSettings()
+        if settings is None:
+            from runtime.kitematic_runtime.config.settings import RuntimeSettings as _RS
+
+            settings = _RS()
+        self._settings: RuntimeSettings = settings
         self._quota_manager = quota_manager
 
     def set_tenant_context(self, context: TenantContext) -> None:
@@ -595,7 +597,7 @@ class KitematicRuntime:
     def _transition(self, current: ExecutionState, target: ExecutionState) -> ExecutionState:
         """Enforce valid state transition. Raises on invalid transition."""
         if not is_valid_transition(current, target):
-            from runtime.kitematic_runtime.states import get_valid_transitions
+            from kernel.state import get_valid_transitions
             valid = [s.value for s in get_valid_transitions(current)]
             raise InvalidStateTransitionError(current.value, target.value, valid)
         return target

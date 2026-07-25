@@ -13,13 +13,13 @@ import json
 
 import pytest
 
-from runtime.kitematic_runtime.budget import ExecutionBudget
-from runtime.kitematic_runtime.gateway import MCPClientProtocol, MCPToolGateway
-from runtime.kitematic_runtime.loop import LoopController
-from runtime.kitematic_runtime.observability.logging import RuntimeLogger
-from runtime.kitematic_runtime.observability.metrics import MetricsRegistry
-from runtime.kitematic_runtime.observability.tracing import ExecutionTracer
-from runtime.kitematic_runtime.runtime import (
+from kernel.resources.budget import ExecutionBudget
+from kernel.gateway import MCPClientProtocol, MCPToolGateway
+from kernel.lifecycle import LoopController
+from kernel.observability.logging import RuntimeLogger
+from kernel.observability.metrics import MetricsRegistry
+from kernel.observability.tracing import ExecutionTracer
+from kernel.runtime import (
     ExecutionPath,
     Intent,
     IntentRouter,
@@ -29,7 +29,7 @@ from runtime.kitematic_runtime.runtime import (
     ToolGateway,
     ToolResult,
 )
-from runtime.kitematic_runtime.tool_registry import ToolDefinition, ToolRegistry
+from kernel.resources.tool_registry import ToolDefinition, ToolRegistry
 
 # ── Mock Implementations (matching test_runtime.py) ─────────────────────
 

@@ -3,9 +3,9 @@
 import pytest
 
 from runtime.kitematic_runtime.adapters.simple_router import SimpleIntentRouter
-from runtime.kitematic_runtime.exceptions import OrchestrationError
-from runtime.kitematic_runtime.runtime import ExecutionPath, Intent
-from runtime.kitematic_runtime.tool_registry import ToolDefinition, ToolRegistry
+from kernel.exceptions import OrchestrationError
+from kernel.runtime import ExecutionPath, Intent
+from kernel.resources.tool_registry import ToolDefinition, ToolRegistry
 
 
 @pytest.fixture

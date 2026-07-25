@@ -14,8 +14,8 @@ from datetime import UTC, datetime
 from typing import Any, cast
 
 from core.domain.checkpoint import Checkpoint, CheckpointTrigger
-from runtime.kitematic_runtime.exceptions import CheckpointPersistenceError
-from runtime.kitematic_runtime.runtime import StatePersistence
+from kernel.exceptions import CheckpointPersistenceError
+from kernel.runtime import StatePersistence
 from core.contracts.checkpoint_repository import CheckpointRepository
 
 

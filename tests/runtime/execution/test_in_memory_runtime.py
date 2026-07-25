@@ -4,13 +4,13 @@ import pytest
 
 from core.contracts.step_request import StepRequest
 from core.contracts.step_response import StepStatus
-from runtime.execution.exceptions import (
+from kernel.execution.exceptions import (
     BudgetExceededError,
     InvalidStepRequestError,
 )
-from runtime.execution.execution_context import ExecutionContext
-from runtime.execution.execution_runtime import ExecutionRuntime
-from runtime.execution.in_memory_runtime import InMemoryRuntime
+from kernel.execution.context import ExecutionContext
+from kernel.execution.runtime import ExecutionRuntime
+from kernel.execution.in_memory import InMemoryRuntime
 
 
 def _make_request(**overrides) -> StepRequest:

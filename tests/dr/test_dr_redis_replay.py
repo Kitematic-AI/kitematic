@@ -8,11 +8,11 @@ Verifies:
 
 import pytest
 
-from runtime.kitematic_runtime.events.models import EventType, ExecutionEvent
+from kernel.events.models import EventType, ExecutionEvent
 
 pytest.importorskip("redis")
 
-from runtime.kitematic_runtime.events.redis_streams import RedisStreamPublisher  # noqa: E402
+from kernel.events.redis_streams import RedisStreamPublisher  # noqa: E402
 
 REDIS_URL = "redis://localhost:6379/1"
 

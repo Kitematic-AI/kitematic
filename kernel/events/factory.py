@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from runtime.kitematic_runtime.config.settings import RuntimeSettings
-from runtime.kitematic_runtime.events.memory import InMemoryEventPublisher
-from runtime.kitematic_runtime.events.protocol import EventPublisher
+from kernel.events.memory import InMemoryEventPublisher
+from kernel.events.protocol import EventPublisher
 
 
 def create_event_publisher(settings: RuntimeSettings) -> EventPublisher:
@@ -28,7 +28,7 @@ def create_event_publisher(settings: RuntimeSettings) -> EventPublisher:
             raise ValueError(
                 "redis_url is required when event_backend is 'redis'"
             )
-        from runtime.kitematic_runtime.events.redis_publisher import RedisEventPublisher
+        from kernel.events.redis_publisher import RedisEventPublisher
         return RedisEventPublisher(
             redis_url=settings.redis_url,
             channel_prefix=settings.event_channel_prefix,
@@ -39,7 +39,7 @@ def create_event_publisher(settings: RuntimeSettings) -> EventPublisher:
             raise ValueError(
                 "redis_url is required when event_backend is 'redis_streams'"
             )
-        from runtime.kitematic_runtime.events.redis_streams import RedisStreamPublisher
+        from kernel.events.redis_streams import RedisStreamPublisher
         return RedisStreamPublisher(
             redis_url=settings.redis_url,
             stream_prefix=settings.event_channel_prefix,

@@ -8,15 +8,15 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from runtime.kitematic_runtime.events import EventLog, EventType
-from runtime.kitematic_runtime.exceptions import InvalidStateTransitionError
-from runtime.kitematic_runtime.gateway import MCPToolGateway
-from runtime.kitematic_runtime.isolation import (
+from kernel.events import EventLog, EventType
+from kernel.exceptions import InvalidStateTransitionError
+from kernel.gateway import MCPToolGateway
+from kernel.isolation import (
     CrossAgentAccessError,
     CrossTenantAccessError,
     IsolationBoundary,
 )
-from runtime.kitematic_runtime.runtime import (
+from kernel.runtime import (
     ExecutionPath,
     Intent,
     IntentRouter,
@@ -26,9 +26,9 @@ from runtime.kitematic_runtime.runtime import (
     ToolGateway,
     ToolResult,
 )
-from runtime.kitematic_runtime.states import VALID_TRANSITIONS, ExecutionState, is_valid_transition
-from runtime.kitematic_runtime.tenant import TenantContext, TenantModel
-from runtime.kitematic_runtime.tool_registry import ToolDefinition, ToolRegistry
+from kernel.state import VALID_TRANSITIONS, ExecutionState, is_valid_transition
+from kernel.tenant import TenantContext, TenantModel
+from kernel.resources.tool_registry import ToolDefinition, ToolRegistry
 
 # ── Mock Implementations ───────────────────────────────────────────────
 

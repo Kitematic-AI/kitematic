@@ -12,10 +12,10 @@ from unittest.mock import AsyncMock, patch
 
 import pytest
 
-from runtime.kitematic_runtime.events.models import ExecutionEvent
-from runtime.kitematic_runtime.events.redis_streams import RedisStreamPublisher
-from runtime.kitematic_runtime.runtime import Intent
-from runtime.kitematic_runtime.tenant import TenantContext
+from kernel.events.models import ExecutionEvent
+from kernel.events.redis_streams import RedisStreamPublisher
+from kernel.runtime import Intent
+from kernel.tenant import TenantContext
 from tests.chaos.conftest import make_runtime
 
 pytestmark = [

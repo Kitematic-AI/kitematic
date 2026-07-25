@@ -122,7 +122,7 @@ class TestQuotaIntegration:
         rt = make_runtime()
         qm = QuotaManager()
         rt._quota_manager = qm
-        from runtime.kitematic_runtime.tenant import TenantContext
+        from kernel.tenant import TenantContext
         rt.set_tenant_context(TenantContext(tenant_id="t1", agent_id="a1"))
         return rt, qm
 
@@ -131,7 +131,7 @@ class TestQuotaIntegration:
         rt, qm = runtime
         qm.configure("t1", TenantQuotaConfig(max_concurrent=1))
         qm.start_execution("t1", "blocking-exec")
-        from runtime.kitematic_runtime.runtime import Intent
+        from kernel.runtime import Intent
         result = await rt.execute_intent(Intent(agent_id="a1", action="test"))
         assert not result.success
         assert "concurrent" in result.error.lower()
@@ -139,7 +139,7 @@ class TestQuotaIntegration:
     @pytest.mark.asyncio
     async def test_execute_intent_releases_quota_on_success(self, runtime):
         rt, qm = runtime
-        from runtime.kitematic_runtime.runtime import Intent
+        from kernel.runtime import Intent
         result = await rt.execute_intent(Intent(agent_id="a1", action="test"))
         assert result.success
         assert qm.concurrent_count("t1") == 0
@@ -149,7 +149,7 @@ class TestQuotaIntegration:
         rt, qm = runtime
         qm.configure("t1", TenantQuotaConfig(max_concurrent=1))
         qm.start_execution("t1", "full-slot")
-        from runtime.kitematic_runtime.runtime import Intent
+        from kernel.runtime import Intent
         result = await rt.execute_intent(Intent(agent_id="a1", action="test"))
         assert not result.success
         assert qm.concurrent_count("t1") == 1
@@ -159,7 +159,7 @@ class TestQuotaIntegration:
         rt, qm = runtime
         qm._rate_limiter._buckets["t1"] = qm._rate_limiter._get_bucket("t1")
         qm._rate_limiter._buckets["t1"].tokens = 0
-        from runtime.kitematic_runtime.runtime import Intent
+        from kernel.runtime import Intent
         result = await rt.execute_intent(Intent(agent_id="a1", action="test"))
         assert not result.success
         assert "rate limit" in result.error.lower()

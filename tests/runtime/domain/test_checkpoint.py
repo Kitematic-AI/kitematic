@@ -1,6 +1,6 @@
 """Tests for Checkpoint domain model."""
 
-from runtime.domain.checkpoint import Checkpoint, CheckpointTrigger
+from core.domain.checkpoint import Checkpoint, CheckpointTrigger
 
 
 class TestCheckpoint:

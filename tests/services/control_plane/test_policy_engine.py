@@ -3,7 +3,7 @@
 import pytest
 
 from services.control_plane.policy.policy_engine import PolicyEngine, _target_matches
-from services.policy_interface.interfaces.policy_evaluator import PolicyEvaluator
+from core.policies.evaluator import PolicyEvaluator
 
 
 class TestPolicyEngineImplementsPolicyEvaluator:
@@ -90,7 +90,7 @@ class TestEvaluate:
 
     @pytest.mark.asyncio
     async def test_priority_ordering(self) -> None:
-        from runtime.domain.policy import PolicyEffect, PolicyRule, PolicyStatus
+        from core.policies.policy import PolicyEffect, PolicyRule, PolicyStatus
 
         engine = PolicyEngine()
         # low priority number = higher precedence
@@ -111,7 +111,7 @@ class TestEvaluate:
 
     @pytest.mark.asyncio
     async def test_ignores_inactive_rules(self) -> None:
-        from runtime.domain.policy import PolicyEffect, PolicyRule, PolicyStatus
+        from core.policies.policy import PolicyEffect, PolicyRule, PolicyStatus
 
         engine = PolicyEngine()
         inactive_rule = PolicyRule(

@@ -2,7 +2,7 @@
 
 from abc import ABC, abstractmethod
 
-from runtime.domain.memory import MemoryItem, MemoryType
+from core.domain.memory import MemoryItem, MemoryType
 
 
 class MemoryRepository(ABC):

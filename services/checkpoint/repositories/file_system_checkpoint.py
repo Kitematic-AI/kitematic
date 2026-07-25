@@ -12,8 +12,8 @@ import json
 from pathlib import Path
 from typing import Any
 
-from runtime.domain.checkpoint import Checkpoint, CheckpointTrigger
-from services.checkpoint.interfaces.checkpoint_repository import CheckpointRepository
+from core.domain.checkpoint import Checkpoint, CheckpointTrigger
+from core.contracts.checkpoint_repository import CheckpointRepository
 
 
 class FileSystemCheckpointRepository(CheckpointRepository):

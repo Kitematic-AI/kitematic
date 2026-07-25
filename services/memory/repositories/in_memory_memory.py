@@ -7,8 +7,8 @@ UUID-based IDs, deterministic ordering, automatic expiration filtering.
 import copy
 from datetime import datetime
 
-from runtime.domain.memory import MemoryItem, MemoryType
-from services.memory.interfaces.memory_repository import MemoryRepository
+from core.domain.memory import MemoryItem, MemoryType
+from core.contracts.memory_repository import MemoryRepository
 
 
 class InMemoryMemoryRepository(MemoryRepository):

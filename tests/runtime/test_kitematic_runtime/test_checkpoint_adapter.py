@@ -3,7 +3,7 @@
 
 import pytest
 
-from runtime.domain.checkpoint import Checkpoint, CheckpointTrigger
+from core.domain.checkpoint import Checkpoint, CheckpointTrigger
 from runtime.kitematic_runtime.adapters.checkpoint_adapter import CheckpointPersistenceAdapter
 from runtime.kitematic_runtime.exceptions import CheckpointPersistenceError
 
@@ -199,7 +199,7 @@ class TestCheckpointPersistenceAdapterRoundtrip:
         adapter = CheckpointPersistenceAdapter(repo)
 
         # Create checkpoint without embedded state
-        from runtime.domain.checkpoint import CheckpointTrigger
+        from core.domain.checkpoint import CheckpointTrigger
         cp = Checkpoint(
             checkpoint_id="cp-empty",
             execution_id="exec-1",

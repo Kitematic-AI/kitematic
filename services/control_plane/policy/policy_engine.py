@@ -13,10 +13,10 @@ import hashlib
 import uuid
 from typing import Any
 
-from runtime.domain.policy import PolicyEffect, PolicyRule, PolicyStatus
+from core.policies.policy import PolicyEffect, PolicyRule, PolicyStatus
 from services.control_plane.policy.policy_cache import InMemoryPolicyCache
-from services.core.domain.capability_registry import CapabilityRegistry
-from services.policy_interface.interfaces.policy_evaluator import PolicyEvaluator
+from core.policies.capability_registry import CapabilityRegistry
+from core.policies.evaluator import PolicyEvaluator
 
 
 class PolicyEngine(PolicyEvaluator):

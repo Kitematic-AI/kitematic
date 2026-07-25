@@ -4,7 +4,7 @@ import time
 from collections.abc import AsyncIterator
 from datetime import datetime
 
-from runtime.domain.runtime_event import StreamChunk
+from core.domain.runtime_event import StreamChunk
 from services.ai_gateway.adapters.mcp.interfaces.mcp_client import MCPClient
 from services.ai_gateway.domain.adapter_metadata import AdapterMetadata
 from services.ai_gateway.domain.gateway_request import GatewayRequest

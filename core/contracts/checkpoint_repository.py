@@ -2,7 +2,7 @@
 
 from abc import ABC, abstractmethod
 
-from runtime.domain.checkpoint import Checkpoint
+from core.domain.checkpoint import Checkpoint
 
 
 class CheckpointRepository(ABC):

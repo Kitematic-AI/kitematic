@@ -68,7 +68,7 @@ class TestPolicyDenyBlocksRuntime:
 
             async def execute_step(self, request, context):
                 self.called = True
-                from runtime.contracts.step_response import StepResponse, StepStatus
+                from core.contracts.step_response import StepResponse, StepStatus
                 return StepResponse(status=StepStatus.COMPLETED)
 
         spy = SpyRuntime()

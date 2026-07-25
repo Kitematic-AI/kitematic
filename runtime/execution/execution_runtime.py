@@ -2,8 +2,8 @@
 
 from abc import ABC, abstractmethod
 
-from runtime.contracts.step_request import StepRequest
-from runtime.contracts.step_response import StepResponse
+from core.contracts.step_request import StepRequest
+from core.contracts.step_response import StepResponse
 from runtime.execution.execution_context import ExecutionContext
 
 

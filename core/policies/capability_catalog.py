@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from packaging.version import InvalidVersion, Version
 
-from services.core.domain.capability import Capability, CapabilityCategory
+from core.policies.capability import Capability, CapabilityCategory
 
 
 class CapabilityCatalog:

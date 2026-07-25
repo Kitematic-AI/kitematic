@@ -2,9 +2,9 @@
 
 
 from services.control_plane.policy.capability_resolver import CapabilityResolver
-from services.core.domain.capability import Capability, CapabilityCategory
-from services.core.domain.capability_catalog import CapabilityCatalog
-from services.core.domain.capability_registry import CapabilityRegistry
+from core.policies.capability import Capability, CapabilityCategory
+from core.policies.capability_catalog import CapabilityCatalog
+from core.policies.capability_registry import CapabilityRegistry
 
 
 class TestCapabilityRegistry:
@@ -92,7 +92,7 @@ class TestCapabilityRegistry:
 
     def test_get_compatible_exact_match(self):
         """Test getting compatible capabilities with exact match."""
-        from services.core.domain.capability import Capability
+        from core.policies.capability import Capability
 
         registry = CapabilityRegistry()
         registry.register(Capability(id="test.cap", name="Test", category="tool", version="1.0.0"))
@@ -103,7 +103,7 @@ class TestCapabilityRegistry:
 
     def test_get_compatible_exact_version_match(self):
         """Test getting compatible capabilities with exact version match."""
-        from services.core.domain.capability import Capability
+        from core.policies.capability import Capability
 
         registry = CapabilityRegistry()
         registry.register(Capability(id="test.cap", name="Test", category="tool", version="1.0.0"))
@@ -180,7 +180,7 @@ class TestCapabilityCatalogCompatibility:
 
     def test_get_compatible_exact_match(self):
         """Test getting compatible capabilities with exact match."""
-        from services.core.domain.capability_catalog import CapabilityCatalog
+        from core.policies.capability_catalog import CapabilityCatalog
 
         compatible = CapabilityCatalog.get_compatible("chat.generate")
         assert len(compatible) == 1
@@ -188,7 +188,7 @@ class TestCapabilityCatalogCompatibility:
 
     def test_get_compatible_with_version_constraint(self):
         """Test getting compatible capabilities with version constraint."""
-        from services.core.domain.capability_catalog import CapabilityCatalog
+        from core.policies.capability_catalog import CapabilityCatalog
 
         compatible = CapabilityCatalog.get_compatible("chat.generate", version_constraint="1.0")
         assert len(compatible) == 1
@@ -196,14 +196,14 @@ class TestCapabilityCatalogCompatibility:
 
     def test_get_compatible_version_mismatch(self):
         """Test that version mismatch returns empty tuple."""
-        from services.core.domain.capability_catalog import CapabilityCatalog
+        from core.policies.capability_catalog import CapabilityCatalog
 
         compatible = CapabilityCatalog.get_compatible("chat.generate", version_constraint="2.0")
         assert len(compatible) == 0
 
     def test_get_compatible_no_version_constraint(self):
         """Test getting compatible without version constraint."""
-        from services.core.domain.capability_catalog import CapabilityCatalog
+        from core.policies.capability_catalog import CapabilityCatalog
 
         compatible = CapabilityCatalog.get_compatible("chat.generate")
         assert len(compatible) == 1
@@ -215,8 +215,8 @@ class TestCapabilityResolver:
 
     def test_validate_required_all_present(self):
         """Test validation when all required capabilities are present."""
-        from services.core.domain.capability_catalog import CapabilityCatalog
-        from services.core.domain.capability_registry import CapabilityRegistry
+        from core.policies.capability_catalog import CapabilityCatalog
+        from core.policies.capability_registry import CapabilityRegistry
 
         registry = CapabilityRegistry(CapabilityCatalog.all())
         resolver = CapabilityResolver(CapabilityRegistry(CapabilityCatalog.all()))
@@ -227,8 +227,8 @@ class TestCapabilityResolver:
 
     def test_validate_required_missing(self):
         """Test validation when some capabilities are missing."""
-        from services.core.domain.capability_catalog import CapabilityCatalog
-        from services.core.domain.capability_registry import CapabilityRegistry
+        from core.policies.capability_catalog import CapabilityCatalog
+        from core.policies.capability_registry import CapabilityRegistry
 
         registry = CapabilityRegistry(CapabilityCatalog.all())
         resolver = CapabilityResolver(CapabilityRegistry(CapabilityCatalog.all()))
@@ -239,8 +239,8 @@ class TestCapabilityResolver:
 
     def test_resolve_returns_registered_capabilities(self):
         """Test that resolve returns registered capabilities."""
-        from services.core.domain.capability_catalog import CapabilityCatalog
-        from services.core.domain.capability_registry import CapabilityRegistry
+        from core.policies.capability_catalog import CapabilityCatalog
+        from core.policies.capability_registry import CapabilityRegistry
 
         registry = CapabilityRegistry(CapabilityCatalog.all())
         resolver = CapabilityResolver(CapabilityRegistry(CapabilityCatalog.all()))
@@ -251,8 +251,8 @@ class TestCapabilityResolver:
 
     def test_is_registered(self):
         """Test checking if a capability is registered."""
-        from services.core.domain.capability_catalog import CapabilityCatalog
-        from services.core.domain.capability_registry import CapabilityRegistry
+        from core.policies.capability_catalog import CapabilityCatalog
+        from core.policies.capability_registry import CapabilityRegistry
 
         registry = CapabilityRegistry(CapabilityCatalog.all())
         resolver = CapabilityResolver(CapabilityRegistry(CapabilityCatalog.all()))
@@ -266,8 +266,8 @@ class TestCapabilityRegistryQueries:
 
     def test_query_by_category(self):
         """Test querying capabilities by category."""
-        from services.core.domain.capability import Capability
-        from services.core.domain.capability_registry import CapabilityRegistry
+        from core.policies.capability import Capability
+        from core.policies.capability_registry import CapabilityRegistry
 
         registry = CapabilityRegistry((
             Capability(id="model.cap", name="Model", category=CapabilityCategory.MODEL),
@@ -279,8 +279,8 @@ class TestCapabilityRegistryQueries:
         assert model_caps[0].id == "model.cap"
 
     def test_query_by_risk_level(self):
-        from services.core.domain.capability import Capability
-        from services.core.domain.capability_registry import CapabilityRegistry
+        from core.policies.capability import Capability
+        from core.policies.capability_registry import CapabilityRegistry
 
         registry = CapabilityRegistry((
             Capability(id="low.risk", name="Low", category=CapabilityCategory.TOOL, risk_level="low"),

@@ -22,7 +22,7 @@ class TestVerifyCleanProject:
     def test_clean_project_passes(self, tmp_path: Path) -> None:
         _create_mock_project(tmp_path, {
             "runtime/domain/model.py": "class Model:\n    def __init__(self): self.x = 1",
-            "services/service.py": "from runtime.domain.model import Model",
+            "services/service.py": "from core.domain.model import Model",
             "tests/test_model.py": "def test_pass(): pass",
         })
         results, exit_code = run_verification(tmp_path)

@@ -14,7 +14,7 @@ from typing import Any
 
 import pytest
 
-from runtime.domain.checkpoint import Checkpoint, CheckpointTrigger
+from core.domain.checkpoint import Checkpoint, CheckpointTrigger
 from runtime.kitematic_runtime.adapters.checkpoint_adapter import CheckpointPersistenceAdapter
 from services.checkpoint.repositories.file_system_checkpoint import FileSystemCheckpointRepository
 from services.checkpoint.repositories.in_memory_checkpoint import InMemoryCheckpointRepository
@@ -75,7 +75,7 @@ class TestCheckpointCorruptionRecovery:
 
     @pytest.mark.asyncio
     async def test_empty_state_restore_returns_error(self, adapter, fs_repo):
-        from runtime.domain.checkpoint import Checkpoint, CheckpointTrigger
+        from core.domain.checkpoint import Checkpoint, CheckpointTrigger
         from datetime import datetime, UTC
 
         cp = Checkpoint(

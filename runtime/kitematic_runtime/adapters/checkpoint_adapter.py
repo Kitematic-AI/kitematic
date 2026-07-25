@@ -13,10 +13,10 @@ import uuid
 from datetime import UTC, datetime
 from typing import Any, cast
 
-from runtime.domain.checkpoint import Checkpoint, CheckpointTrigger
+from core.domain.checkpoint import Checkpoint, CheckpointTrigger
 from runtime.kitematic_runtime.exceptions import CheckpointPersistenceError
 from runtime.kitematic_runtime.runtime import StatePersistence
-from services.checkpoint.interfaces.checkpoint_repository import CheckpointRepository
+from core.contracts.checkpoint_repository import CheckpointRepository
 
 
 class CheckpointPersistenceAdapter(StatePersistence):

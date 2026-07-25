@@ -21,8 +21,8 @@ Does NOT:
 import copy
 from typing import Any
 
-from runtime.contracts.step_request import StepRequest
-from runtime.contracts.step_response import StepResponse, StepStatus
+from core.contracts.step_request import StepRequest
+from core.contracts.step_response import StepResponse, StepStatus
 from runtime.execution.context_builder import ContextBuilder
 from runtime.execution.execution_runtime import ExecutionRuntime
 from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus

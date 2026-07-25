@@ -1,6 +1,6 @@
 """Tests for Policy domain model."""
 
-from runtime.domain.policy import (
+from core.policies.policy import (
     PolicyEffect,
     PolicyEvaluation,
     PolicyRule,

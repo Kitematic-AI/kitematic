@@ -3,9 +3,9 @@
 These tests verify the runtime contracts work correctly.
 """
 
-from runtime.contracts.agent_state import AgentState
-from runtime.contracts.step_request import StepRequest
-from runtime.contracts.step_response import StepStatus
+from core.contracts.agent_state import AgentState
+from core.contracts.step_request import StepRequest
+from core.contracts.step_response import StepStatus
 
 
 class TestStateTransitions:

@@ -6,8 +6,8 @@ UUID-based IDs, version-based latest lookup.
 
 import copy
 
-from runtime.domain.checkpoint import Checkpoint
-from services.checkpoint.interfaces.checkpoint_repository import CheckpointRepository
+from core.domain.checkpoint import Checkpoint
+from core.contracts.checkpoint_repository import CheckpointRepository
 
 
 class InMemoryCheckpointRepository(CheckpointRepository):

@@ -1,6 +1,6 @@
 """Tests for Adapter domain model."""
 
-from runtime.domain.adapter import Adapter, AdapterType, TrustLevel
+from core.domain.adapter import Adapter, AdapterType, TrustLevel
 
 
 class TestAdapter:

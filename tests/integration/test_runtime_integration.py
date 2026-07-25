@@ -2,8 +2,8 @@
 
 import pytest
 
-from runtime.contracts.step_request import StepRequest
-from runtime.contracts.step_response import StepStatus
+from core.contracts.step_request import StepRequest
+from core.contracts.step_response import StepStatus
 from runtime.execution.execution_context import ExecutionContext
 from runtime.execution.in_memory_runtime import InMemoryRuntime
 from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus

@@ -1,6 +1,6 @@
 """Tests for AgentManifest domain model."""
 
-from runtime.domain.agent_manifest import (
+from core.domain.agent_manifest import (
     AgentIdentity,
     AgentManifest,
     AgentStatus,

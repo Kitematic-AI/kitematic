@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from services.core.domain.capability_catalog import CapabilityCatalog
+from core.policies.capability_catalog import CapabilityCatalog
 
 from ..domain.extension_manifest import ExtensionManifest, ExtensionManifestValidator
 

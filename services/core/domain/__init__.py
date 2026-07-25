@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from services.core.domain.capability import (
+from core.policies.capability import (
     Capability,
     CapabilityCategory,
 )
-from services.core.domain.capability_catalog import CapabilityCatalog
-from services.core.domain.capability_registry import CapabilityRegistry
+from core.policies.capability_catalog import CapabilityCatalog
+from core.policies.capability_registry import CapabilityRegistry
 
 __all__ = [
     "Capability",

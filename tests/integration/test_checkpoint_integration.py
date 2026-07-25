@@ -4,8 +4,8 @@ from datetime import datetime
 
 import pytest
 
-from runtime.contracts.step_request import StepRequest
-from runtime.domain.checkpoint import Checkpoint, CheckpointTrigger
+from core.contracts.step_request import StepRequest
+from core.domain.checkpoint import Checkpoint, CheckpointTrigger
 from runtime.execution.execution_context import ExecutionContext
 from runtime.execution.in_memory_runtime import InMemoryRuntime
 from services.checkpoint.repositories.in_memory_checkpoint import (

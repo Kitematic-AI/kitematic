@@ -2,7 +2,7 @@
 
 from datetime import UTC, datetime, timedelta
 
-from runtime.domain.memory import MemoryItem, MemoryType
+from core.domain.memory import MemoryItem, MemoryType
 
 
 class TestMemoryItem:

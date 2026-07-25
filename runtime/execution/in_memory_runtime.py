@@ -7,9 +7,9 @@ No LLM/MCP/network calls. Configurable token consumption.
 from datetime import UTC, datetime
 from uuid import uuid4
 
-from runtime.contracts.step_request import StepRequest
-from runtime.contracts.step_response import StepResponse, StepStatus
-from runtime.domain.checkpoint import Checkpoint, CheckpointTrigger
+from core.contracts.step_request import StepRequest
+from core.contracts.step_response import StepResponse, StepStatus
+from core.domain.checkpoint import Checkpoint, CheckpointTrigger
 from runtime.execution.exceptions import (
     BudgetExceededError,
     InvalidStepRequestError,

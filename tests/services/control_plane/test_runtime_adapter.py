@@ -5,7 +5,7 @@ from typing import Any
 
 import pytest
 
-from runtime.contracts.step_response import StepStatus
+from core.contracts.step_response import StepStatus
 from runtime.execution.execution_runtime import ExecutionRuntime
 from runtime.execution.in_memory_runtime import InMemoryRuntime
 from services.control_plane.adapters.runtime_adapter import RuntimeExecutorAdapter

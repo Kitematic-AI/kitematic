@@ -2,7 +2,7 @@
 
 from datetime import UTC, datetime, timedelta
 
-from runtime.domain.approval_request import ApprovalRequest, ApprovalStatus, RiskLevel
+from core.domain.approval import ApprovalRequest, ApprovalStatus, RiskLevel
 
 
 class TestApprovalRequest:

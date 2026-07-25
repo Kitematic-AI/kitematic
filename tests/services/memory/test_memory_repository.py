@@ -4,7 +4,7 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
-from runtime.domain.memory import MemoryItem, MemoryType
+from core.domain.memory import MemoryItem, MemoryType
 from services.memory.repositories.in_memory_memory import InMemoryMemoryRepository
 
 

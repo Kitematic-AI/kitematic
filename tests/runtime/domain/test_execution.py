@@ -2,7 +2,7 @@
 
 from datetime import datetime, timedelta
 
-from runtime.domain.execution import (
+from core.domain.execution import (
     BudgetConsumed,
     Execution,
     ExecutionStatus,

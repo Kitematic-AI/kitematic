@@ -13,7 +13,7 @@ The registry:
 
 from __future__ import annotations
 
-from services.core.domain.capability import Capability, CapabilityCategory
+from core.policies.capability import Capability, CapabilityCategory
 
 
 class CapabilityRegistry:

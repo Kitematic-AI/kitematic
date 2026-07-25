@@ -4,7 +4,7 @@
 import pytest
 
 from core.domain.checkpoint import Checkpoint, CheckpointTrigger
-from runtime.kitematic_runtime.adapters.checkpoint_adapter import CheckpointPersistenceAdapter
+from control_plane.adapters.to_kernel.checkpoint import CheckpointPersistenceAdapter
 from kernel.exceptions import CheckpointPersistenceError
 
 

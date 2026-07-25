@@ -1,7 +1,7 @@
 """Tests for CapabilityRegistry and CapabilityCatalog."""
 
 
-from services.control_plane.policy.capability_resolver import CapabilityResolver
+from control_plane.policy.resolver import CapabilityResolver
 from core.policies.capability import Capability, CapabilityCategory
 from core.policies.capability_catalog import CapabilityCatalog
 from core.policies.capability_registry import CapabilityRegistry

@@ -2,7 +2,7 @@
 
 import pytest
 
-from services.control_plane.orchestrator.state_machine import (
+from control_plane.orchestrator.state_machine import (
     ExecutionStateMachine,
     ExecutionStatus,
     InvalidTransitionError,

@@ -2,12 +2,12 @@
 
 import pytest
 
-from services.control_plane.agent_registry.agent_registry import AgentRegistry
-from services.control_plane.errors.orchestration_errors import AgentInstanceNotFoundError
-from services.control_plane.lifecycle.lifecycle_manager import LifecycleManager
-from services.control_plane.orchestrator.state_machine import ExecutionStatus
-from services.control_plane.orchestrator.step_coordinator import StepAction, StepCoordinator
-from services.control_plane.policy.policy_engine import PolicyEngine
+from control_plane.registry.agents import AgentRegistry
+from control_plane.errors import AgentInstanceNotFoundError
+from control_plane.lifecycle.manager import LifecycleManager
+from control_plane.orchestrator.state_machine import ExecutionStatus
+from control_plane.orchestrator.coordinator import StepAction, StepCoordinator
+from control_plane.policy.engine import PolicyEngine
 
 
 class InMemoryRegistry(AgentRegistry):

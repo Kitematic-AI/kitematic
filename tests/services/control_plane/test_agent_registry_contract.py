@@ -6,16 +6,16 @@ must satisfy.
 
 import pytest
 
-from services.control_plane.agent_registry.agent_registry import AgentRegistry
+from control_plane.registry.agents import AgentRegistry
 
 
 @pytest.fixture
 def registry() -> AgentRegistry:
     """Override this fixture with the registry under test."""
-    from services.agent_registry.repositories.memory_instance_repository import (
+    from control_plane.registry.memory_instance_repository import (
         MemoryInstanceRepository,
     )
-    from services.agent_registry.repositories.memory_template_repository import (
+    from control_plane.registry.memory_template_repository import (
         MemoryTemplateRepository,
     )
 

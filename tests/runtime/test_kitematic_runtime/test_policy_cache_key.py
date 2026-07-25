@@ -4,7 +4,7 @@ Verifies that _make_cache_key produces different keys for different inputs,
 preventing the cache collision bug identified in P2 Step 3.
 """
 
-from services.control_plane.policy.policy_engine import PolicyEngine
+from control_plane.policy.engine import PolicyEngine
 
 
 class TestPolicyEngineCacheKey:

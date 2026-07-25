@@ -25,8 +25,8 @@ from core.contracts.step_request import StepRequest
 from core.contracts.step_response import StepResponse, StepStatus
 from kernel.execution.context_builder import ContextBuilder
 from kernel.execution.runtime import ExecutionRuntime
-from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
-from services.control_plane.orchestrator.step_coordinator import (
+from control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
+from control_plane.orchestrator.coordinator import (
     StepAction,
     StepCoordinator,
     StepPlan,

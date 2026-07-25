@@ -13,7 +13,7 @@ from pathlib import Path
 
 import pytest
 
-from runtime.kitematic_runtime.adapters.checkpoint_adapter import CheckpointPersistenceAdapter
+from control_plane.adapters.to_kernel.checkpoint import CheckpointPersistenceAdapter
 from services.checkpoint.repositories.file_system_checkpoint import FileSystemCheckpointRepository
 from tests.chaos.conftest import validate_recovery
 

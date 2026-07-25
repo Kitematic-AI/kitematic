@@ -6,7 +6,7 @@ This is the reference implementation; PostgreSQL adapter will follow later.
 
 from typing import Any
 
-from services.agent_registry.interfaces.instance_repository import InstanceRepository
+from control_plane.registry.instance_repository import InstanceRepository
 
 
 class MemoryInstanceRepository(InstanceRepository):

@@ -2,7 +2,7 @@
 
 import pytest
 
-from runtime.kitematic_runtime.adapters.simple_router import SimpleIntentRouter
+from control_plane.adapters.to_kernel.router import SimpleIntentRouter
 from kernel.exceptions import OrchestrationError
 from kernel.runtime import ExecutionPath, Intent
 from kernel.resources.tool_registry import ToolDefinition, ToolRegistry

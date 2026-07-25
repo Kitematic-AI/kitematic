@@ -6,13 +6,13 @@ must satisfy. PostgreSQL adapter must pass the same tests.
 
 import pytest
 
-from services.agent_registry.interfaces.template_repository import TemplateRepository
+from control_plane.registry.template_repository import TemplateRepository
 
 
 @pytest.fixture
 def repo() -> TemplateRepository:
     """Override this fixture with the repository under test."""
-    from services.agent_registry.repositories.memory_template_repository import (
+    from control_plane.registry.memory_template_repository import (
         MemoryTemplateRepository,
     )
     return MemoryTemplateRepository()

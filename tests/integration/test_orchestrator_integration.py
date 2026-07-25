@@ -4,10 +4,10 @@ import pytest
 
 from kernel.execution.runtime import ExecutionRuntime
 from kernel.execution.in_memory import InMemoryRuntime
-from services.control_plane.adapters.runtime_adapter import RuntimeExecutorAdapter
-from services.control_plane.agent_registry.agent_registry import AgentRegistry
-from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
-from services.control_plane.orchestrator.step_coordinator import StepAction
+from control_plane.adapters.to_runtime.runtime import RuntimeExecutorAdapter
+from control_plane.registry.agents import AgentRegistry
+from control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
+from control_plane.orchestrator.coordinator import StepAction
 
 
 class SimpleAgentRegistry(AgentRegistry):

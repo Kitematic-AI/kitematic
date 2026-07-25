@@ -36,7 +36,7 @@ class ExtensionManifest:
 
     def validate(self) -> list[str]:
         """Validate manifest integrity."""
-        from services.commercial.marketplace.model.invariants import MARKETPLACE_INVARIANTS
+        from control_plane.governance.marketplace.model.invariants import MARKETPLACE_INVARIANTS
 
         errors = []
 
@@ -75,7 +75,7 @@ class ExtensionManifestValidator:
     """Validates extension manifests against marketplace invariants."""
 
     def __init__(self):
-        from services.commercial.marketplace.model.invariants import MARKETPLACE_INVARIANTS
+        from control_plane.governance.marketplace.model.invariants import MARKETPLACE_INVARIANTS
         self.invariants = MARKETPLACE_INVARIANTS
 
     def validate(self, manifest) -> list[str]:

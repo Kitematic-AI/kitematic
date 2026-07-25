@@ -238,7 +238,7 @@ class TestFileSystemCheckpointAdapterRoundtrip:
     @pytest.mark.asyncio
     async def test_save_restore_roundtrip(self, temp_dir):
         fs_repo = FileSystemCheckpointRepository(temp_dir)
-        from runtime.kitematic_runtime.adapters.checkpoint_adapter import (
+        from control_plane.adapters.to_kernel.checkpoint import (
             CheckpointPersistenceAdapter,
         )
 
@@ -254,7 +254,7 @@ class TestFileSystemCheckpointAdapterRoundtrip:
     async def test_restart_roundtrip(self, temp_dir):
         """Simulate process restart: new adapter, new repo instance, same data dir."""
         fs_repo1 = FileSystemCheckpointRepository(temp_dir)
-        from runtime.kitematic_runtime.adapters.checkpoint_adapter import (
+        from control_plane.adapters.to_kernel.checkpoint import (
             CheckpointPersistenceAdapter,
         )
 
@@ -271,7 +271,7 @@ class TestFileSystemCheckpointAdapterRoundtrip:
     @pytest.mark.asyncio
     async def test_restore_after_restart_with_multiple(self, temp_dir):
         fs_repo1 = FileSystemCheckpointRepository(temp_dir)
-        from runtime.kitematic_runtime.adapters.checkpoint_adapter import (
+        from control_plane.adapters.to_kernel.checkpoint import (
             CheckpointPersistenceAdapter,
         )
 

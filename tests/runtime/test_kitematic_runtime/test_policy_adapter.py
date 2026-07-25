@@ -2,7 +2,7 @@
 
 import pytest
 
-from runtime.kitematic_runtime.adapters.policy_adapter import PolicyEngineAdapter
+from control_plane.adapters.to_kernel.policy import PolicyEngineAdapter
 from kernel.runtime import Intent
 
 

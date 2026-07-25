@@ -13,11 +13,11 @@ Does NOT:
 
 from typing import Any
 
-from services.control_plane.agent_registry.agent_registry import AgentRegistry
-from services.control_plane.errors.orchestration_errors import (
+from control_plane.registry.agents import AgentRegistry
+from control_plane.errors import (
     AgentInstanceNotFoundError,
 )
-from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
+from control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
 
 
 class LifecycleManager:

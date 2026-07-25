@@ -8,9 +8,9 @@ import pytest
 from core.contracts.step_response import StepStatus
 from kernel.execution.runtime import ExecutionRuntime
 from kernel.execution.in_memory import InMemoryRuntime
-from services.control_plane.adapters.runtime_adapter import RuntimeExecutorAdapter
-from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
-from services.control_plane.orchestrator.step_coordinator import (
+from control_plane.adapters.to_runtime.runtime import RuntimeExecutorAdapter
+from control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
+from control_plane.orchestrator.coordinator import (
     StepAction,
     StepCoordinator,
     StepPlan,

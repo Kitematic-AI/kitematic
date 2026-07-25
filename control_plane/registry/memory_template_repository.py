@@ -6,7 +6,7 @@ This is the reference implementation; PostgreSQL adapter will follow later.
 
 from typing import Any
 
-from services.agent_registry.interfaces.template_repository import TemplateRepository
+from control_plane.registry.template_repository import TemplateRepository
 
 
 class MemoryTemplateRepository(TemplateRepository):

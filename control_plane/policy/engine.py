@@ -14,7 +14,7 @@ import uuid
 from typing import Any
 
 from core.policies.policy import PolicyEffect, PolicyRule, PolicyStatus
-from services.control_plane.policy.policy_cache import InMemoryPolicyCache
+from control_plane.policy.cache import InMemoryPolicyCache
 from core.policies.capability_registry import CapabilityRegistry
 from core.policies.evaluator import PolicyEvaluator
 

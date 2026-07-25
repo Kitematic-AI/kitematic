@@ -5,9 +5,9 @@ The ABI protocols (PolicyEvaluator, IntentRouter, ToolGateway, StatePersistence)
 are the canonical interfaces. Adapters translate between ABI and service layers.
 """
 
-from runtime.kitematic_runtime.adapters.checkpoint_adapter import CheckpointPersistenceAdapter
-from runtime.kitematic_runtime.adapters.policy_adapter import PolicyEngineAdapter
-from runtime.kitematic_runtime.adapters.simple_router import SimpleIntentRouter
+from control_plane.adapters.to_kernel.checkpoint import CheckpointPersistenceAdapter
+from control_plane.adapters.to_kernel.policy import PolicyEngineAdapter
+from control_plane.adapters.to_kernel.router import SimpleIntentRouter
 
 __all__ = [
     "PolicyEngineAdapter",

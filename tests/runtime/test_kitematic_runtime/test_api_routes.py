@@ -3,9 +3,9 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from runtime.kitematic_runtime.adapters.checkpoint_adapter import CheckpointPersistenceAdapter
-from runtime.kitematic_runtime.adapters.policy_adapter import PolicyEngineAdapter
-from runtime.kitematic_runtime.adapters.simple_router import SimpleIntentRouter
+from control_plane.adapters.to_kernel.checkpoint import CheckpointPersistenceAdapter
+from control_plane.adapters.to_kernel.policy import PolicyEngineAdapter
+from control_plane.adapters.to_kernel.router import SimpleIntentRouter
 from runtime.kitematic_runtime.api.app import create_app
 from runtime.kitematic_runtime.api.auth import APIKeyAuthProvider, AuthContext
 from runtime.kitematic_runtime.api.events import EventPublisher
@@ -16,7 +16,7 @@ from kernel.runtime import (
 )
 from kernel.resources.tool_registry import ToolDefinition, ToolRegistry
 from services.checkpoint.repositories.in_memory_checkpoint import InMemoryCheckpointRepository
-from services.control_plane.policy.policy_engine import PolicyEngine
+from control_plane.policy.engine import PolicyEngine
 
 
 class MockMCPClient:

@@ -6,9 +6,9 @@ from core.contracts.step_request import StepRequest
 from core.contracts.step_response import StepStatus
 from kernel.execution.context import ExecutionContext
 from kernel.execution.in_memory import InMemoryRuntime
-from services.control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
-from services.control_plane.orchestrator.step_coordinator import StepAction, StepCoordinator
-from services.control_plane.policy.policy_engine import PolicyEngine
+from control_plane.orchestrator.state_machine import ExecutionStateMachine, ExecutionStatus
+from control_plane.orchestrator.coordinator import StepAction, StepCoordinator
+from control_plane.policy.engine import PolicyEngine
 
 
 @pytest.fixture

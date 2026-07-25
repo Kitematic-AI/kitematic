@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
-from services.commercial.marketplace.domain.extension_manifest import ExtensionManifest
+from control_plane.governance.marketplace.domain.extension_manifest import ExtensionManifest
 
 
 class ExtensionRegistry(ABC):
@@ -134,7 +134,7 @@ class InMemoryExtensionRegistry:
         return False
 
     def _listing_from_data(self, data: dict):
-        from services.commercial.marketplace.domain.listing_status import ExtensionListingStatus
+        from control_plane.governance.marketplace.domain.listing_status import ExtensionListingStatus
         return {
             "listing_id": data["listing_id"],
             "manifest": data["manifest"],

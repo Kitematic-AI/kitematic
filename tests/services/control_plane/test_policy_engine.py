@@ -2,7 +2,7 @@
 
 import pytest
 
-from services.control_plane.policy.policy_engine import PolicyEngine, _target_matches
+from control_plane.policy.engine import PolicyEngine, _target_matches
 from core.policies.evaluator import PolicyEvaluator
 
 

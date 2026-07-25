@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from services.commercial.marketplace.domain.extension_manifest import ExtensionManifest
+from control_plane.governance.marketplace.domain.extension_manifest import ExtensionManifest
 
 
 class InMemoryArtifactStore:

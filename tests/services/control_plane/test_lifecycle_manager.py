@@ -2,9 +2,9 @@
 
 import pytest
 
-from services.control_plane.agent_registry.agent_registry import AgentRegistry
-from services.control_plane.errors.orchestration_errors import AgentInstanceNotFoundError
-from services.control_plane.lifecycle.lifecycle_manager import LifecycleManager
+from control_plane.registry.agents import AgentRegistry
+from control_plane.errors import AgentInstanceNotFoundError
+from control_plane.lifecycle.manager import LifecycleManager
 
 
 class InMemoryRegistry(AgentRegistry):

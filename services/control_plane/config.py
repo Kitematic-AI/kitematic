@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from services.control_plane.policy.types import PolicyConfig
+from control_plane.policy.types import PolicyConfig
 
 
 @dataclass(frozen=True)

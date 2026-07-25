@@ -6,7 +6,7 @@ Decomposes Intent → PolicyEngine params, parses dict result → tuple.
 from __future__ import annotations
 
 from kernel.runtime import Intent, PolicyEvaluator
-from services.control_plane.policy.policy_engine import PolicyEngine
+from control_plane.policy.engine import PolicyEngine
 
 
 class PolicyEngineAdapter(PolicyEvaluator):

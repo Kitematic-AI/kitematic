@@ -13,6 +13,8 @@ The registry:
 
 from __future__ import annotations
 
+from packaging.version import InvalidVersion, Version
+
 from core.policies.capability import Capability, CapabilityCategory
 
 
@@ -135,9 +137,14 @@ class CapabilityRegistry:
         if version_constraint is None:
             return (self._capabilities[capability_id],)
 
-        # Exact match only in v1
         compat = []
         for cap in self._capabilities.values():
-            if cap.id == capability_id:
-                compat.append(cap)
+            if cap.id != capability_id:
+                continue
+            cap_version = getattr(cap, "version", "1.0.0")
+            try:
+                if Version(cap_version) == Version(version_constraint):
+                    compat.append(cap)
+            except InvalidVersion:
+                continue
         return tuple(compat)

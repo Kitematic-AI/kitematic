@@ -217,10 +217,10 @@ class CapabilityCatalog:
         if not cap:
             return ()
 
-        # v1: exact match only
         if version_constraint is None:
             return (cap,)
-        return cls.resolve_version(cap_id, version_constraint)
+        result = cls.resolve_version(cap_id, version_constraint)
+        return (result,) if result is not None else ()
 
     @classmethod
     def query(

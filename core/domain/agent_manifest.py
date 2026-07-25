@@ -1,4 +1,8 @@
-"""AgentManifest domain model — Agent identity, capabilities, and constraints."""
+"""DEPRECATED — Use PluginManifest with plugin_type=AGENT instead.
+
+This module exists for backward compatibility during the Phase 7 transition.
+All new code should use PluginManifest from core.domain.plugin.
+"""
 
 from dataclasses import dataclass
 from datetime import datetime

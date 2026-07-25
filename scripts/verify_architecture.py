@@ -28,6 +28,8 @@ LAYER_ALLOWED_IMPORTS: dict[str, set[str]] = {
     "infrastructure": {"core", "infrastructure"},
     "api":            {"core", "kernel", "control_plane", "api"},
     "config":         {"core", "config"},
+    "runtime":        {"core", "kernel", "runtime"},
+    "services":       {"core", "kernel", "control_plane", "services"},
 }
 
 # Forbidden imports in specific directories (module prefix → layer)
@@ -100,7 +102,8 @@ def get_layer(filepath: Path, root: Path) -> str | None:
     rel = filepath.relative_to(root)
     parts = rel.parts
     if parts[0] in ("core", "kernel", "control_plane", "agents",
-                     "ai_gateway", "infrastructure", "api", "config"):
+                     "ai_gateway", "infrastructure", "api", "config",
+                     "runtime", "services"):
         return parts[0]
     return None
 
@@ -173,7 +176,7 @@ def check_forbidden_imports(root: Path) -> CheckResult:
         rel = filepath.relative_to(root)
         rel_str = str(rel)
         for dir_pattern, forbidden in FORBIDDEN_IMPORTS.items():
-            if rel_str.startswith(dir_pattern):
+            if dir_pattern in rel.parts:
                 imports = extract_imports(filepath)
                 for imp in imports:
                     for fb in forbidden:

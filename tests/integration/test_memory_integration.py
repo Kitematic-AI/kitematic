@@ -5,7 +5,7 @@ from datetime import UTC, datetime
 import pytest
 
 from core.domain.memory import MemoryItem, MemoryType
-from services.memory.repositories.in_memory_memory import InMemoryMemoryRepository
+from infrastructure.storage.memory.in_memory import InMemoryMemoryRepository
 
 
 class TestMemoryRuntimeIntegration:

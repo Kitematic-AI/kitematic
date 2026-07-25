@@ -6,7 +6,7 @@ from uuid import uuid4
 import pytest
 
 from core.domain.checkpoint import Checkpoint, CheckpointTrigger
-from services.checkpoint.repositories.in_memory_checkpoint import (
+from infrastructure.storage.checkpoint.in_memory import (
     InMemoryCheckpointRepository,
 )
 

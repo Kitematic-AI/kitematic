@@ -7,7 +7,7 @@ from core.contracts.step_response import StepStatus
 from kernel.execution.context_builder import ContextBuilder
 from kernel.execution.context import ExecutionContext
 from kernel.execution.in_memory import InMemoryRuntime
-from services.checkpoint.repositories.in_memory_checkpoint import (
+from infrastructure.storage.checkpoint.in_memory import (
     InMemoryCheckpointRepository,
 )
 

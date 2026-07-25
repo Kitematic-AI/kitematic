@@ -39,7 +39,7 @@ from kernel.observability.logging import RuntimeLogger
 from kernel.observability.metrics import MetricsRegistry
 from kernel.runtime import KitematicRuntime
 from kernel.resources.tool_registry import ToolDefinition, ToolRegistry
-from services.checkpoint.repositories.in_memory_checkpoint import InMemoryCheckpointRepository
+from infrastructure.storage.checkpoint.in_memory import InMemoryCheckpointRepository
 from control_plane.policy.engine import PolicyEngine
 
 # ── Fixtures ──────────────────────────────────────────────────────

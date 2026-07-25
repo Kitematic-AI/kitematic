@@ -8,7 +8,7 @@ from core.contracts.step_request import StepRequest
 from core.domain.checkpoint import Checkpoint, CheckpointTrigger
 from kernel.execution.context import ExecutionContext
 from kernel.execution.in_memory import InMemoryRuntime
-from services.checkpoint.repositories.in_memory_checkpoint import (
+from infrastructure.storage.checkpoint.in_memory import (
     InMemoryCheckpointRepository,
 )
 

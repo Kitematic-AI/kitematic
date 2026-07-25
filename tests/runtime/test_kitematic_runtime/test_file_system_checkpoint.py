@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 
 from core.domain.checkpoint import Checkpoint, CheckpointTrigger
-from services.checkpoint.repositories.file_system_checkpoint import (
+from infrastructure.storage.checkpoint.file_system import (
     FileSystemCheckpointRepository,
 )
 

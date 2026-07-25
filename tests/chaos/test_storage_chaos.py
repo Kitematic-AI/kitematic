@@ -14,7 +14,7 @@ from pathlib import Path
 import pytest
 
 from control_plane.adapters.to_kernel.checkpoint import CheckpointPersistenceAdapter
-from services.checkpoint.repositories.file_system_checkpoint import FileSystemCheckpointRepository
+from infrastructure.storage.checkpoint.file_system import FileSystemCheckpointRepository
 from tests.chaos.conftest import validate_recovery
 
 pytestmark = [

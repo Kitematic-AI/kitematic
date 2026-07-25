@@ -7,10 +7,10 @@ from core.contracts.step_request import StepRequest
 from kernel.execution.context_builder import ContextBuilder
 from kernel.execution.context import ExecutionContext
 from kernel.execution.in_memory import InMemoryRuntime
-from services.checkpoint.repositories.in_memory_checkpoint import (
+from infrastructure.storage.checkpoint.in_memory import (
     InMemoryCheckpointRepository,
 )
-from services.memory.repositories.in_memory_memory import InMemoryMemoryRepository
+from infrastructure.storage.memory.in_memory import InMemoryMemoryRepository
 
 
 class TestRuntimeCheckpointMemoryIntegration:

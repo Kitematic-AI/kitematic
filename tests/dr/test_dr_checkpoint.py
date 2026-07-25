@@ -16,8 +16,8 @@ import pytest
 
 from core.domain.checkpoint import Checkpoint, CheckpointTrigger
 from control_plane.adapters.to_kernel.checkpoint import CheckpointPersistenceAdapter
-from services.checkpoint.repositories.file_system_checkpoint import FileSystemCheckpointRepository
-from services.checkpoint.repositories.in_memory_checkpoint import InMemoryCheckpointRepository
+from infrastructure.storage.checkpoint.file_system import FileSystemCheckpointRepository
+from infrastructure.storage.checkpoint.in_memory import InMemoryCheckpointRepository
 
 
 @pytest.fixture
